@@ -76,8 +76,10 @@ class RegisterController extends Controller
         ]);
 
         //Asssigning Role for the User based on selection
-        $role = Role::find($data['user_type']);
-        $user->assignRole($role->name);
+        /*$role = Role::find($data['user_type']);
+        $user->assignRole($role->name);*/
+        $user->assignRole($data['user_type']);
+
         return $user;
     }
 }

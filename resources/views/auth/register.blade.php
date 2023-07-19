@@ -80,8 +80,8 @@
 
                             <div class="col-md-6">
                                 <select id="user_type" class="form-control" name="user_type" required>
-                                    <option value="2">Vendor</option>
-                                    <option value="3">User</option>
+                                    <option value="Vendor">Vendor</option>
+                                    <option value="User">User</option>
                                 </select>
                             </div>
                         </div>
