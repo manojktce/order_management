@@ -75,6 +75,17 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3">
+                            <label for="user_type" class="col-md-4 col-form-label text-md-end">{{ __('User Type') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="user_type" class="form-control" name="user_type" required>
+                                    <option value="2">Vendor</option>
+                                    <option value="3">User</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
