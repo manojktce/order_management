@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id')->nullable(false);
             $table->integer('category_id')->nullable(false);
-            $table->string('title')->nullable(false)->unique();
+            $table->string('title')->unique();
             $table->text('description')->nullable(false); 
             $table->decimal('price',9,2); 
             $table->integer('qty')->default(5); // Set Minimum 5 default quantity for new product
