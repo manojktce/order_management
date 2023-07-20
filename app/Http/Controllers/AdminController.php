@@ -36,7 +36,7 @@ class AdminController extends Controller
         }
         else
         {
-            return redirect()->route('admin')->with('error','Email & Password credentials are wrong');
+            return redirect()->route('admin')->with('error','Invalid Credentials');
         }     
     }
 

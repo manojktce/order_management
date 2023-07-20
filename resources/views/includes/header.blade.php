@@ -24,6 +24,13 @@
     <link rel="stylesheet" href="{{ asset('/common/css/slick.css') }}">
     <!-- style CSS -->
     <link rel="stylesheet" href="{{ asset('/common/css/style.css') }}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 
 <body>
@@ -76,16 +83,18 @@
                         </div>
                         
                         <div class="hearer_icon d-flex">
+                            <!-- Check Users Authenticated & show icons-->
                             @if(Auth::user())
-                            <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <a href=""><i class="ti-heart"></i></a>
-                            <div class="dropdown cart">
-                                <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-cart-plus"></i>
-                                </a>                                
-                            </div>
+                                <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
+                                <a href=""><i class="ti-heart"></i></a>
+                                <div class="dropdown cart">
+                                    <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-cart-plus"></i>
+                                    </a>                                
+                                </div>
                             @endif
+                            <!-- Check Users Authenticated & show icons-->
 
                             <ul class="navbar-nav">
                                 <li class="nav-item dropdown">
