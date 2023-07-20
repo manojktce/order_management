@@ -19,6 +19,8 @@ Route::get('/', function () { return view('home'); });
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 Route::post('admin_login', [App\Http\Controllers\AdminController::class, 'admin_login']);
 
+Route::get('/category', [App\Http\Controllers\HomeController::class, 'display_category']);
+
 Auth::routes();
 
 Route::group(['middleware' => ['role:Vendor|User']], function () {
