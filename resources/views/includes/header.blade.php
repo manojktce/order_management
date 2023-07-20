@@ -1,4 +1,34 @@
-<!--::header part start::-->
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Order Management</title>
+    <link rel="icon" href="{{ asset('/common/img/favicon.png') }}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset('/common/css/bootstrap.min.css') }}">
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="{{ asset('/common/css/animate.css') }}">
+    <!-- owl carousel CSS -->
+    <link rel="stylesheet" href="{{ asset('/common/css/owl.carousel.min.css') }}">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="{{ asset('/common/css/all.css') }}">
+    <!-- flaticon CSS -->
+    <link rel="stylesheet" href="{{ asset('/common/css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('/common/css/themify-icons.css') }}">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="{{ asset('/common/css/magnific-popup.css') }}">
+    <!-- swiper CSS -->
+    <link rel="stylesheet" href="{{ asset('/common/css/slick.css') }}">
+    <!-- style CSS -->
+    <link rel="stylesheet" href="{{ asset('/common/css/style.css') }}">
+</head>
+
+<body>
+    
+    <!--::header part start::-->
     <header class="main_menu home_menu">
         <div class="container">
             <div class="row align-items-center">

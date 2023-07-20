@@ -26,7 +26,7 @@ class AdminController extends Controller
             $roleName = Auth::user()->roles->pluck('name')->first();
             if($roleName == "Admin")
             {
-                return redirect()->route('adminHome');
+                return redirect()->route('adminHome')->with('message','Welcome to the Admin Portal');
             }
             else
             {
@@ -36,8 +36,14 @@ class AdminController extends Controller
         }
         else
         {
-            return redirect()->route('admin')->with('error','Email-Address And Password Are Wrong.');
+            return redirect()->route('admin')->with('error','Email & Password credentials are wrong');
         }     
+    }
+
+    public function admin_logout(Request $request)
+    {
+        Auth::logout();
+        return redirect()->route('admin')->with('message','Logged out successfully');
     }
 
     public function adminHome()
