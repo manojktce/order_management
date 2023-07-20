@@ -18,6 +18,11 @@ Route::get('/', function () { return view('auth.login'); });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/adminHome', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('adminHome')->middleware('can:adminHome');
-Route::get('/table', [App\Http\Controllers\HomeController::class, 'table'])->name('table');
+Route::group(['middleware' => ['role:Vendor']], function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+});
+
+Route::group(['middleware' => ['role:Admin']], function () {
+    Route::get('/adminHome', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('adminHome');
+    Route::get('/table', [App\Http\Controllers\HomeController::class, 'table'])->name('table');    
+});

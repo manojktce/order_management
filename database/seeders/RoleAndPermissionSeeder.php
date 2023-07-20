@@ -18,6 +18,7 @@ class RoleAndPermissionSeeder extends Seeder
         // Permission
         Permission::create(['name' => 'home']);
         Permission::create(['name' => 'adminHome']);
+        Permission::create(['name' => 'table']);
 
         // Category Permissions
         Permission::create(['name' => 'create-category']);
@@ -52,6 +53,7 @@ class RoleAndPermissionSeeder extends Seeder
 
         $userRole->givePermissionTo([
             'home',
+            'table'
         ]);
     }
 }
