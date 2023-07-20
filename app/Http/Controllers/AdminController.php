@@ -30,8 +30,8 @@ class AdminController extends Controller
             }
             else
             {
-                //return redirect()->route('home');
-                return view('home2');
+                Auth::logout();
+                return redirect()->route('admin')->with('error','Unauthorized Access');
             }
         }
         else
