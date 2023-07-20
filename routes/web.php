@@ -15,13 +15,14 @@ use Illuminate\Auth\Middleware;
 */
 
 //Route::get('/', function () { return view('auth.login'); });
-Route::get('/', function () { return view('home2'); });
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index']);
+Route::get('/', function () { return view('home'); });
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+Route::post('admin_login', [App\Http\Controllers\AdminController::class, 'admin_login']);
 
 Auth::routes();
 
 Route::group(['middleware' => ['role:Vendor|User']], function () {
-    Route::get('/home2', [App\Http\Controllers\HomeController::class, 'index'])->name('home2');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 
 Route::group(['middleware' => ['role:Admin']], function () {

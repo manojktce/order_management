@@ -59,7 +59,7 @@ class LoginController extends Controller
             else
             {
                 //return redirect()->route('home');
-                return view('home2');
+                return view('home');
             }
         }
         else
