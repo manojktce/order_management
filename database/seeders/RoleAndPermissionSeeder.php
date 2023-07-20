@@ -45,6 +45,7 @@ class RoleAndPermissionSeeder extends Seeder
 
         $adminRole->givePermissionTo([
             'adminHome',
+            'table'
         ]);
 
         $vendorRole->givePermissionTo([
@@ -53,7 +54,6 @@ class RoleAndPermissionSeeder extends Seeder
 
         $userRole->givePermissionTo([
             'home',
-            'table'
         ]);
     }
 }
