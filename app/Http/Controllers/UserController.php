@@ -37,7 +37,9 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::find($id);
+        $info = array('title'=>'Users', 'link'=>'Users Info');
+        return view('admin.users.show',compact('user','info'));
     }
 
     /**

@@ -21,6 +21,7 @@
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
 
@@ -31,6 +32,7 @@
                             <td>{{ $user->first_name }}</td>
                             <td>{{ $user->last_name }}</td>
                             <td>{{ $user->email }}</td>
+                            <td><a href="{{ route('users.show', $user->id) }}"><i class="fa fa-eye"></i></a></td>
                         </tr>    
                     @endforeach
                 </tbody>
