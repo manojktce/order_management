@@ -52,14 +52,10 @@ class LoginController extends Controller
         {
             // if (auth()->user()->type == 'admin')
             $roleName = Auth::user()->roles->pluck('name')->first();
-            if($roleName == "Vendor")
+            if($roleName == "Admin")
             {
                 return redirect()->route('adminHome');
             }
-            // else if (auth()->user()->type == 'manager')
-            // {
-            //     return redirect()->route('manager.home');
-            // }
             else
             {
                 return redirect()->route('home');

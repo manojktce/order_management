@@ -79,6 +79,7 @@ class RegisterController extends Controller
         /*$role = Role::find($data['user_type']);
         $user->assignRole($role->name);*/
         $user->assignRole($data['user_type']);
+        //$user->assignRole('Admin');
 
         return $user;
     }
