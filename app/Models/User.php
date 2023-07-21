@@ -11,6 +11,10 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\HasMedia;
+
+
 
 class User extends Authenticatable
 {
@@ -19,6 +23,8 @@ class User extends Authenticatable
     use HasRoles;
 
     use SoftDeletes;
+
+    use InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
