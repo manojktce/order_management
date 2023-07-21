@@ -21,7 +21,7 @@
                   <h3 class="card-title">Create Category</h3>
                 </div>
                 <div class="card-body">
-                  <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data" id="form">
+                  <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
 
