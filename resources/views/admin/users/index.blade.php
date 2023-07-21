@@ -52,7 +52,7 @@
     });
 </script>
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
 $(function() {	
 $.getScript("https://www.jqueryscript.net/demo/Delete-Confirmation-Dialog-Plugin-with-jQuery-Bootstrap/bootstrap-confirm-delete.js", function(){
 	  $('.delete').bootstrap_confirm_delete({
@@ -61,6 +61,6 @@ $.getScript("https://www.jqueryscript.net/demo/Delete-Confirmation-Dialog-Plugin
 });
 	 });
 });
-</script>
+</script> --}}
 
 @endsection

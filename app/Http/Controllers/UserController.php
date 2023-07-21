@@ -29,7 +29,7 @@ class UserController extends Controller
                             
                             $btn ='<a href="'. route('users.show', $row->id) .'" class="btn btn-outline-primary"><i class="fa fa-eye"></i></a>
                             <a href="' .route('users.edit', $row->id) .'" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
-                            <a href="' .route('users.delete', $row->id) .'" class="btn btn-outline-primary delete" ><i class="fa fa-trash"></i></a>';
+                            <a href="' .route('users.delete', $row->id) .'" class="btn btn-outline-primary" onclick="return confirm_delete();"><i class="fa fa-trash"></i></a>';
 
                             return $btn;
                     })
