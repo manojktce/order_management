@@ -24,7 +24,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $info = array('title'=>'Users');
+        return view('admin.users.create',compact('info'));
     }
 
     /**

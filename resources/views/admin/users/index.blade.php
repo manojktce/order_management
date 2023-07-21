@@ -10,7 +10,11 @@
       <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-              <h3 class="card-title">DataTable with default features</h3>
+              <div class="row">
+                <div class="col-lg-12">
+                    <a href="{{ route('users.create') }}" class="btn btn-outline-secondary float-right mr-2">Add User</a>
+                </div>
+              </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -44,15 +48,6 @@
                         </tr>    
                     @endforeach
                 </tbody>
-                
-                <tfoot>
-                    <tr>
-                        <th>Id</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                    </tr>
-                </tfoot>
               </table>
             </div>
             <!-- /.card-body -->
