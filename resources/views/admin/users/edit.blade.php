@@ -69,11 +69,18 @@
                 <input type="file" name="image" class="custom-file-input" id="exampleInputFile">
                 <label class="custom-file-label" for="exampleInputFile">Choose file</label>
               </div>
-              {{-- <div class="input-group-append">
-                <span class="input-group-text">Upload</span>
-              </div> --}}
             </div>
           </div>
+
+          <!-- Image Preview Section by Manoj -->
+          <div class="row card">
+            <div class="image-preview">
+                @if(!empty($user->getFirstMediaUrl('images','thumb')))
+                <img id="user-img-preview" src="{{ $user->getFirstMediaUrl('images','thumb') }}" height="100px" width="250px">
+                @endif
+            </div>
+          </div>
+          <!-- Image Preview Section by Manoj -->
         </div>
         <!-- /.card-body -->
 

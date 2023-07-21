@@ -25,7 +25,7 @@
           
           <div class="form-group">
             <label for="exampleInputFname">First Name</label><span class="text-danger">*</span>
-            <input type="text" name="first_name" class="form-control" id="exampleInputFname" placeholder="Enter First Name" required>
+            <input type="text" name="first_name" class="form-control" id="exampleInputFname" placeholder="Enter First Name">
           </div>
 
           <div class="form-group">
@@ -68,11 +68,15 @@
                 <input type="file" name="image" class="custom-file-input" id="exampleInputFile">
                 <label class="custom-file-label" for="exampleInputFile">Choose file</label>
               </div>
-              {{-- <div class="input-group-append">
-                <span class="input-group-text">Upload</span>
-              </div> --}}
             </div>
           </div>
+
+          <!-- Image Preview Section by Manoj -->
+          <div class="row card">
+            <div class="image-preview"></div>
+          </div>
+          <!-- Image Preview Section by Manoj -->
+
         </div>
         <!-- /.card-body -->
 
@@ -81,6 +85,5 @@
         </div>
       </form>
     </div>
-    
   </div>
 @endsection

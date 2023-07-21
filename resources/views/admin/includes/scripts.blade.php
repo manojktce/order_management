@@ -86,24 +86,35 @@
     @endif
   </script>
 
-{{-- <script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script> --}}
+<!-- image preview script add by manoj refer admin user management create file-->
+<script type="text/javascript">
+  $(function() {
+  // Multiple images preview in browser
+  var imagesPreview = function(input, placeToInsertImagePreview) {
 
+      if (input.files) {
+          var filesAmount = input.files.length;
+
+          for (i = 0; i < filesAmount; i++) {
+              var reader = new FileReader();
+
+              reader.onload = function(event) {
+                  $($.parseHTML('<img>')).attr('src', event.target.result).css({'width' : '300px','height' : '200px'}).appendTo(placeToInsertImagePreview);
+              }
+
+              reader.readAsDataURL(input.files[i]);
+          }
+      }
+
+  };
+
+  $('.custom-file-input').on('change', function() {
+      $('div.image-preview').empty(); // clear any previous image
+      imagesPreview(this, 'div.image-preview');
+  });
+});
+</script>
+<!-- image preview script add by manoj end -->
 
 </body>
 </html>
