@@ -12,14 +12,14 @@
       </div>
     
 
-    <div class="card card-primary">
-      <div class="card-header">
+    <div class="card">
+      <div class="card-header border-0">
         <h3 class="card-title">User Creation</h3>
       </div>
       <!-- /.card-header -->
 
       <!-- form start -->
-      <form action="{{ route('users.store') }}" method="post" enctype="multipart/form-data">
+      <form action="{{ route('users.store') }}" method="post" enctype="multipart/form-data" id="form">
         @csrf
         <div class="card-body">
           
@@ -86,4 +86,5 @@
       </form>
     </div>
   </div>
+
 @endsection

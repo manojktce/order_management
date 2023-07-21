@@ -4,19 +4,40 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+
+use DataTables;
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //User::onlyTrashed()->restore();
         //$users = User::withTrashed()->get();
-
-        $users = User::get();
+        
+        // $users = User::get();
         $info = array('title'=>'Users');
-        return view('admin.users.index',compact('users','info'));
+        // return view('admin.users.index',compact('users','info'));
+
+        if ($request->ajax()) {
+            $user = User::select('*');
+            
+            return Datatables::of($user)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+                            
+                            $btn ='<a href="'. route('users.show', $row->id) .'" class="btn btn-outline-primary"><i class="fa fa-eye"></i></a>
+                            <a href="' .route('users.edit', $row->id) .'" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
+                            <a href="' .route('users.delete', $row->id) .'" class="btn btn-outline-primary delete" ><i class="fa fa-trash"></i></a>';
+
+                            return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+        
+        return view('admin.users.index',compact('info'));
     }
 
     /**
@@ -36,7 +57,7 @@ class UserController extends Controller
         $request->validate([
             'first_name'    => 'required',
             'last_name'     => 'required',
-            'email'         => 'required',
+            'email'         => 'required|email|unique:users,email',
             'password'      => 'required',
         ]);
   
@@ -95,6 +116,12 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
+    {
+        User::find($id)->delete();
+        return redirect()->back()->with('error', 'User Record Deleted Successfully.');
+    }
+
+    public function delUsers(string $id)
     {
         User::find($id)->delete();
         return redirect()->back()->with('error', 'User Record Deleted Successfully.');
