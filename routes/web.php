@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Auth\Middleware;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
 
 //Route::get('/', function () { return view('auth.login'); });
 Route::get('/', function () { return view('home'); });
@@ -25,6 +26,10 @@ Route::group(['middleware' => ['role:Admin']], function () {
     Route::resource('users', UserController::class);
     Route::get('users/delete/{id}', [UserController::class, 'delUsers'])->name('users.delete');
     /* User Management End */
+
+    /* Category Management Start */
+    Route::resource('category', CategoryController::class);
+    /* Category Management End */
 
     Route::post('admin_logout', [App\Http\Controllers\AdminController::class, 'admin_logout'])->name('admin_logout');
 });

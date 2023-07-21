@@ -71,7 +71,7 @@
             </li>
             
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ url('category') }}" class="nav-link {{ (request()->segment(1) == 'category') ? 'active' : '' }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Category Management</p>
               </a>
