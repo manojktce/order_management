@@ -37,16 +37,14 @@
                             <td>{{ $user->first_name }}</td>
                             <td>{{ $user->last_name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td><img src="{{ $user->getFirstMediaUrl('images','thumb') }}" / width="120px"></td>
+                            <td><img src="{{ $user->getFirstMediaUrl('images','thumb') }}" width="120px"></td>
                             <td>
-                                <a href="{{ route('users.edit',$user->id) }}" class="btn btn-sm btn-outline-primary mr-2"><i class="fa fa-edit"></i></a>
-                                <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-outline-primary mr-2"><i class="fa fa-eye"></i></a>
-
-                                <form method="POST" action="{{ route('users.destroy', $user->id) }}">
-                                    @csrf
-                                    <input name="_method" type="hidden" value="DELETE">
-                                    <button type="submit" class="btn btn-sm btn-outline-primary" data-toggle="tooltip" title='Delete'><i class="fa fa-trash"></i></button>
-                                </form>
+                                <form action="{{ route('users.destroy', $user->id) }}" method="POST">
+                                  @csrf
+                                  <a href="{{ route('users.show', $user->id) }}" class="btn btn-outline-primary"><i class="fa fa-eye"></i></a>
+                                  <a href="{{ route('users.edit', $user->id) }}" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
+                                  <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Are you sure to to delete this user?');"><i class="fa fa-trash"></i></button>
+                              </form>
                             </td>
                         </tr>    
                     @endforeach
