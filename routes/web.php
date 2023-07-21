@@ -29,6 +29,7 @@ Route::group(['middleware' => ['role:Admin']], function () {
 
     /* Category Management Start */
     Route::resource('category', CategoryController::class);
+    Route::get('category/delete/{id}', [CategoryController::class, 'delCategory'])->name('category.delete');
     /* Category Management End */
 
     Route::post('admin_logout', [App\Http\Controllers\AdminController::class, 'admin_logout'])->name('admin_logout');

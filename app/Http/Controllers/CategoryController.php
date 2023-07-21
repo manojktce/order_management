@@ -20,7 +20,8 @@ class CategoryController extends Controller
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
                             
-                            $btn = '';
+                        $btn ='<a href="' .route('category.edit', $row->id) .'" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
+                        <a href="' .route('category.delete', $row->id) .'" class="btn btn-outline-primary" onclick="return confirm_delete();"><i class="fa fa-trash"></i></a>';
 
                             return $btn;
                     })
@@ -66,17 +67,26 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        $info = array('title'=>'Product Category');
+        return view('admin.category.edit',compact('category','info'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title'    => 'required',
+        ]);
+        
+        $category = Category::find($id);
+        $category->update($request->all());
+          
+        return redirect()->route('category.index')->with('message', 'Category updated successfully.');;
     }
 
     /**
@@ -85,5 +95,11 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+    }
+
+    public function delCategory(string $id)
+    {
+        Category::find($id)->delete();
+        return redirect()->back()->with('error', 'User Record Deleted Successfully.');
     }
 }

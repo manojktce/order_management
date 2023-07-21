@@ -25,7 +25,7 @@ class UserController extends Controller
         // return view('admin.users.index',compact('users','info'));
 
         if ($request->ajax()) {
-            $user = User::get();
+            $user = User::latest();
             
             return Datatables::of($user)
                     ->addIndexColumn()
@@ -110,7 +110,7 @@ class UserController extends Controller
         $user->update($request->all());
         
         $user->assignRole($request->input('user_type'));
-        
+
         if($request->hasFile('image') && $request->file('image')->isValid()){
             $user->addMediaFromRequest('image')->toMediaCollection('images');
         }

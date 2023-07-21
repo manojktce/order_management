@@ -41,7 +41,7 @@
       serverSide: true,
       ajax: "{{ route('category.index') }}",
       columns: [
-          {data: 'id', name: 'id'},
+          {data: 'DT_RowIndex', name: 'id'},
           {data: 'title', name: 'title'},
           {data: 'action', name: 'action', orderable: false, searchable: false},
       ]
