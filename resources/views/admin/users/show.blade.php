@@ -12,8 +12,9 @@
         <div class="card card-primary card-outline">
           <div class="card-body box-profile">
             <div class="text-center">
+              @php $imgUrl = $user->getFirstMediaUrl('images','thumb') @endphp
               <img class="profile-user-img img-fluid img-circle"
-                   src="{{ $user->getFirstMediaUrl('images','thumb') }}"
+              src="{{ empty($imgUrl) ? "../../dist/img/user4-128x128.jpg": $imgUrl }}"
                    alt="User profile picture">
             </div>
 
@@ -25,6 +26,11 @@
               <li class="list-group-item">
                 <b>Email</b> <a class="float-right">{{ $user->email }}</a>
               </li>
+
+              <li class="list-group-item">
+                <b>User Type</b> <a class="float-right">{{  }}</a>
+              </li>
+
               <li class="list-group-item">
                 <b>Stripe ID</b> <a class="float-right">{{ $user->stripe_id }}</a>
               </li>

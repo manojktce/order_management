@@ -21,7 +21,7 @@ class UserController extends Controller
         // return view('admin.users.index',compact('users','info'));
 
         if ($request->ajax()) {
-            $user = User::select('*');
+            $user = User::get();
             
             return Datatables::of($user)
                     ->addIndexColumn()
