@@ -21,9 +21,9 @@ Route::group(['middleware' => ['role:Admin']], function () {
     Route::get('/adminHome', [App\Http\Controllers\AdminController::class, 'adminHome'])->name('adminHome');
     Route::get('/table', [App\Http\Controllers\AdminController::class, 'table'])->name('table');    
     
-    /* User Management */
+    /* User Management Start */
     Route::resource('users', UserController::class);
-    Route::delete('users/delete/{id}', [UserController::class, 'delete'])->name('users.delete');
+    /* User Management End */
 
     Route::post('admin_logout', [App\Http\Controllers\AdminController::class, 'admin_logout'])->name('admin_logout');
 });
