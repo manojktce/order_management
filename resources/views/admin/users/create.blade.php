@@ -102,4 +102,10 @@
       </section>
   </div>
 
+<script type="text/javascript">
+$(document).ready(function(){
+  alert('s');
+})
+</script>
+
 @endsection

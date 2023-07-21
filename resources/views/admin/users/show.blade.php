@@ -28,7 +28,7 @@
               </li>
 
               <li class="list-group-item">
-                <b>User Type</b> <a class="float-right">{{  }}</a>
+                <b>User Type</b> <a class="float-right"></a>
               </li>
 
               <li class="list-group-item">
