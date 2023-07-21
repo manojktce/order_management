@@ -32,7 +32,15 @@
                             <td>{{ $user->first_name }}</td>
                             <td>{{ $user->last_name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td><a href="{{ route('users.show', $user->id) }}"><i class="fa fa-eye"></i></a></td>
+                            <td>
+                                <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-outline-primary mr-2"><i class="fa fa-eye"></i></a>
+                                
+                                <form method="POST" action="{{ route('users.delete', $user->id) }}">
+                                    @csrf
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    <button type="submit" class="btn btn-sm btn-outline-primary" data-toggle="tooltip" title='Delete'><i class="fa fa-trash"></i></button>
+                                </form>
+                            </td>
                         </tr>    
                     @endforeach
                 </tbody>

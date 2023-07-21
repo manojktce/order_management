@@ -11,8 +11,11 @@ class UserController extends Controller
      */
     public function index()
     {
+        //User::onlyTrashed()->restore();
+        //$users = User::withTrashed()->get();
+
         $users = User::get();
-        $info = array('title'=>'Users', 'link'=>'Users');
+        $info = array('title'=>'Users');
         return view('admin.users.index',compact('users','info'));
     }
 
@@ -38,7 +41,7 @@ class UserController extends Controller
     public function show(string $id)
     {
         $user = User::find($id);
-        $info = array('title'=>'Users', 'link'=>'Users Info');
+        $info = array('title'=>'Users');
         return view('admin.users.show',compact('user','info'));
     }
 
@@ -64,5 +67,11 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function delete($id)
+    {
+        User::find($id)->delete();
+        return redirect()->back()->with('error', 'User Record Deleted Successfully.');
     }
 }

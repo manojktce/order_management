@@ -23,6 +23,7 @@ Route::group(['middleware' => ['role:Admin']], function () {
     
     /* User Management */
     Route::resource('users', UserController::class);
-    
+    Route::delete('users/delete/{id}', [UserController::class, 'delete'])->name('users.delete');
+
     Route::post('admin_logout', [App\Http\Controllers\AdminController::class, 'admin_logout'])->name('admin_logout');
 });
