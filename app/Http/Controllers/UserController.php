@@ -33,7 +33,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'first_name'    => 'required',
+            'last_name'     => 'required',
+            'email'         => 'required',
+            'password'      => 'required',
+        ]);
+  
+        $user = User::create($request->all());
+  
+        if($request->hasFile('image') && $request->file('image')->isValid()){
+            $user->addMediaFromRequest('image')->toMediaCollection('images');
+        }
+  
+        return redirect()->route('users.index')->with('message', 'User Record Created Successfully.');;
     }
 
     /**
@@ -51,7 +64,9 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::find($id);
+        $info = array('title'=>'Users');
+        return view('admin.users.edit',compact('user','info'));
     }
 
     /**
@@ -59,7 +74,21 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
+        $request->validate([
+            'first_name'    => 'required',
+            'last_name'     => 'required',
+            'email'         => 'required',
+        ]);
+        
+        $user = User::find($id);
+        $user->update($request->all());
+  
+        if($request->hasFile('image') && $request->file('image')->isValid()){
+            $user->addMediaFromRequest('image')->toMediaCollection('images');
+        }
+  
+        return redirect()->route('users.index')->with('message', 'User record updated successfully.');;
     }
 
     /**

@@ -16,7 +16,7 @@ use Spatie\MediaLibrary\HasMedia;
 
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -36,6 +36,7 @@ class User extends Authenticatable
         'last_name',
         'email',
         'password',
+        'status'
     ];
 
     /**

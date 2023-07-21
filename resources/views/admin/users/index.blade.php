@@ -25,6 +25,7 @@
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
+                        <th>Image</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -36,7 +37,9 @@
                             <td>{{ $user->first_name }}</td>
                             <td>{{ $user->last_name }}</td>
                             <td>{{ $user->email }}</td>
+                            <td><img src="{{ $user->getFirstMediaUrl('images','thumb') }}" / width="120px"></td>
                             <td>
+                                <a href="{{ route('users.edit',$user->id) }}" class="btn btn-sm btn-outline-primary mr-2"><i class="fa fa-edit"></i></a>
                                 <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-outline-primary mr-2"><i class="fa fa-eye"></i></a>
 
                                 <form method="POST" action="{{ route('users.destroy', $user->id) }}">
