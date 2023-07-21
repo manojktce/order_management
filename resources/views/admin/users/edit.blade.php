@@ -56,7 +56,7 @@
 
                                     <div class="form-group">
                                         <label>User Type</label><span class="text-danger">*</span>
-                                        <select class="form-control" name="status">
+                                        <select class="form-control" name="user_type">
                                           <option value="User">User</option>
                                           <option value="Vendor">Vendor</option>
                                         </select>

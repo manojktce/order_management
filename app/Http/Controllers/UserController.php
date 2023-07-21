@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-
 use DataTables;
+
+
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+
 class UserController extends Controller
 {
     /**
@@ -60,8 +64,8 @@ class UserController extends Controller
             'email'         => 'required|email|unique:users,email',
             'password'      => 'required',
         ]);
-  
         $user = User::create($request->all());
+        $user->assignRole($request->input('user_type'));
   
         if($request->hasFile('image') && $request->file('image')->isValid()){
             $user->addMediaFromRequest('image')->toMediaCollection('images');
@@ -104,7 +108,9 @@ class UserController extends Controller
         
         $user = User::find($id);
         $user->update($request->all());
-  
+        
+        $user->assignRole($request->input('user_type'));
+        
         if($request->hasFile('image') && $request->file('image')->isValid()){
             $user->addMediaFromRequest('image')->toMediaCollection('images');
         }

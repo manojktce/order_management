@@ -22,6 +22,8 @@ class Category extends Model
     use HasRoles;
     use SoftDeletes;
 
+    public $table = 'category';
+
     protected $fillable = [
         'title',
         'status'

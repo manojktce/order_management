@@ -18,12 +18,34 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                Category
+              <table class="table table-bordered data-table" id="category-table">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Title</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
             </div>
         </div>
       </div>
     </section>
 </div>
 
+<script type="text/javascript">
+  var table = $('#category-table').DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: "{{ route('category.index') }}",
+      columns: [
+          {data: 'id', name: 'id'},
+          {data: 'title', name: 'title'},
+          {data: 'action', name: 'action', orderable: false, searchable: false},
+      ]
+  });
+</script>
 
 @endsection

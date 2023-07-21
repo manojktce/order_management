@@ -4,14 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use DataTables;
 
 class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
+            $category = Category::get();
+            
+            return Datatables::of($category)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+                            
+                            $btn = '';
+
+                            return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+
         $info = array('title'=>'Product Category');
         return view('admin.category.index',compact('info'));
     }
