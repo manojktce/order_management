@@ -1,0 +1,6 @@
+1) composer update (If Required)
+2) Change db credentials in .env file
+3) create Database named "m_order_mgmt"
+4) php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="migrations"
+5) php artisan migrate:refresh // to create empty tables
+6) php artisan db:seed // seed with sample users
