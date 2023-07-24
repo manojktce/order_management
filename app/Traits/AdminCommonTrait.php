@@ -7,6 +7,8 @@ use DataTables;
 
 use Exception;
 use Validator;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 trait AdminCommonTrait
 {
@@ -63,15 +65,21 @@ trait AdminCommonTrait
     public function show(string $id)
     {
         $result = $this->model::find($id);
+        
         $info = array('title'=>ucfirst($this->route_name));
-        return view('admin.'.$this->route_name.'.show',compact('result','info'));
+        $role_name = $this->_role_name($result);       
+
+        return view('admin.'.$this->route_name.'.show',compact('result','role_name','info'));
     }
 
     public function edit(string $id)
     {
         $result = $this->model::find($id);
+        
+        $role_name = $this->_role_name($result); 
+
         $info = array('title'=>ucfirst($this->route_name));
-        return view('admin.'.$this->route_name.'.edit',compact('result','info'));
+        return view('admin.'.$this->route_name.'.edit',compact('result','info','role_name'));
     }
 
 
@@ -88,6 +96,9 @@ trait AdminCommonTrait
         
         if($this->model_name == 'User')
         {
+            $role_name = $this->_role_name($model); 
+
+            $model->removeRole($role_name); //Remove Previously assigned roles
             $model->assignRole($request->input('user_type'));
 
             if($request->hasFile('image') && $request->file('image')->isValid()){
@@ -122,6 +133,12 @@ trait AdminCommonTrait
         ];
     }
 
+    private function _role_name($model)
+    {
+        $role_name = $model->roles->pluck('name');
+        return preg_replace('/[^A-Za-z0-9\-]/', '', $role_name); // Removes special chars.
+    }
+    
     private function _store_validate($request, $id = null)
     {
         $rules = $this->_store_validation_rules($request, $id);

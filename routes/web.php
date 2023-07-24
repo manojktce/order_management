@@ -8,9 +8,9 @@ use App\Http\Controllers\BaseController;
 
 //Route::get('/', function () { return view('auth.login'); });
 Route::get('/', function () { return view('home'); });
-//Route::get('/{id?}', [App\Http\Controllers\BaseController::class, 'index']);
+Route::get('/admin', function () { return view('admin.login'); });
 
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+// Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 Route::post('admin_login', [App\Http\Controllers\AdminController::class, 'admin_login']);
 
 Route::get('/category', [App\Http\Controllers\HomeController::class, 'display_category']);

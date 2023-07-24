@@ -57,8 +57,9 @@
                                     <div class="form-group">
                                         <label>User Type</label><span class="text-danger">*</span>
                                         <select class="form-control" name="user_type">
-                                          <option value="User">User</option>
-                                          <option value="Vendor">Vendor</option>
+                                <h3 class="card-title">Update User }</h3>
+                                          <option value="User" {{ $role_name == 'User' ? 'selected' : '' }}>User</option>
+                                          <option value="Vendor" {{ $role_name == 'Vendor' ? 'selected' : '' }}>Vendor</option>
                                         </select>
                                       </div>
 
