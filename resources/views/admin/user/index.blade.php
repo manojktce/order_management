@@ -12,13 +12,13 @@
             <div class="card-header">
               <div class="row">
                 <div class="col-lg-12">
-                    <a href="{{ route('users.create') }}" class="btn btn-outline-secondary float-right mr-2">Add User</a>
+                    <a href="{{ route('user.create') }}" class="btn btn-outline-secondary float-right mr-2">Add User</a>
                 </div>
               </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <table class="table table-bordered data-table">
+                <table class="table table-bordered data-table" id="user-table">
                     <thead>
                         <tr>
                             <th>S.No</th>
@@ -38,10 +38,10 @@
 </div>
 
 <script type="text/javascript">
-    var table = $('.data-table').DataTable({
+    var table = $('#user-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('users.index') }}",
+        ajax: "{{ route('user.index') }}",
         columns: [
             {data: 'DT_RowIndex', name: 'id'},
             {data: 'first_name', name: 'first_name'},

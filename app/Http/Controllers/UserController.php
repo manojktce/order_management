@@ -10,12 +10,12 @@ use DataTables;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    /*public function index(Request $request)
     {
         //User::onlyTrashed()->restore();
         //$users = User::withTrashed()->get();
@@ -42,7 +42,7 @@ class UserController extends Controller
         }
         
         return view('admin.users.index',compact('info'));
-    }
+    }*/
 
     /**
      * Show the form for creating a new resource.

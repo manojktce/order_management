@@ -6,12 +6,12 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use DataTables;
 
-class CategoryController extends Controller
+class CategoryController extends BaseController
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    /*public function index(Request $request)
     {
         if ($request->ajax()) {
             $category = Category::get();
@@ -31,7 +31,7 @@ class CategoryController extends Controller
 
         $info = array('title'=>'Product Category');
         return view('admin.category.index',compact('info'));
-    }
+    }*/
 
     /**
      * Show the form for creating a new resource.

@@ -4,9 +4,12 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Auth\Middleware;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BaseController;
 
 //Route::get('/', function () { return view('auth.login'); });
 Route::get('/', function () { return view('home'); });
+//Route::get('/{id?}', [App\Http\Controllers\BaseController::class, 'index']);
+
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 Route::post('admin_login', [App\Http\Controllers\AdminController::class, 'admin_login']);
 
@@ -22,13 +25,18 @@ Route::group(['middleware' => ['role:Admin']], function () {
     Route::get('/adminHome', [App\Http\Controllers\AdminController::class, 'adminHome'])->name('adminHome');
     Route::get('/table', [App\Http\Controllers\AdminController::class, 'table'])->name('table');    
     
+    Route::resources([
+        'user' => UserController::class,
+        'category' => CategoryController::class,
+    ]);
+
     /* User Management Start */
-    Route::resource('users', UserController::class);
-    Route::get('users/delete/{id}', [UserController::class, 'delUsers'])->name('users.delete');
+    /*Route::resource('users', UserController::class);*/
+    Route::get('user/delete/{id}', [UserController::class, 'delUsers'])->name('user.delete');
     /* User Management End */
 
     /* Category Management Start */
-    Route::resource('category', CategoryController::class);
+    /*Route::resource('category', CategoryController::class);*/
     Route::get('category/delete/{id}', [CategoryController::class, 'delCategory'])->name('category.delete');
     /* Category Management End */
 
