@@ -42,7 +42,7 @@ trait AdminCommonTrait
 
     public function store(Request $request)
     {
-        $validator = $this->_store_validate($request);
+        $validator = $this->_validate($request , '' , 'store');
         
         if($validator != null && array_key_exists("error_message", $validator == null ? [] : $validator)){
             return back()->withInput()->with('error',implode(' ',$validator['error_message']));
@@ -85,7 +85,7 @@ trait AdminCommonTrait
 
     public function update(Request $request, $id)
     {
-        $validator = $this->_update_validate($request);
+        $validator = $this->_validate($request , $id , 'update');
         
         if($validator != null && array_key_exists("error_message", $validator == null ? [] : $validator)){
             return back()->withInput()->with('error',implode(' ',$validator['error_message']));
@@ -107,6 +107,12 @@ trait AdminCommonTrait
         }
   
         return redirect()->route(''.$this->route_name.'.index')->with('message', 'Record updated successfully.');;
+    }
+
+    public function destroy(string $id)
+    {
+        $this->model::find($id)->delete();
+        return redirect()->back()->with('error', 'Record Deleted Successfully.');
     }
 
     protected function _store_validation_rules($request, $id) :array
@@ -138,44 +144,32 @@ trait AdminCommonTrait
         $role_name = $model->roles->pluck('name');
         return preg_replace('/[^A-Za-z0-9\-]/', '', $role_name); // Removes special chars.
     }
+
+    private function _validate($request, $id = null , $action = null)
+    {
+        if($action == 'update')
+        {
+            $rules = $this->_update_validation_rules($request, $id);
+        }
+        else
+        {
+            $rules = $this->_store_validation_rules($request, $id);
+        }
+
+        if(@request()->all()){
+            $validator = Validator::make($request->all(), $rules);
+            if ($validator->fails()){
+                $messages = $validator->messages();
+                foreach ($messages->all(':message') as $key => $message)
+                {
+                    $row['error_message'][$key] = $message;
+                }
+                return $row;
+            }
+        }else{
+            $messages = $this->_validation_messages();
+            $validator = $this->validate($request, $rules, $messages);
+        }
+    }
     
-    private function _store_validate($request, $id = null)
-    {
-        $rules = $this->_store_validation_rules($request, $id);
-
-        if(@request()->all()){
-            $validator = Validator::make($request->all(), $rules);
-            if ($validator->fails()){
-                $messages = $validator->messages();
-                foreach ($messages->all(':message') as $key => $message)
-                {
-                    $row['error_message'][$key] = $message;
-                }
-                return $row;
-            }
-        }else{
-            $messages = $this->_validation_messages();
-            $validator = $this->validate($request, $rules, $messages);
-        }
-    }
-
-    private function _update_validate($request, $id = null)
-    {
-        $rules = $this->_update_validation_rules($request, $id);
-
-        if(@request()->all()){
-            $validator = Validator::make($request->all(), $rules);
-            if ($validator->fails()){
-                $messages = $validator->messages();
-                foreach ($messages->all(':message') as $key => $message)
-                {
-                    $row['error_message'][$key] = $message;
-                }
-                return $row;
-            }
-        }else{
-            $messages = $this->_validation_messages();
-            $validator = $this->validate($request, $rules, $messages);
-        }
-    }
 }

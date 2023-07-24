@@ -120,11 +120,11 @@ class UserController extends BaseController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    /*public function destroy(string $id)
     {
         User::find($id)->delete();
         return redirect()->back()->with('error', 'User Record Deleted Successfully.');
-    }
+    }*/
 
     public function delUsers(string $id)
     {
