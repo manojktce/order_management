@@ -7,7 +7,7 @@
     
       <div class="row">
         <div class="col-lg-12">
-            <a href="{{ url('users') }}" class="btn btn-outline-secondary float-right mr-2">Back</a>
+            <a href="{{ route('user.index') }}" class="btn btn-outline-secondary float-right mr-2">Back</a>
         </div>
       </div>
 
@@ -21,7 +21,7 @@
                   <h3 class="card-title">Create User</h3>
                 </div>
                 <div class="card-body">
-                  <form action="{{ route('users.store') }}" method="post" enctype="multipart/form-data" id="form">
+                  <form action="{{ route('user.store') }}" method="post" enctype="multipart/form-data" id="form">
                     @csrf
                     <div class="card-body">
                       

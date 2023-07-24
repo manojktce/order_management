@@ -45,7 +45,7 @@
               </li>
             </ul>
 
-            <a href="{{ route('users.index') }}" class="btn btn-outline-primary btn-block"><b>Back</b></a>
+            <a href="{{ route('user.index') }}" class="btn btn-outline-primary btn-block"><b>Back</b></a>
           </div>
           <!-- /.card-body -->
         </div>

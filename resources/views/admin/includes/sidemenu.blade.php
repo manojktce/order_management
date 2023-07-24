@@ -64,14 +64,14 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ url('users') }}" class="nav-link {{ (request()->segment(1) == 'users') ? 'active' : '' }}">
+              <a href="{{ route('user.index') }}" class="nav-link {{ (request()->segment(1) == 'users') ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>User Management</p>
               </a>
             </li>
             
             <li class="nav-item">
-              <a href="{{ url('category') }}" class="nav-link {{ (request()->segment(1) == 'category') ? 'active' : '' }}" class="nav-link">
+              <a href="{{ route('category.index') }}" class="nav-link {{ (request()->segment(1) == 'category') ? 'active' : '' }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Category Management</p>
               </a>

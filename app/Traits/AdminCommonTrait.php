@@ -17,30 +17,16 @@ trait AdminCommonTrait
 
         $this->model = 'App?Models?'.$this->model_name;
         $this->model = str_replace('?','\\',$this->model); // load current model
+
+        $this->viewFolder = 'User';
     }
 
     public function index(Request $request)
     {
         $info = array('title'=>ucfirst($this->route_name));
-            
-        if ($request->ajax()) {
-            
-            $result = $this->model::latest();
-            
-            return Datatables::of($result)
-                    ->addIndexColumn()
-                    ->addColumn('action', function($row){
-                            
-                            $btn ='<a href="'. route(''.$this->route_name.'.show', $row->id) .'" class="btn btn-outline-primary"><i class="fa fa-eye"></i></a>
-                            <a href="' .route(''.$this->route_name.'.edit', $row->id) .'" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
-                            <a href="' .route(''.$this->route_name.'.delete', $row->id) .'" class="btn btn-outline-primary" onclick="return confirm_delete();"><i class="fa fa-trash"></i></a>';
-
-                            return $btn;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
-        }
-
-        return view('admin.'.$this->route_name.'.index',compact('info'));
+        
+        $dt = "\\App\\DataTables\\".$this->model_name."DataTable";
+        $dataTable = new $dt;
+        return $dataTable->render("admin.".$this->route_name.".index", compact('info'));
     }
 }

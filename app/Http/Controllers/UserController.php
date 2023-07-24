@@ -50,7 +50,7 @@ class UserController extends BaseController
     public function create()
     {
         $info = array('title'=>'Users');
-        return view('admin.users.create',compact('info'));
+        return view('admin.user.create',compact('info'));
     }
 
     /**
@@ -71,7 +71,7 @@ class UserController extends BaseController
             $user->addMediaFromRequest('image')->toMediaCollection('images');
         }
   
-        return redirect()->route('users.index')->with('message', 'User Record Created Successfully.');;
+        return redirect()->route('user.index')->with('message', 'User Record Created Successfully.');;
     }
 
     /**
@@ -81,7 +81,7 @@ class UserController extends BaseController
     {
         $user = User::find($id);
         $info = array('title'=>'Users');
-        return view('admin.users.show',compact('user','info'));
+        return view('admin.user.show',compact('user','info'));
     }
 
     /**
@@ -91,7 +91,7 @@ class UserController extends BaseController
     {
         $user = User::find($id);
         $info = array('title'=>'Users');
-        return view('admin.users.edit',compact('user','info'));
+        return view('admin.user.edit',compact('user','info'));
     }
 
     /**
@@ -115,7 +115,7 @@ class UserController extends BaseController
             $user->addMediaFromRequest('image')->toMediaCollection('images');
         }
   
-        return redirect()->route('users.index')->with('message', 'User record updated successfully.');;
+        return redirect()->route('user.index')->with('message', 'User record updated successfully.');;
     }
 
     /**

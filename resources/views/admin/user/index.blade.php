@@ -18,7 +18,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <table class="table table-bordered data-table" id="user-table">
+                {{-- <table class="table table-bordered data-table" id="user-table">
                     <thead>
                         <tr>
                             <th>S.No</th>
@@ -30,14 +30,15 @@
                     </thead>
                     <tbody>
                     </tbody>
-                </table>
+                </table> --}}
+                {!! $dataTable->table(['class' => 'table table-striped table-bordered', 'id' => 'datatable-buttons']) !!}
             </div>
         </div>
       </div>
     </section>
 </div>
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     var table = $('#user-table').DataTable({
         processing: true,
         serverSide: true,
@@ -50,17 +51,9 @@
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
     });
-</script>
-
-{{-- <script type="text/javascript">
-$(function() {	
-$.getScript("https://www.jqueryscript.net/demo/Delete-Confirmation-Dialog-Plugin-with-jQuery-Bootstrap/bootstrap-confirm-delete.js", function(){
-	  $('.delete').bootstrap_confirm_delete({
-		  heading: 'Delete',
-		  message: 'Are you sure you want to delete this record?'		
-});
-	 });
-});
 </script> --}}
-
+<script src="{{ asset('libs/datatables/datatable.js') }}"></script>
+<script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
+{!! $dataTable->scripts() !!}
+<script src="{{ asset('admin/js/datatablefunctions.js') }}"></script>
 @endsection
