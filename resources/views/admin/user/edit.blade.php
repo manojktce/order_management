@@ -23,7 +23,7 @@
                             <div class="card-body">
 
                                 <!-- form start -->
-                                <form action="{{ route('user.update', $user->id) }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('user.update', $result->id) }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
 
@@ -31,17 +31,17 @@
                                     
                                     <div class="form-group">
                                         <label for="exampleInputFname">First Name</label><span class="text-danger">*</span>
-                                        <input type="text" name="first_name" class="form-control" id="exampleInputFname" placeholder="Enter First Name" value="{{ $user->first_name }}">
+                                        <input type="text" name="first_name" class="form-control" id="exampleInputFname" placeholder="Enter First Name" value="{{ $result->first_name }}">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleInputLname">Last Name</label><span class="text-danger">*</span>
-                                        <input type="text" name="last_name" class="form-control" id="exampleInputLname" placeholder="Enter Last Name" value="{{ $user->last_name }}">
+                                        <input type="text" name="last_name" class="form-control" id="exampleInputLname" placeholder="Enter Last Name" value="{{ $result->last_name }}">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Email address</label><span class="text-danger">*</span>
-                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email address" value="{{ $user->email }}" readonly>
+                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email address" value="{{ $result->email }}" readonly>
                                     </div>
                                     
                                     {{-- <div class="form-group">
@@ -64,14 +64,14 @@
 
                                     <div class="form-group">
                                         <label for="exampleInputStripe">Stripe ID</label>
-                                        <input type="text" name="stripe_id" class="form-control" id="exampleInputStripe" placeholder="Enter Stripe ID" value="{{ $user->stripe_id }}">
+                                        <input type="text" name="stripe_id" class="form-control" id="exampleInputStripe" placeholder="Enter Stripe ID" value="{{ $result->stripe_id }}">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Status</label>
                                         <select class="form-control" name="status"><span class="text-danger">*</span>
-                                        <option value="1" {{ $user->status == 1 ? 'selected' : '' }}>Active</option>
-                                        <option value="0" {{ $user->status == 0 ? 'selected' : '' }}>Inactive</option>
+                                        <option value="1" {{ $result->status == 1 ? 'selected' : '' }}>Active</option>
+                                        <option value="0" {{ $result->status == 0 ? 'selected' : '' }}>Inactive</option>
                                         </select>
                                     </div>
 
@@ -88,8 +88,8 @@
                                     <!-- Image Preview Section by Manoj -->
                                     <div class="row card">
                                         <div class="image-preview">
-                                            @if(!empty($user->getFirstMediaUrl('images','thumb')))
-                                            <img id="user-img-preview" src="{{ $user->getFirstMediaUrl('images','thumb') }}" height="100px" width="250px">
+                                            @if(!empty($result->getFirstMediaUrl('images','thumb')))
+                                            <img id="user-img-preview" src="{{ $result->getFirstMediaUrl('images','thumb') }}" height="100px" width="250px">
                                             @endif
                                         </div>
                                     </div>

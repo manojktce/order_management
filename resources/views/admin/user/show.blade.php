@@ -12,19 +12,19 @@
         <div class="card card-primary card-outline">
           <div class="card-body box-profile">
             <div class="text-center">
-              @php $imgUrl = $user->getFirstMediaUrl('images','thumb') @endphp
+              @php $imgUrl = $result->getFirstMediaUrl('images','thumb') @endphp
               <img class="profile-user-img img-fluid img-circle"
               src="{{ empty($imgUrl) ? "../../dist/img/user4-128x128.jpg": $imgUrl }}"
                    alt="User profile picture">
             </div>
 
-            <h3 class="profile-username text-center">{{ $user->first_name." ".$user->last_name }}</h3>
+            <h3 class="profile-username text-center">{{ $result->first_name." ".$result->last_name }}</h3>
 
             <p class="text-muted text-center">Software Engineer</p>
 
             <ul class="list-group list-group-unbordered mb-3">
               <li class="list-group-item">
-                <b>Email</b> <a class="float-right">{{ $user->email }}</a>
+                <b>Email</b> <a class="float-right">{{ $result->email }}</a>
               </li>
 
               <li class="list-group-item">
@@ -32,16 +32,16 @@
               </li>
 
               <li class="list-group-item">
-                <b>Stripe ID</b> <a class="float-right">{{ $user->stripe_id }}</a>
+                <b>Stripe ID</b> <a class="float-right">{{ $result->stripe_id }}</a>
               </li>
               <li class="list-group-item">
-                <b>Status</b> <a class="float-right">{{ $user->status == 1 ? 'Active' : 'Inactive' }}</a>
+                <b>Status</b> <a class="float-right">{{ $result->status == 1 ? 'Active' : 'Inactive' }}</a>
               </li>
               <li class="list-group-item">
-                <b>Created at</b> <a class="float-right">{{ $user->created_at }}</a>
+                <b>Created at</b> <a class="float-right">{{ $result->created_at }}</a>
               </li>
               <li class="list-group-item">
-                <b>Updated at</b> <a class="float-right">{{ $user->updated_at }}</a>
+                <b>Updated at</b> <a class="float-right">{{ $result->updated_at }}</a>
               </li>
             </ul>
 

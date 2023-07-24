@@ -12,9 +12,8 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends BaseController
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public $modelClass = User::class;
+
     /*public function index(Request $request)
     {
         //User::onlyTrashed()->restore();
@@ -56,7 +55,7 @@ class UserController extends BaseController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    /*public function store(Request $request)
     {
         $request->validate([
             'first_name'    => 'required',
@@ -72,32 +71,32 @@ class UserController extends BaseController
         }
   
         return redirect()->route('user.index')->with('message', 'User Record Created Successfully.');;
-    }
+    }*/
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    /*public function show(string $id)
     {
         $user = User::find($id);
         $info = array('title'=>'Users');
         return view('admin.user.show',compact('user','info'));
-    }
+    }*/
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    /*public function edit(string $id)
     {
         $user = User::find($id);
         $info = array('title'=>'Users');
         return view('admin.user.edit',compact('user','info'));
-    }
+    }*/
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    /*public function update(Request $request, string $id)
     {
         
         $request->validate([
@@ -116,7 +115,7 @@ class UserController extends BaseController
         }
   
         return redirect()->route('user.index')->with('message', 'User record updated successfully.');;
-    }
+    }*/
 
     /**
      * Remove the specified resource from storage.
@@ -131,5 +130,28 @@ class UserController extends BaseController
     {
         User::find($id)->delete();
         return redirect()->back()->with('error', 'User Record Deleted Successfully.');
+    }
+
+    protected function _store_validation_rules($request, $id): array
+    {
+        $rules = [
+            'first_name'    => 'required',
+            'last_name'     => 'required',
+            'email'         => 'required|email|unique:users,email',
+            'password'      => 'required',
+        ];
+
+        return $rules;
+    }
+
+    protected function _update_validation_rules($request, $id): array
+    {
+        $rules = [
+            'first_name'    =>  'required',
+            'last_name'     =>  'required',
+            'email'         =>  'required',
+        ];
+
+        return $rules;
     }
 }

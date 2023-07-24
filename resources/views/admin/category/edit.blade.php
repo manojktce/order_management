@@ -21,14 +21,14 @@
                   <h3 class="card-title">Update Category</h3>
                 </div>
                 <div class="card-body">
-                  <form action="{{ route('category.update',$category->id) }}" method="post" enctype="multipart/form-data" id="form">
+                  <form action="{{ route('category.update',$result->id) }}" method="post" enctype="multipart/form-data" id="form">
                     @method('PUT')
                     @csrf
                     <div class="card-body">
 
                       <div class="form-group">
                         <label for="exampleInputTitle">Category Title</label>
-                        <input type="text" name="title" class="form-control" id="exampleInputTitle" placeholder="Enter Category Title" value="{{ $category->title }}">
+                        <input type="text" name="title" class="form-control" id="exampleInputTitle" placeholder="Enter Category Title" value="{{ $result->title }}">
                       </div>
                                             
                       <div class="form-group">

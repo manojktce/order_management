@@ -45,7 +45,7 @@ class CategoryController extends BaseController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    /*public function store(Request $request)
     {
         $request->validate([
             'title'    => 'required',
@@ -54,30 +54,30 @@ class CategoryController extends BaseController
         $category = Category::create($request->all());
   
         return redirect()->route('category.index')->with('message', 'New Category Created Successfully.');;
-    }
+    }*/
 
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    /*public function show(Category $category)
     {
         //
-    }
+    }*/
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    /*public function edit($id)
     {
         $category = Category::find($id);
         $info = array('title'=>'Product Category');
         return view('admin.category.edit',compact('category','info'));
-    }
+    }*/
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    /*public function update(Request $request, $id)
     {
         $request->validate([
             'title'    => 'required',
@@ -87,7 +87,7 @@ class CategoryController extends BaseController
         $category->update($request->all());
           
         return redirect()->route('category.index')->with('message', 'Category updated successfully.');;
-    }
+    }*/
 
     /**
      * Remove the specified resource from storage.
@@ -100,6 +100,24 @@ class CategoryController extends BaseController
     public function delCategory(string $id)
     {
         Category::find($id)->delete();
-        return redirect()->back()->with('error', 'User Record Deleted Successfully.');
+        return redirect()->back()->with('error', 'Category Record Deleted Successfully.');
+    }
+
+    protected function _store_validation_rules($request, $id): array
+    {
+        $rules = [
+            'title'    => 'required',
+        ];
+
+        return $rules;
+    }
+
+    protected function _update_validation_rules($request, $id): array
+    {
+        $rules = [
+            'title'    =>  'required',
+        ];
+
+        return $rules;
     }
 }

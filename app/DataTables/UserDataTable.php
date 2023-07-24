@@ -64,7 +64,7 @@ class UserDataTable extends BaseDataTable
             ->addAction($this->getActionParamters())
             ->parameters([
                 'dom'          => 'Bfrtip',
-                'buttons'      => ['export', 'print', 'reset', 'reload'],
+                //'buttons'      => ['export', 'print', 'reset', 'reload'],
             ]);
     }
 
