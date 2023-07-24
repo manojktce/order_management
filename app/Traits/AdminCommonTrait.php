@@ -36,8 +36,15 @@ trait AdminCommonTrait
 
     public function create()
     {
+        if($this->model_name == "User")
+        {
+            $user_type = $this->_roles();       
+        }
+
+        $status = $this->_status();
+
         $info = array('title'=>ucfirst($this->route_name));
-        return view("admin.".$this->route_name.".create",compact('info'));
+        return view("admin.".$this->route_name.".create",compact('info','user_type','status'));
     }
 
     public function store(Request $request)
@@ -75,11 +82,16 @@ trait AdminCommonTrait
     public function edit(string $id)
     {
         $result = $this->model::find($id);
-        
+        if($this->model_name == "User")
+        {
+            $user_type = $this->_roles();       
+        }
+        $status = $this->_status();
+
         $role_name = $this->_role_name($result); 
 
         $info = array('title'=>ucfirst($this->route_name));
-        return view('admin.'.$this->route_name.'.edit',compact('result','info','role_name'));
+        return view('admin.'.$this->route_name.'.edit',compact('result','info','role_name','user_type','status'));
     }
 
 
@@ -137,6 +149,19 @@ trait AdminCommonTrait
         return [
             //
         ];
+    }
+
+
+    private function _status()
+    {
+        $status = array('1' => 'Active' , '0' => 'Inactive');    
+        return $status;
+    }
+
+    private function _roles()
+    {
+        $user_type = Role::pluck('name', 'name')->skip(1)->toArray();    
+        return $user_type;
     }
 
     private function _role_name($model)

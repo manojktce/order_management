@@ -20,10 +20,10 @@
                             <div class="card-header">
                                 <h3 class="card-title">Update User</h3>
                             </div>
-                            <div class="card-body">
+                            {{-- <div class="card-body">
 
                                 <!-- form start -->
-                                <form action="{{ route('user.update', $result->id) }}" method="post" enctype="multipart/form-data">
+                                {!! Form::open(['route' => 'user.update', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'container']) !!}
                                     @csrf
                                     @method('PUT')
 
@@ -44,20 +44,10 @@
                                         <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email address" value="{{ $result->email }}" readonly>
                                     </div>
                                     
-                                    {{-- <div class="form-group">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="exampleInputCnfPassword1">Confirm Password</label>
-                                        <input type="password" name="cnf_password" class="form-control" id="exampleInputCnfPassword1" placeholder="Re-enter Password">
-                                    </div> --}}
-
                                     <div class="form-group">
                                         <label>User Type</label><span class="text-danger">*</span>
                                         <select class="form-control" name="user_type">
-                                <h3 class="card-title">Update User }</h3>
+                                <h3 class="card-title">Update User</h3>
                                           <option value="User" {{ $role_name == 'User' ? 'selected' : '' }}>User</option>
                                           <option value="Vendor" {{ $role_name == 'Vendor' ? 'selected' : '' }}>Vendor</option>
                                         </select>
@@ -101,8 +91,16 @@
                                     <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
-                                </form>
+                                
+                                {!! Form::close() !!}
 
+                            </div> --}}
+
+                            <div class="card-body">
+                                {!! Form::open([$result], ['route' =>array('user.update', $result->id), 'method' => 'PUT', 'enctype' => 'multipart/form-data', 'class' => 'container']) !!}
+                                @csrf
+                                @include('admin.user.partials.form')
+                                {!! Form::close() !!}
                             </div>
                         </div>
                     </div>
