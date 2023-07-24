@@ -42,11 +42,12 @@ trait AdminCommonTrait
         {
             $user_type = $this->_roles();       
         }
-
+        
+        $role_name = "";
         $status = $this->_status();
 
         $info = array('title'=>ucfirst($this->route_name));
-        return view("admin.".$this->route_name.".create",compact('info','user_type','status'));
+        return view("admin.".$this->route_name.".create",compact('info','role_name','user_type','status'));
     }
 
     public function store(Request $request)

@@ -2,6 +2,7 @@
   <div class="form-group">
     {{ Form::label('first_name', 'First Name *', ['class' => 'col-sm-6 col-form-label']) }}
     {{ Form::text('first_name', (empty($result) ? old('first_name') : $result->first_name) , ['class' => 'form-control']) }}
+    <small class="text-danger">{{$errors->first('first_name') }}</small>
   </div>
 
   <div class="form-group">
@@ -28,7 +29,7 @@
 
   <div class="form-group">
     {{ Form::label('user_type', 'User Type *')}}
-    {!! Form::select('user_type', $user_type, $role_name, ['class' => 'form-control']) !!}
+    {!! Form::select('user_type', $user_type, (empty($role_name) ? null : $role_name), ['class' => 'form-control']) !!}
   </div>
 
   <div class="form-group">
@@ -38,7 +39,7 @@
                         
   <div class="form-group">
     {{ Form::label('status', 'Status *')}}
-    {!! Form::select('status', $status, (empty($status) ? old('status') : $result->status), ['class' => 'form-control']) !!}
+    {!! Form::select('status', $status, (empty($result) ? old('status') : $result->status), ['class' => 'form-control']) !!}
   </div>
 
   <div class="form-group">
@@ -54,7 +55,9 @@
   <!-- Image Preview Section by Manoj -->
   <div class="row card">
     <div class="image-preview">
+        @if(!empty($result))
         <img src="{{ $result->getFirstMediaUrl('images','thumb') }}" style = "width:300px; height:200px;">
+        @endif
     </div>
   </div>
   <!-- Image Preview Section by Manoj -->
