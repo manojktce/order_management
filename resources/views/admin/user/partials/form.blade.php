@@ -1,4 +1,3 @@
-@method('POST')
 <div class="card-body">
   <div class="form-group">
     {{ Form::label('first_name', 'First Name *', ['class' => 'col-sm-6 col-form-label']) }}
@@ -15,19 +14,21 @@
     {{ Form::text('email', (empty($result) ? old('email') : $result->email), ['class' => 'form-control']) }}
   </div>
   
-  <div class="form-group">
-    {{ Form::label('password', 'Password *', ['class' => 'col-sm-6 col-form-label']) }}
-    {{ Form::password('password', ['class' => 'form-control']) }}
-  </div>
+    @if(Route::currentRouteName() != 'user.edit')
+        <div class="form-group">
+            {{ Form::label('password', 'Password *', ['class' => 'col-sm-6 col-form-label']) }}
+            {{ Form::password('password', ['class' => 'form-control']) }}
+        </div>
 
-  <div class="form-group">
-    {{ Form::label('cnf_password', 'Confirm Password *', ['class' => 'col-sm-6 col-form-label']) }}
-    {{ Form::password('password', ['class' => 'form-control']) }}
-  </div>
+        <div class="form-group">
+            {{ Form::label('cnf_password', 'Confirm Password *', ['class' => 'col-sm-6 col-form-label']) }}
+            {{ Form::password('password', ['class' => 'form-control']) }}
+        </div>
+    @endif
 
   <div class="form-group">
     {{ Form::label('user_type', 'User Type *')}}
-    {!! Form::select('user_type', $user_type, null, ['class' => 'form-control']) !!}
+    {!! Form::select('user_type', $user_type, $role_name, ['class' => 'form-control']) !!}
   </div>
 
   <div class="form-group">
@@ -37,7 +38,7 @@
                         
   <div class="form-group">
     {{ Form::label('status', 'Status *')}}
-    {!! Form::select('status', $status, null, ['class' => 'form-control']) !!}
+    {!! Form::select('status', $status, (empty($status) ? old('status') : $result->status), ['class' => 'form-control']) !!}
   </div>
 
   <div class="form-group">
@@ -52,7 +53,9 @@
 
   <!-- Image Preview Section by Manoj -->
   <div class="row card">
-    <div class="image-preview"></div>
+    <div class="image-preview">
+        <img src="{{ $result->getFirstMediaUrl('images','thumb') }}" style = "width:300px; height:200px;">
+    </div>
   </div>
   <!-- Image Preview Section by Manoj -->
 

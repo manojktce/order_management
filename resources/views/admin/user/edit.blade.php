@@ -97,9 +97,8 @@
                             </div> --}}
 
                             <div class="card-body">
-                                {!! Form::open([$result], ['route' =>array('user.update', $result->id), 'method' => 'PUT', 'enctype' => 'multipart/form-data', 'class' => 'container']) !!}
-                                @csrf
-                                @include('admin.user.partials.form')
+                                {{ Form::model($result, ['route' => [ "user.update", $result->id ],'method' => 'put', 'class' => 'form-horizontal','id'  => 'userForm','files'=> true]) }}
+                                        @include('admin.user.partials.form')
                                 {!! Form::close() !!}
                             </div>
                         </div>

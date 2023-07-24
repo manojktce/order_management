@@ -22,8 +22,7 @@
                 </div>
                 <div class="card-body">
                     {!! Form::open(['route' =>'user.store', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'container']) !!}
-                    @csrf
-                    @include('admin.user.partials.form')
+                          @include('admin.user.partials.form')
                     {!! Form::close() !!}
                 </div>
               </div>

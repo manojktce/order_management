@@ -9,12 +9,13 @@ use Exception;
 use Validator;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Route;
 
 trait AdminCommonTrait
 {
     public function __construct(Request $request)
     {
-        $route = $request->route()->getName();
+        $route = Route::currentRouteName();
         
         $this->route_name = substr($route, 0, strpos($route, ".")); // route name
         $this->model_name = ucfirst($this->route_name);
@@ -36,6 +37,7 @@ trait AdminCommonTrait
 
     public function create()
     {
+        $user_type = "";
         if($this->model_name == "User")
         {
             $user_type = $this->_roles();       
@@ -82,6 +84,7 @@ trait AdminCommonTrait
     public function edit(string $id)
     {
         $result = $this->model::find($id);
+        $user_type = "";
         if($this->model_name == "User")
         {
             $user_type = $this->_roles();       
