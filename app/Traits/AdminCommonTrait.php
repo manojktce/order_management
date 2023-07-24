@@ -29,4 +29,10 @@ trait AdminCommonTrait
         $dataTable = new $dt;
         return $dataTable->render("admin.".$this->route_name.".index", compact('info'));
     }
+
+    public function create()
+    {
+        $info = array('title'=>ucfirst($this->route_name));
+        return view("admin.".$this->route_name.".create",compact('info'));
+    }
 }

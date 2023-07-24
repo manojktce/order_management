@@ -36,11 +36,11 @@ class CategoryController extends BaseController
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        $info = array('title'=>'Product Category');
-        return view('admin.category.create',compact('info'));
-    }
+    // public function create()
+    // {
+    //     $info = array('title'=>'Product Category');
+    //     return view('admin.category.create',compact('info'));
+    // }
 
     /**
      * Store a newly created resource in storage.

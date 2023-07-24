@@ -7,7 +7,7 @@
     
       <div class="row">
         <div class="col-lg-12">
-            <a href="{{ url('users') }}" class="btn btn-outline-secondary float-right mr-2">Back</a>
+            <a href="{{ route('category.index') }}" class="btn btn-outline-secondary float-right mr-2">Back</a>
         </div>
       </div>
 

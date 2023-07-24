@@ -47,11 +47,11 @@ class UserController extends BaseController
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        $info = array('title'=>'Users');
-        return view('admin.user.create',compact('info'));
-    }
+    // public function create()
+    // {
+    //     $info = array('title'=>'Users');
+    //     return view('admin.user.create',compact('info'));
+    // }
 
     /**
      * Store a newly created resource in storage.
