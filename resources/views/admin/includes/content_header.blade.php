@@ -12,7 +12,7 @@
 
 @if($errors->any())
     <div class="alert alert-danger alert-dismissable">
-        <strong>Whoops!</strong> There were some problems with your input.
+        <strong>Whoops!</strong> There were some problems with your input.<br>
         <a href="#" class="close" data-dismiss="alert" aria-label="close">X</a><br>
         <ul>
             @foreach ($errors->all() as $error)

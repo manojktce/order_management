@@ -2,7 +2,6 @@
   <div class="form-group">
     {{ Form::label('first_name', 'First Name *', ['class' => 'col-sm-6 col-form-label']) }}
     {{ Form::text('first_name', (empty($result) ? old('first_name') : $result->first_name) , ['class' => 'form-control']) }}
-    <small class="text-danger">{{$errors->first('first_name') }}</small>
   </div>
 
   <div class="form-group">
@@ -10,7 +9,7 @@
     {{ Form::text('last_name', (empty($result) ? old('last_name') : $result->last_name), ['class' => 'form-control']) }}
   </div>
 
-  {{-- <div class="form-group">
+  {{-- Readonly <div class="form-group">
     {{ Form::label('email', 'Email *', ['class' => 'col-sm-6 col-form-label']) }}
     {{ Form::text('email', (empty($result) ? old('email') : $result->email), ['class' => 'form-control' , (empty($result) ? '' : 'readonly')] ) }}
   </div> --}}
@@ -34,7 +33,7 @@
 
   <div class="form-group">
     {{ Form::label('user_type', 'User Type *')}}
-    {!! Form::select('user_type', $selectLookups['user_type'], (empty($role_name) ? null : $role_name), ['class' => 'form-control']) !!}
+    {!! Form::select('user_type', $selectLookups['user_type'], (empty($selectLookups['role_name']) ? null : $selectLookups['role_name']), ['class' => 'form-control']) !!}
   </div>
 
   <div class="form-group">
@@ -42,9 +41,21 @@
     {{ Form::text('stripe_id', (empty($result) ? old('stripe_id') : $result->stripe_id), ['class' => 'form-control']) }}
   </div>
                         
-  <div class="form-group">
+  {{-- <div class="form-group">
     {{ Form::label('status', 'Status *')}}
     {!! Form::select('status', $selectLookups['status'], (empty($result) ? old('status') : $result->status), ['class' => 'form-control']) !!}
+  </div> --}}
+
+  <div class="form-group">
+    <div class="form-check form-check-inline">
+      {{ Form::radio('status', 1, ((empty($result) || $result->status == 1) ? true : '') , ['class'=>'form-check-input', 'id' => 'inlineRadio1']) }}
+      {{ Form::label('inlineRadio1', 'Active', ['class' => 'form-check-label']) }}
+    </div>
+    
+    <div class="form-check form-check-inline">
+      {{ Form::radio('status', 0, ((!empty($result) && $result->status == 1) ? true : ''), ['class'=>'form-check-input', 'id' => 'inlineRadio2']) }}
+      {{ Form::label('inlineRadio2', 'In-Active', ['class' => 'form-check-label']) }}
+    </div>
   </div>
 
   <div class="form-group">
