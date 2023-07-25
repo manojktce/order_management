@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 
-class AdminController extends Controller
+class SiteAdminController extends Controller
 {
     public function index()
     {
@@ -31,19 +31,19 @@ class AdminController extends Controller
             else
             {
                 Auth::logout();
-                return redirect()->route('admin')->with('error','Unauthorized Access');
+                return redirect()->route('site_admin')->with('error','Unauthorized Access');
             }
         }
         else
         {
-            return redirect()->route('admin')->with('error','Invalid Credentials');
+            return redirect()->route('site_admin')->with('error','Invalid Credentials');
         }     
     }
 
     public function admin_logout(Request $request)
     {
         Auth::logout();
-        return redirect()->route('admin')->with('message','Logged out successfully');
+        return redirect()->route('site_admin')->with('message','Logged out successfully');
     }
 
     public function adminHome()

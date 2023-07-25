@@ -9,8 +9,8 @@ use App\Http\Controllers\BaseController;
 //Route::get('/', function () { return view('auth.login'); });
 Route::get('/', function () { return view('home'); });
 
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index']);
-Route::post('admin_login', [App\Http\Controllers\AdminController::class, 'admin_login']);
+Route::get('/site_admin', [App\Http\Controllers\SiteAdminController::class, 'index'])->name('site_admin');
+Route::post('admin_login', [App\Http\Controllers\SiteAdminController::class, 'admin_login']);
 
 Route::get('/category', [App\Http\Controllers\HomeController::class, 'display_category']);
 
@@ -21,8 +21,8 @@ Route::group(['middleware' => ['role:Vendor|User']], function () {
 });
 
 Route::group(['middleware' => ['role:Admin']], function () {
-    Route::get('/adminHome', [App\Http\Controllers\AdminController::class, 'adminHome'])->name('adminHome');
-    Route::get('/table', [App\Http\Controllers\AdminController::class, 'table'])->name('table');    
+    Route::get('/adminHome', [App\Http\Controllers\SiteAdminController::class, 'adminHome'])->name('adminHome');
+    Route::get('/table', [App\Http\Controllers\SiteAdminController::class, 'table'])->name('table');    
     
     Route::resources([
         'user' => UserController::class,
@@ -39,5 +39,5 @@ Route::group(['middleware' => ['role:Admin']], function () {
     Route::get('category/delete/{id}', [CategoryController::class, 'delCategory'])->name('category.delete');
     /* Category Management End */
 
-    Route::post('admin_logout', [App\Http\Controllers\AdminController::class, 'admin_logout'])->name('admin_logout');
+    Route::post('admin_logout', [App\Http\Controllers\SiteAdminController::class, 'admin_logout'])->name('admin_logout');
 });
