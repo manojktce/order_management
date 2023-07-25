@@ -55,7 +55,7 @@ trait AdminCommonTrait
         $validator = $this->_validate($request , '' , 'store');
         
         if($validator != null && array_key_exists("error_message", $validator == null ? [] : $validator)){
-            return back()->withInput()->with('error',implode(' ',$validator['error_message']));
+            return back()->withInput()->with('error',implode('<br>',$validator['error_message']));
         }
 
         $model = $this->model::create($request->all());
@@ -64,7 +64,7 @@ trait AdminCommonTrait
         {
             $model->assignRole($request->input('user_type'));
             if($request->hasFile('image') && $request->file('image')->isValid()){
-                $model->addMediaFromRequest('image')->toMediaCollection('images');
+                $model->addMediaFromRequest('image')->toMediaCollection('profile_pictures');
             }
         }
   
@@ -118,7 +118,8 @@ trait AdminCommonTrait
             $model->assignRole($request->input('user_type'));
 
             if($request->hasFile('image') && $request->file('image')->isValid()){
-                $model->addMediaFromRequest('image')->toMediaCollection('images');
+                $model->media()->delete(); // delete previous uploaded image in db
+                $model->addMediaFromRequest('image')->toMediaCollection('profile_pictures');
             }
         }
   

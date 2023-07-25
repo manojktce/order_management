@@ -20,7 +20,7 @@ class UserDataTable extends BaseDataTable
      */
     public function dataTable($query)
     {
-        return datatables($query)
+            return datatables($query)
             ->editColumn('created_at', function ($model) {
                 return $model->created_at->format('Y-m-d');
             })
@@ -43,7 +43,8 @@ class UserDataTable extends BaseDataTable
      */
     public function query(User $model)
     {
-        return $model->newQuery();
+        return $model->get()->skip(1);
+        //return $model->newQuery();
     }
 
     /**

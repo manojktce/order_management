@@ -37,23 +37,5 @@
       </div>
     </section>
 </div>
-
-{{-- <script type="text/javascript">
-    var table = $('#user-table').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: "{{ route('user.index') }}",
-        columns: [
-            {data: 'DT_RowIndex', name: 'id'},
-            {data: 'first_name', name: 'first_name'},
-            {data: 'last_name', name: 'last_name'},
-            {data: 'email', name: 'email'},
-            {data: 'action', name: 'action', orderable: false, searchable: false},
-        ]
-    });
-</script> --}}
-<script src="{{ asset('libs/datatables/datatable.js') }}"></script>
-<script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
-{!! $dataTable->scripts() !!}
-<script src="{{ asset('admin/js/datatablefunctions.js') }}"></script>
 @endsection
+@include('admin.includes.datatables_script')

@@ -135,10 +135,11 @@ class UserController extends BaseController
     protected function _store_validation_rules($request, $id): array
     {
         $rules = [
-            'first_name'    => 'required',
-            'last_name'     => 'required',
-            'email'         => 'required|email|unique:users,email',
-            'password'      => 'required',
+            'first_name'            => 'required|min:3|max:10',
+            'last_name'             => 'required|min:3|max:10',
+            'email'                 => 'required|email|unique:users,email',
+            'password'              => 'required|min:8|max:15|required_with:confirm_password|same:confirm_password',
+            'confirm_password'      => 'required|min:8|max:15'
         ];
 
         return $rules;
@@ -147,9 +148,8 @@ class UserController extends BaseController
     protected function _update_validation_rules($request, $id): array
     {
         $rules = [
-            'first_name'    =>  'required',
-            'last_name'     =>  'required',
-            'email'         =>  'required',
+            'first_name'    =>  'required|min:3|max:10',
+            'last_name'     =>  'required|min:3|max:10',
         ];
 
         return $rules;

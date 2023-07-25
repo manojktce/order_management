@@ -15,7 +15,11 @@
   @yield('content')
   
   @include('admin.includes.footer')
-</div>
-<!-- ./wrapper -->
+  @include('admin.includes.scripts')
+  @stack('js')
+  @include('admin.includes.custom_script')
+  </div>
 
-@include('admin.includes.scripts')
+</body>
+</html>
+<!-- ./wrapper -->

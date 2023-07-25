@@ -12,7 +12,7 @@
 
   <div class="form-group">
     {{ Form::label('email', 'Email *', ['class' => 'col-sm-6 col-form-label']) }}
-    {{ Form::text('email', (empty($result) ? old('email') : $result->email), ['class' => 'form-control']) }}
+    {{ Form::text('email', (empty($result) ? old('email') : $result->email), ['class' => 'form-control' , (empty($result) ? '' : 'readonly')] ) }}
   </div>
   
     @if(Route::currentRouteName() != 'user.edit')
@@ -22,8 +22,8 @@
         </div>
 
         <div class="form-group">
-            {{ Form::label('cnf_password', 'Confirm Password *', ['class' => 'col-sm-6 col-form-label']) }}
-            {{ Form::password('password', ['class' => 'form-control']) }}
+            {{ Form::label('confirm_password', 'Confirm Password *', ['class' => 'col-sm-6 col-form-label']) }}
+            {{ Form::password('confirm_password', ['class' => 'form-control']) }}
         </div>
     @endif
 
@@ -56,7 +56,7 @@
   <div class="row card">
     <div class="image-preview">
         @if(!empty($result))
-        <img src="{{ $result->getFirstMediaUrl('images','thumb') }}" style = "width:300px; height:200px;">
+        <img src="{{ $result->getFirstMediaUrl('profile_pictures','thumb') }}" style = "width:300px; height:200px;">
         @endif
     </div>
   </div>
