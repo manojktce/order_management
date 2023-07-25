@@ -10,9 +10,14 @@
     {{ Form::text('last_name', (empty($result) ? old('last_name') : $result->last_name), ['class' => 'form-control']) }}
   </div>
 
-  <div class="form-group">
+  {{-- <div class="form-group">
     {{ Form::label('email', 'Email *', ['class' => 'col-sm-6 col-form-label']) }}
     {{ Form::text('email', (empty($result) ? old('email') : $result->email), ['class' => 'form-control' , (empty($result) ? '' : 'readonly')] ) }}
+  </div> --}}
+
+  <div class="form-group">
+    {{ Form::label('email', 'Email *', ['class' => 'col-sm-6 col-form-label']) }}
+    {{ Form::text('email', (empty($result) ? old('email') : $result->email), ['class' => 'form-control'] ) }}
   </div>
   
     @if(Route::currentRouteName() != 'user.edit')
@@ -29,7 +34,7 @@
 
   <div class="form-group">
     {{ Form::label('user_type', 'User Type *')}}
-    {!! Form::select('user_type', $user_type, (empty($role_name) ? null : $role_name), ['class' => 'form-control']) !!}
+    {!! Form::select('user_type', $selectLookups['user_type'], (empty($role_name) ? null : $role_name), ['class' => 'form-control']) !!}
   </div>
 
   <div class="form-group">
@@ -39,7 +44,7 @@
                         
   <div class="form-group">
     {{ Form::label('status', 'Status *')}}
-    {!! Form::select('status', $status, (empty($result) ? old('status') : $result->status), ['class' => 'form-control']) !!}
+    {!! Form::select('status', $selectLookups['status'], (empty($result) ? old('status') : $result->status), ['class' => 'form-control']) !!}
   </div>
 
   <div class="form-group">
@@ -56,7 +61,7 @@
   <div class="row card">
     <div class="image-preview">
         @if(!empty($result))
-        <img src="{{ $result->getFirstMediaUrl('profile_pictures','thumb') }}" style = "width:300px; height:200px;">
+          <img src="{{ $result->getFirstMediaUrl('profile_pictures','thumb') }}" style = "width:300px; height:200px;">
         @endif
     </div>
   </div>

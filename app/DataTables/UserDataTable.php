@@ -29,6 +29,8 @@ class UserDataTable extends BaseDataTable
                 $action ='<a href="'. route('user.show', $model->id) .'" class="btn btn-outline-primary"><i class="fa fa-eye"></i></a>
                             <a href="' .route('user.edit', $model->id) .'" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
                             <a href="' .route('user.delete', $model->id) .'" class="btn btn-outline-primary" onclick="return confirm_delete();"><i class="fa fa-trash"></i></a>';
+                
+                /*$action .='<a href="javascript:void(0);" class="btndelete btn btn-danger btn-sm" data-id="'. $model->id .'" data-route="' .route("user.destroy", $model->id). '" ><i class="fa fa-trash"></i></a>';*/
 
                 return $action;
             })

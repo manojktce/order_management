@@ -28,7 +28,7 @@
               </li>
 
               <li class="list-group-item">
-                <b>User Type</b> <a class="float-right">{{ $role_name }}</a>
+                <b>User Type</b> <a class="float-right">{{ $info['role_name'] }}</a>
               </li>
 
               <li class="list-group-item">

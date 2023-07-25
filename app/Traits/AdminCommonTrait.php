@@ -26,28 +26,30 @@ trait AdminCommonTrait
         $this->viewFolder = 'User';
     }
 
-    public function index(Request $request)
+    public function _informations($model="")
     {
-        $info = array('title'=>ucfirst($this->route_name));
-        
+        $data               =   array();
+        $data['title']      =   ucfirst($this->route_name); 
+        $data['role_name']  =   ($model) ? $this->_role_name($model) : '';             
+        return $data;
+    }
+
+    public function index(Request $request)
+    {        
         $dt = "\\App\\DataTables\\".$this->model_name."DataTable";
         $dataTable = new $dt;
+
+        $info = $this->_informations();
         return $dataTable->render("admin.".$this->route_name.".index", compact('info'));
     }
 
     public function create()
     {
-        $user_type = "";
-        if($this->model_name == "User")
-        {
-            $user_type = $this->_roles();       
-        }
+        $selectLookups              =   $this->_selectLookups();
+        $selectLookups['status']    =   $this->_status();        
         
-        $role_name = "";
-        $status = $this->_status();
-
-        $info = array('title'=>ucfirst($this->route_name));
-        return view("admin.".$this->route_name.".create",compact('info','role_name','user_type','status'));
+        $info = $this->_informations();
+        return view("admin.".$this->route_name.".create",compact('info','selectLookups'));
     }
 
     public function store(Request $request)
@@ -75,27 +77,20 @@ trait AdminCommonTrait
     public function show(string $id)
     {
         $result = $this->model::find($id);
-        
-        $info = array('title'=>ucfirst($this->route_name));
-        $role_name = $this->_role_name($result);       
 
-        return view('admin.'.$this->route_name.'.show',compact('result','role_name','info'));
+        $info = $this->_informations($result);
+        return view('admin.'.$this->route_name.'.show',compact('info','result'));
     }
 
     public function edit(string $id)
     {
         $result = $this->model::find($id);
-        $user_type = "";
-        if($this->model_name == "User")
-        {
-            $user_type = $this->_roles();       
-        }
-        $status = $this->_status();
+        
+        $selectLookups              =   $this->_selectLookups();
+        $selectLookups['status']    =   $this->_status();        
 
-        $role_name = $this->_role_name($result); 
-
-        $info = array('title'=>ucfirst($this->route_name));
-        return view('admin.'.$this->route_name.'.edit',compact('result','info','role_name','user_type','status'));
+        $info = $this->_informations();
+        return view('admin.'.$this->route_name.'.edit',compact('info','selectLookups','result'));
     }
 
 
@@ -128,8 +123,23 @@ trait AdminCommonTrait
 
     public function destroy(string $id)
     {
+        echo "s";exit;
         $this->model::find($id)->delete();
         return redirect()->back()->with('error', 'Record Deleted Successfully.');
+    }
+
+    protected function _selectLookups($id = null) :array
+    {
+        return [
+            //
+        ];
+    }
+
+    protected function _validation_rules($request, $id) :array
+    {
+        return [
+            //
+        ];
     }
 
     protected function _store_validation_rules($request, $id) :array
@@ -177,14 +187,16 @@ trait AdminCommonTrait
 
     private function _validate($request, $id = null , $action = null)
     {
-        if($action == 'update')
-        {
-            $rules = $this->_update_validation_rules($request, $id);
-        }
-        else
-        {
-            $rules = $this->_store_validation_rules($request, $id);
-        }
+        // if($action == 'update')
+        // {
+        //     $rules = $this->_update_validation_rules($request, $id);
+        // }
+        // else
+        // {
+        //     $rules = $this->_store_validation_rules($request, $id);
+        // }
+
+        $rules = $this->_validation_rules($request, $id);
 
         if(@request()->all()){
             $validator = Validator::make($request->all(), $rules);
