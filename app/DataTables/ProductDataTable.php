@@ -42,7 +42,8 @@ class ProductDataTable extends BaseDataTable
      */
     public function query(Product $model)
     {
-        return $model->newQuery();
+        return Product::join('users', 'users.id', '=', 'products.user_id')->get(['products.id', 'products.title', 'products.description', 'products.price', 'products.created_at', 'users.first_name as added_by']);
+        //return $model->newQuery();        
     }
 
     /**
@@ -74,7 +75,7 @@ class ProductDataTable extends BaseDataTable
      */
     protected function getColumns()
     {
-        return $columns = ['id', 'title', 'description', 'price', 'created_at'];
+        return $columns = ['id', 'title', 'description', 'price', 'added_by', 'created_at'];
     }
 
     /**

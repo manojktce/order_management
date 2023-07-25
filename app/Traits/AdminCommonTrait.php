@@ -3,6 +3,7 @@ namespace App\Traits;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Product;
 use DataTables;
 
 use Exception;
@@ -36,6 +37,9 @@ trait AdminCommonTrait
 
     public function index(Request $request)
     {        
+        // $st = Product::join('users', 'users.id', '=', 'products.user_id')
+        // ->get(['product.id', 'product.title', 'product.description', 'product.price', 'products.created_at', 'users.first_name']);
+
         //User::onlyTrashed()->restore();
         $dt = "\\App\\DataTables\\".$this->model_name."DataTable";
         $dataTable = new $dt;
