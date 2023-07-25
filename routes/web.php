@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Auth\Middleware;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\BaseController;
+use App\Http\Controllers\ProductController;
+
 
 //Route::get('/', function () { return view('auth.login'); });
 Route::get('/', function () { return view('home'); });
@@ -25,19 +26,10 @@ Route::group(['middleware' => ['role:Admin']], function () {
     Route::get('/table', [App\Http\Controllers\SiteAdminController::class, 'table'])->name('table');    
     
     Route::resources([
-        'user' => UserController::class,
-        'category' => CategoryController::class,
+        'user'          => UserController::class,
+        'category'      => CategoryController::class,
+        'product'       => ProductController::class,
     ]);
-
-    /* User Management Start */
-    /*Route::resource('users', UserController::class);*/
-    //Route::get('user/delete/{id}', [UserController::class, 'delUsers'])->name('user.delete');
-    /* User Management End */
-
-    /* Category Management Start */
-    /*Route::resource('category', CategoryController::class);*/
-    Route::get('category/delete/{id}', [CategoryController::class, 'delCategory'])->name('category.delete');
-    /* Category Management End */
 
     Route::post('admin_logout', [App\Http\Controllers\SiteAdminController::class, 'admin_logout'])->name('admin_logout');
 });
