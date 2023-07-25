@@ -38,22 +38,8 @@
   
   <!-- Delete Confirmation add by manoj -->
   <script type="text/javascript">
-    function confirm_delete__old()
-    {
-        var del=confirm("Are you sure you want to delete this record?");
-        if (del==true)
-        {
-           toastr.error("Record deleted successfully");
-        }
-        return del;
-    }
-  </script>
-
-  <script type="text/javascript">
- 
- $('body').on('click', '.btndelete', function () {
+    $('body').on('click', '.btndelete', function () {
         $this = $(this);
-        
         confirm("Are You sure want to delete ?");
      
         $.ajax({

@@ -13,13 +13,7 @@ use Spatie\Permission\Models\Role;
 class UserController extends BaseController
 {
     public $modelClass = User::class;
-
-    public function delUsers(string $id)
-    {
-        User::find($id)->delete();
-        return redirect()->back()->with('error', 'User Record Deleted Successfully.');
-    }
-
+    
     protected function _selectLookups($id = "") :array
     {
         $data = array();

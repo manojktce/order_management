@@ -21,31 +21,9 @@
                   <h3 class="card-title">Update Category</h3>
                 </div>
                 <div class="card-body">
-                  <form action="{{ route('category.update',$result->id) }}" method="post" enctype="multipart/form-data" id="form">
-                    @method('PUT')
-                    @csrf
-                    <div class="card-body">
-
-                      <div class="form-group">
-                        <label for="exampleInputTitle">Category Title</label>
-                        <input type="text" name="title" class="form-control" id="exampleInputTitle" placeholder="Enter Category Title" value="{{ $result->title }}">
-                      </div>
-                                            
-                      <div class="form-group">
-                        <label>Status</label><span class="text-danger">*</span>
-                        <select class="form-control" name="status">
-                          <option value="1">Active</option>
-                          <option value="0">Inactive</option>
-                        </select>
-                      </div>
-            
-                    </div>
-                    <!-- /.card-body -->
-            
-                    <div class="card-footer">
-                      <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                  </form>
+                  {{ Form::model($result, ['route' => [ "category.update", $result->id ],'method' => 'put', 'class' => 'form-horizontal','id'  => 'categoryForm','files'=> true]) }}
+                      @include('admin.category.partials.form')
+                  {!! Form::close() !!}
                 </div>
               </div>
             </div>
