@@ -31,7 +31,7 @@ Route::group(['middleware' => ['role:Admin']], function () {
 
     /* User Management Start */
     /*Route::resource('users', UserController::class);*/
-    Route::get('user/delete/{id}', [UserController::class, 'delUsers'])->name('user.delete');
+    //Route::get('user/delete/{id}', [UserController::class, 'delUsers'])->name('user.delete');
     /* User Management End */
 
     /* Category Management Start */

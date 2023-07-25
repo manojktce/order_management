@@ -28,7 +28,7 @@ class CategoryDataTable extends BaseDataTable
                 
                 $action ='<a href="'. route('category.show', $model->id) .'" class="btn btn-outline-primary"><i class="fa fa-eye"></i></a>
                             <a href="' .route('category.edit', $model->id) .'" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
-                            <a href="' .route('category.delete', $model->id) .'" class="btn btn-outline-primary" onclick="return confirm_delete();"><i class="fa fa-trash"></i></a>';
+                            <a href="javascript:void(0)" class="btn btn-outline-primary btndelete" data-id="' . $model->id . '" data-model="category" data-route="category" "><i class="fa fa-trash"></i></a>';
 
                 return $action;
             })

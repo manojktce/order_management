@@ -1,7 +1,13 @@
+@php 
+$error = $errors->all();
+@endphp
 <div class="card-body">
   <div class="form-group">
     {{ Form::label('first_name', 'First Name *', ['class' => 'col-sm-6 col-form-label']) }}
     {{ Form::text('first_name', (empty($result) ? old('first_name') : $result->first_name) , ['class' => 'form-control']) }}
+    @if($error)
+    
+    @endif
   </div>
 
   <div class="form-group">
@@ -71,7 +77,7 @@
   <!-- Image Preview Section by Manoj -->
   <div class="row card">
     <div class="image-preview">
-        @if(!empty($result))
+        @if((!empty($result)) && ($result->getFirstMediaUrl('profile_pictures','thumb')))
           <img src="{{ $result->getFirstMediaUrl('profile_pictures','thumb') }}" style = "width:300px; height:200px;">
         @endif
     </div>

@@ -36,6 +36,7 @@ trait AdminCommonTrait
 
     public function index(Request $request)
     {        
+        //User::onlyTrashed()->restore();
         $dt = "\\App\\DataTables\\".$this->model_name."DataTable";
         $dataTable = new $dt;
         $info = $this->_informations();
@@ -100,14 +101,14 @@ trait AdminCommonTrait
         $additonal_updates  = $this->_additionalUpdate($request, $id, $model);
         $file_uploads       = $this->_fileupload($request, $id, $model);
   
-        return redirect()->route(''.$this->route_name.'.index')->with('message', 'Record updated successfully.');;
+        return redirect()->route(''.$this->route_name.'.index')->with('message', 'Record updated successfully.');
     }
 
     public function destroy(string $id)
     {
-        echo "s";exit;
         $this->model::find($id)->delete();
-        return redirect()->back()->with('error', 'Record Deleted Successfully.');
+        //return response()->json(['url'=>url(''.$this->route_name.'')]);
+        //return back()->with('message','Deleted Successfully');
     }
 
     protected function _selectLookups($id = null) :array
@@ -140,20 +141,6 @@ trait AdminCommonTrait
         ];
     }
 
-    protected function _store_validation_rules($request, $id) :array
-    {
-        return [
-            //
-        ];
-    }
-
-    protected function _update_validation_rules($request, $id) :array
-    {
-        return [
-            //
-        ];
-    }
-
     /**
      * @return array
      */
@@ -179,14 +166,15 @@ trait AdminCommonTrait
     private function _validate($request, $id = null , $action = null)
     {
         $rules = $this->_validation_rules($request, $id);
-
+                
         if(@request()->all()){
             $validator = Validator::make($request->all(), $rules);
             if ($validator->fails()){
                 $messages = $validator->messages();
+                
                 foreach ($messages->all(':message') as $key => $message)
                 {
-                    $row['error_message'][$key] = $message;
+                     $row['error_message'][$key] = $message;
                 }
                 return $row;
             }

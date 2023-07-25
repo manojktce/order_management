@@ -29,7 +29,7 @@
                 <tbody>
                 </tbody>
               </table> --}}
-              {!! $dataTable->table(['class' => 'table table-striped table-bordered', 'id' => 'datatable-buttons']) !!}
+              {!! $dataTable->table(['class' => 'table table-striped table-bordered', 'class' => 'datatable-buttons']) !!}
             </div>
         </div>
       </div>

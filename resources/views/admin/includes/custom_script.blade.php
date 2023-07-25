@@ -38,7 +38,7 @@
   
   <!-- Delete Confirmation add by manoj -->
   <script type="text/javascript">
-    function confirm_delete()
+    function confirm_delete__old()
     {
         var del=confirm("Are you sure you want to delete this record?");
         if (del==true)
@@ -47,6 +47,31 @@
         }
         return del;
     }
+  </script>
+
+  <script type="text/javascript">
+ 
+ $('body').on('click', '.btndelete', function () {
+        $this = $(this);
+        
+        confirm("Are You sure want to delete ?");
+     
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            },
+            type: "DELETE",
+            url:  '/'+ $this.data('route')+'/' + $this.data('id'),
+            success: function (res) {
+                console.log('res');
+                toastr.success('Record deleted successfully !');
+                $('#datatable-buttons').DataTable().ajax.reload();
+            },
+            error: function (res) {
+                console.log('Error:', res);
+            }
+        });
+ });
   </script>
   <!-- Delete Confirmation add by manoj -->
   

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('body').on('click', '.btndelete', function () {
+    $('body').on('click', '.btndelete_chk', function () {
         $this = $(this);
 
         swal({
@@ -9,11 +9,12 @@ $(document).ready(function() {
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
             confirmButtonText: "Yes, delete it!",
-            closeOnConfirm: false,
-            showLoaderOnConfirm: true,
         }, function () {
             $.ajax({
-                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                type: 'DELETE',
                 url:  '/'+ $this.data('route')+'/' + $this.data('model') + '/' + $this.data('id'),
                 success: function () {
 
