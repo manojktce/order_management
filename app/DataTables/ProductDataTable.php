@@ -90,11 +90,11 @@ class ProductDataTable extends BaseDataTable
         //return $columns = ['id', 'category', 'title', 'price', 'added_by'];
         return 
         [    
-            'id'                 => ['name' => 'id', 'data' => 'id'],
+            // 'id'                 => ['name' => 'id', 'data' => 'id'],
             'category.title'     => ['name' => 'category.title' , 'data' => 'category'],
             'title'              => ['name' => 'title', 'data' => 'title'],
             'price'              => ['name' => 'price', 'data' => 'price'],
-            'status'                => ['name' => 'status', 'data' => 'status'],
+            'status'             => ['name' => 'status', 'data' => 'status'],
             'users.first_name'   => ['name' => 'users.first_name' , 'data' => 'created_by'],
         ];
     }

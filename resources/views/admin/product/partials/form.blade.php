@@ -42,9 +42,11 @@
 
   <div class="row card">
     <div class="image-preview">
-        @foreach ($result->getMedia('product_images') as $image)
-          <img src="{{ $image->getUrl() }}" style = "width:300px; height:200px;">
-        @endforeach
+        @if(!empty($result))
+          @foreach ($result->getMedia('product_images') as $image)
+            <img src="{{ $image->getUrl() }}" style = "width:300px; height:200px;">
+          @endforeach
+        @endif
     </div>
   </div>
 
