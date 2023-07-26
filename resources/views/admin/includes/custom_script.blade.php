@@ -69,7 +69,11 @@
   
         if (input.files) {
             var filesAmount = input.files.length;
-  
+            if(filesAmount > 5)
+            {
+              alert('Only 5 images allowed for product');
+              return false;
+            }
             for (i = 0; i < filesAmount; i++) {
                 var reader = new FileReader();
   

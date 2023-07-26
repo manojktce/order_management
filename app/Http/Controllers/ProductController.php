@@ -18,11 +18,28 @@ class ProductController extends BaseController
         $data['users']      = User::all()->pluck('first_name','id')->toArray();
         $data['category']   = Category::with('product')->pluck('title','id')->toArray();
 
-        if($id){
-        $data['category']   = Category::find($id)->with('product')->pluck('title','id')->toArray();
-        }
-        
         return $data;
+    }
+
+    protected function _fileupload($request, $id = "", $model = "") : array
+    {
+
+        if($request->hasFile('image')){
+            
+            $images = $request->file('image');
+
+            if($id)
+            {
+                $model->clearMediaCollection('product_images');
+            }
+            
+            foreach ($images as $image) {
+                $model->addMedia($image)->toMediaCollection('product_images');
+            }
+        }
+
+        $msg = ['File Uploaded'];
+        return $msg;
     }
 
     protected function _validation_rules($request, $id = null): array

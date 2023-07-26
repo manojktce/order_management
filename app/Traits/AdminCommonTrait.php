@@ -98,7 +98,7 @@ trait AdminCommonTrait
         if($validator != null && array_key_exists("error_message", $validator == null ? [] : $validator)){
             return back()->withErrors($validator)->with('error','Input errors !!!');
         }
-
+        
         $model = $this->model::find($id);
         $model->update($request->all());
         

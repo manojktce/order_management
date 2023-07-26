@@ -15,11 +15,15 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Product extends Model
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+
+class Product extends Model implements HasMedia
 {
     use HasFactory;
     use HasRoles;
     use SoftDeletes;
+    use InteractsWithMedia;
 
     public $table = 'products';
 

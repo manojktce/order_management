@@ -30,6 +30,24 @@
     {{ Form::number('qty', (empty($result) ? old('qty') : $result->qty) , ['class' => 'form-control']) }}
   </div>
 
+  <div class="form-group">
+    <label for="exampleInputFile">Upload Images</label>
+    <div class="input-group">
+      <div class="custom-file">
+        <input type="file" name="image[]" class="custom-file-input" id="exampleInputFile" multiple>
+        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row card">
+    <div class="image-preview">
+        @foreach ($result->getMedia('product_images') as $image)
+          <img src="{{ $image->getUrl() }}" style = "width:300px; height:200px;">
+        @endforeach
+    </div>
+  </div>
+
 </div>
 <!-- /.card-body -->
 
