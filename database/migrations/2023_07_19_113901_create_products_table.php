@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->nullable(false);
-            $table->integer('category_id')->nullable(false);
+            $table->unsignedBigInteger('users_id')->nullable(false);
+            $table->unsignedBigInteger('category_id')->nullable(false);
             $table->string('title')->unique();
             $table->text('description')->nullable(false); 
             $table->decimal('price',9,2); 
@@ -22,6 +22,9 @@ return new class extends Migration
             $table->enum('status', [0, 1])->default(1); // 0-Inactive , 1-Active
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('category')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

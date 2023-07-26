@@ -13,13 +13,18 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->nullable(false); 
+            $table->unsignedBigInteger('user_id')->nullable(false); 
             $table->text('stripe_pi_id')->nullable(); 
             $table->text('stripe_resp')->nullable(); 
             $table->decimal('total_amount',9,2)->nullable(false);
             $table->enum('status', [0, 1])->default(1); // 0-Inactive , 1-Active
-            $table->datetime('created_at')->useCurrent();
-            $table->datetime('updated_at')->nullable()->userCurrent()->useCurrentOnUpdate();
+            // $table->datetime('created_at')->useCurrent();
+            // $table->datetime('updated_at')->nullable()->userCurrent()->useCurrentOnUpdate();
+
+            $table->softDeletes();
+            $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

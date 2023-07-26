@@ -31,6 +31,7 @@ class User extends Authenticatable implements HasMedia
      *
      * @var array<int, string>
      */
+
     protected $fillable = [
         'first_name',
         'last_name',
@@ -58,4 +59,9 @@ class User extends Authenticatable implements HasMedia
     ];
 
     protected $dates = ['deleted_at'];
+
+    public function product()
+    {
+        return $this->hasMany('App\Models\Product');
+    }
 }

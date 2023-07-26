@@ -23,7 +23,6 @@ Route::group(['middleware' => ['role:Vendor|User']], function () {
 
 Route::group(['middleware' => ['role:Admin']], function () {
     Route::get('/adminHome', [App\Http\Controllers\SiteAdminController::class, 'adminHome'])->name('adminHome');
-    Route::get('/table', [App\Http\Controllers\SiteAdminController::class, 'table'])->name('table');    
     
     Route::resources([
         'user'          => UserController::class,

@@ -47,13 +47,6 @@
         
         
         <li class="nav-header">MANAGEMENT</li>
-        <li class="nav-item">
-          <a href="{{ route('table') }}" class="nav-link">
-            <i class="nav-icon fas fa-table"></i>
-            <p>Tables</p>
-          </a>
-        </li>
-
         <li class="nav-item {{ (request()->segment(1) == 'users') ? 'menu-open' : '' }}">
           <a href="#" class="nav-link {{ (request()->segment(1) == 'users') ? 'active' : '' }}">
             <i class="nav-icon fas fa-th"></i>

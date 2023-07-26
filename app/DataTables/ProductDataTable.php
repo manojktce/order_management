@@ -21,8 +21,14 @@ class ProductDataTable extends BaseDataTable
     public function dataTable($query)
     {
             return datatables($query)
+            ->editColumn('category', function ($model) {
+                return $model->category->title;
+            })
+            ->editColumn('added_by', function ($model) {
+                return $model->users->first_name;
+            })
             ->editColumn('created_at', function ($model) {
-                return $model->created_at->format('Y-m-d');
+                 return $model->created_at->format('Y-m-d');
             })
             ->addColumn('action', function ($model) {
                 $action ='<a href="'. route('product.show', $model->id) .'" class="btn btn-outline-primary"><i class="fa fa-eye"></i></a>
@@ -42,7 +48,7 @@ class ProductDataTable extends BaseDataTable
      */
     public function query(Product $model)
     {
-        return Product::join('users', 'users.id', '=', 'products.user_id')->get(['products.id', 'products.title', 'products.description', 'products.price', 'products.created_at', 'users.first_name as added_by']);
+        return $model::with(['category','users'])->select('products.*');
         //return $model->newQuery();        
     }
 
@@ -75,7 +81,15 @@ class ProductDataTable extends BaseDataTable
      */
     protected function getColumns()
     {
-        return $columns = ['id', 'title', 'description', 'price', 'added_by', 'created_at'];
+        //return $columns = ['id', 'category', 'title', 'price', 'added_by'];
+        return 
+        [    
+            'id'                 => ['name' => 'id', 'data' => 'id'],
+            'category.title'     => ['name' => 'category.title' , 'data' => 'category'],
+            'title'              => ['name' => 'title', 'data' => 'title'],
+            'price'              => ['name' => 'price', 'data' => 'price'],
+            'users.first_name'   => ['name' => 'users.first_name' , 'data' => 'added_by'],
+        ];
     }
 
     /**

@@ -23,5 +23,15 @@ class Product extends Model
 
     public $table = 'products';
 
+    public function users()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category');
+    }
+
     //protected $dates = ['deleted_at'];
 }

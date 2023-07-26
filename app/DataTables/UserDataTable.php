@@ -76,7 +76,7 @@ class UserDataTable extends BaseDataTable
      */
     protected function getColumns()
     {
-        return $columns = ['id', 'first_name', 'last_name' , 'email', 'created_at'];
+        return $columns = ['first_name', 'last_name' , 'email', 'created_at'];
     }
 
     /**
