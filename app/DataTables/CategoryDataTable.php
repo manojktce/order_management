@@ -24,9 +24,9 @@ class CategoryDataTable extends BaseDataTable
             ->editColumn('created_at', function ($model) {
                 return $model->created_at->format('Y-m-d');
             })
-            ->addColumn('products', function ($model){
+            /*->editColumn('products', function ($model){
                 return $model->product;
-            })
+            })*/
             ->addColumn('action', function ($model) {
                 
                 $action ='<a href="'. route('category.show', $model->id) .'" class="btn btn-outline-primary"><i class="fa fa-eye"></i></a>
@@ -46,7 +46,7 @@ class CategoryDataTable extends BaseDataTable
      */
     public function query(Category $model)
     {
-        return $model::latest();
+        return $model::with('product')->select('category.*');
         //return $model->newQuery();
     }
 
@@ -63,7 +63,7 @@ class CategoryDataTable extends BaseDataTable
         $actionParam['width'] = '210px';
 
         return $this->builder()
-            ->columns($this->getColumns())
+            ->columns($this->getColumns())            
             ->minifiedAjax()
             ->addAction($this->getActionParamters())
             ->parameters([
@@ -78,7 +78,7 @@ class CategoryDataTable extends BaseDataTable
      */
     protected function getColumns()
     {
-        return $columns = ['title', 'products', 'created_at'];
+        return $columns = ['title', 'created_at'];
     }
 
     /**
