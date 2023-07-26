@@ -49,7 +49,8 @@
               </li>
             </ul>
 
-                <b>Images :</b>
+            
+            <b>Product Images :</b>
 
                     @foreach ($result->getMedia('product_images') as $image)
                     <div class="row card m-3">
@@ -57,7 +58,7 @@
                     </div>
                     @endforeach
 
-            <a href="{{ route('product.index') }}" class="btn btn-outline-primary btn-block"><b>Back</b></a>
+            <a href="{{ route('product.index') }}" class="btn btn-outline-primary btn-block mt-5"><b>Back</b></a>
           </div>
           <!-- /.card-body -->
         </div>

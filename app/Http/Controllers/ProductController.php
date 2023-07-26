@@ -46,7 +46,7 @@ class ProductController extends BaseController
     {
         $rules = [
             'users_id'              => 'sometimes|required',
-            'title'                 => 'required|min:3|max:10|unique:products,title,'.$id.',id',
+            'title'                 => 'required|min:2|max:10|unique:products,title,'.$id.',id',
             'description'           => 'required|min:3|max:20',
             'price'                 => 'required',
             'qty'                   => 'required',
