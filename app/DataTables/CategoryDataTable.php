@@ -24,9 +24,14 @@ class CategoryDataTable extends BaseDataTable
             ->editColumn('created_at', function ($model) {
                 return $model->created_at->format('Y-m-d');
             })
-            /*->editColumn('products', function ($model){
-                return $model->product;
-            })*/
+            ->editColumn('products', function ($model){
+                return $model->product_one;
+            })
+            ->addColumn('status', function ($model) {
+
+                return ($model->status == 1) ? 'Active' : 'Inactive' ;
+                //return $model->status;
+            })
             ->addColumn('action', function ($model) {
                 
                 $action ='<a href="'. route('category.show', $model->id) .'" class="btn btn-outline-primary"><i class="fa fa-eye"></i></a>
@@ -35,7 +40,7 @@ class CategoryDataTable extends BaseDataTable
 
                 return $action;
             })
-            ->rawColumns(['action']);
+            ->rawColumns(['products','action']);
     }
 
     /**
@@ -78,7 +83,15 @@ class CategoryDataTable extends BaseDataTable
      */
     protected function getColumns()
     {
-        return $columns = ['title', 'created_at'];
+        //return $columns = ['title', 'products', 'created_at'];
+        return 
+        [    
+            'id'                    => ['name' => 'id' , 'data' => 'id'],
+            'title'                 => ['name' => 'category.title' , 'data' => 'title'],
+            'products'              => ['name' => 'products.products' , 'data' => 'products' , 'orderable' => 'false', 'searchable' => 'false'],
+            'status'                => ['name' => 'status', 'data' => 'status'],
+            'created_at'            => ['name' => 'created_at', 'data' => 'created_at'],
+        ];
     }
 
     /**

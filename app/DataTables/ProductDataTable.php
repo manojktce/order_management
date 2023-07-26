@@ -10,6 +10,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
+use DB;
 class ProductDataTable extends BaseDataTable
 {
     /**
@@ -24,7 +25,12 @@ class ProductDataTable extends BaseDataTable
             ->editColumn('category', function ($model) {
                 return $model->category->title;
             })
-            ->editColumn('added_by', function ($model) {
+            ->addColumn('status', function ($model) {
+
+                return ($model->status == 1) ? 'Active' : 'Inactive' ;
+                //return $model->status;
+            })
+            ->editColumn('created_by', function ($model) {
                 return $model->users->first_name;
             })
             ->editColumn('created_at', function ($model) {
@@ -88,7 +94,8 @@ class ProductDataTable extends BaseDataTable
             'category.title'     => ['name' => 'category.title' , 'data' => 'category'],
             'title'              => ['name' => 'title', 'data' => 'title'],
             'price'              => ['name' => 'price', 'data' => 'price'],
-            'users.first_name'   => ['name' => 'users.first_name' , 'data' => 'added_by'],
+            'status'                => ['name' => 'status', 'data' => 'status'],
+            'users.first_name'   => ['name' => 'users.first_name' , 'data' => 'created_by'],
         ];
     }
 

@@ -35,4 +35,8 @@ class Category extends Model
     {
         return $this->hasMany('App\Models\Product');
     }
+    public function product_one()
+    {
+        return $this->hasMany('App\Models\Product')->select('title');        
+    }
 }
