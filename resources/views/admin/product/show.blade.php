@@ -11,21 +11,27 @@
 
         <div class="card card-primary card-outline">
           <div class="card-body box-profile">
-            <div class="text-center">
-              @php $imgUrl = $result->getFirstMediaUrl('profile_pictures','thumb') @endphp
-              <img class="profile-user-img img-fluid img-circle"
+            <div class="text-left">
+              @php $imgUrl = $result->getFirstMediaUrl('product_images','thumb') @endphp
+              <img class="profile-user-img"
               src="{{ empty($imgUrl) ? "../../dist/img/user4-128x128.jpg": $imgUrl }}"
                    alt="User profile picture">
             </div>
 
-            <h3 class="profile-username text-center">{{ $result->title }}</h3>
+            <h3 class="profile-username text-left">{{ $result->title }}</h3>
 
-            <p class="text-muted text-center">Software Engineer</p>
+            <p class="text-muted text-left">{{ $result->title }}</p>
 
             <ul class="list-group list-group-unbordered mb-3">
               <li class="list-group-item">
                 <b>Title</b> <a class="float-right">{{ $result->title }}</a>
               </li>
+
+
+              <li class="list-group-item">
+                <b>Description</b> <a class="float-right">{{ $result->description }}</a>
+              </li>
+
 
               <li class="list-group-item">
                 <b>Category</b> <a class="float-right">{{ $result->category->title }}</a>
