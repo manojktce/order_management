@@ -18,7 +18,7 @@
               <!-- Default box -->
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">Update Category</h3>
+                  <h3 class="card-title">Update Product</h3>
                 </div>
                 <div class="card-body">
                   {{ Form::model($result, ['route' => [ "product.update", $result->id ],'method' => 'put', 'class' => 'form-horizontal','id'  => 'productForm','files'=> true]) }}

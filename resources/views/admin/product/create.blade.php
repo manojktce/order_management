@@ -21,7 +21,7 @@
                   <h3 class="card-title">Create Product</h3>
                 </div>
                 <div class="card-body">
-                  {!! Form::open(['route' =>'category.store', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'container']) !!}
+                  {!! Form::open(['route' =>'product.store', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'container']) !!}
                           @include('admin.product.partials.form')
                   {!! Form::close() !!}
                 </div>

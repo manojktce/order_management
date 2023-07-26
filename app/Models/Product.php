@@ -23,6 +23,15 @@ class Product extends Model
 
     public $table = 'products';
 
+    protected $fillable = [
+        'users_id',
+        'category_id',
+        'title',
+        'description',
+        'price',
+        'qty',
+    ];
+
     public function users()
     {
         return $this->belongsTo('App\Models\User');

@@ -25,7 +25,7 @@ class CategoryDataTable extends BaseDataTable
                 return $model->created_at->format('Y-m-d');
             })
             ->editColumn('products', function ($model){
-                return $model->product_one;
+                return $model->product->implode('title', ', ');
             })
             ->addColumn('status', function ($model) {
 
@@ -88,7 +88,7 @@ class CategoryDataTable extends BaseDataTable
         [    
             'id'                    => ['name' => 'id' , 'data' => 'id'],
             'title'                 => ['name' => 'category.title' , 'data' => 'title'],
-            'products'              => ['name' => 'products.products' , 'data' => 'products' , 'orderable' => 'false', 'searchable' => 'false'],
+            'products'              => ['name' => 'products.title' , 'data' => 'products' , 'orderable' => 'false', 'searchable' => 'false'],
             'status'                => ['name' => 'status', 'data' => 'status'],
             'created_at'            => ['name' => 'created_at', 'data' => 'created_at'],
         ];
