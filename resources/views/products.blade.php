@@ -11,106 +11,17 @@
                             </div>
                             <div class="widgets_inner">
                                 <ul class="list">
+                                    @foreach($result as $res)
                                     <li>
-                                        <a href="#">Frozen Fish</a>
-                                        <span>(250)</span>
+                                        <a href="#">{{ $res->title }}</a>
+                                        <span>(20)</span>
                                     </li>
-                                    <li>
-                                        <a href="#">Dried Fish</a>
-                                        <span>(250)</span>
-                                    </li>
-                                    <li>
-                                        <a href="#">Fresh Fish</a>
-                                        <span>(250)</span>
-                                    </li>
-                                    <li>
-                                        <a href="#">Meat Alternatives</a>
-                                        <span>(250)</span>
-                                    </li>
-                                    <li>
-                                        <a href="#">Fresh Fish</a>
-                                        <span>(250)</span>
-                                    </li>
-                                    <li>
-                                        <a href="#">Meat Alternatives</a>
-                                        <span>(250)</span>
-                                    </li>
-                                    <li>
-                                        <a href="#">Meat</a>
-                                        <span>(250)</span>
-                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </aside>
 
-                        <aside class="left_widgets p_filter_widgets">
-                            <div class="l_w_title">
-                                <h3>Product filters</h3>
-                            </div>
-                            <div class="widgets_inner">
-                                <ul class="list">
-                                    <li>
-                                        <a href="#">Apple</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Asus</a>
-                                    </li>
-                                    <li class="active">
-                                        <a href="#">Gionee</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Micromax</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Samsung</a>
-                                    </li>
-                                </ul>
-                                <ul class="list">
-                                    <li>
-                                        <a href="#">Apple</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Asus</a>
-                                    </li>
-                                    <li class="active">
-                                        <a href="#">Gionee</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Micromax</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Samsung</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </aside>
-
-                        <aside class="left_widgets p_filter_widgets">
-                            <div class="l_w_title">
-                                <h3>Color Filter</h3>
-                            </div>
-                            <div class="widgets_inner">
-                                <ul class="list">
-                                    <li>
-                                        <a href="#">Black</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Black Leather</a>
-                                    </li>
-                                    <li class="active">
-                                        <a href="#">Black with red</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Gold</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Spacegrey</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </aside>
-
-                        <aside class="left_widgets p_filter_widgets price_rangs_aside">
+                        <aside class="left_widgets p_filter_widgets price_rangs_aside" style="display: none;">
                             <div class="l_w_title">
                                 <h3>Price Filter</h3>
                             </div>
@@ -173,96 +84,22 @@
                     </div>
 
                     <div class="row align-items-center latest_product_inner">
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_product_item">
-                                <img src="img/product/product_1.png" alt="">
-                                <div class="single_product_text">
-                                    <h4>Quartz Belt Watch</h4>
-                                    <h3>$150.00</h3>
-                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                        
+                        @foreach($result as $res)
+                            @foreach($res->product as $prod)
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="single_product_item">
+                                    <img src="{{ $prod->getFirstMediaUrl('product_cover_image','thumb') }}" alt="">
+                                    <div class="single_product_text">
+                                        <h4>{{ $prod->title }}</h4>
+                                        <h3>${{ $prod->price }}</h3>
+                                        <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_product_item">
-                                <img src="img/product/product_2.png" alt="">
-                                <div class="single_product_text">
-                                    <h4>Quartz Belt Watch</h4>
-                                    <h3>$150.00</h3>
-                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_product_item">
-                                <img src="img/product/product_3.png" alt="">
-                                <div class="single_product_text">
-                                    <h4>Quartz Belt Watch</h4>
-                                    <h3>$150.00</h3>
-                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_product_item">
-                                <img src="img/product/product_4.png" alt="">
-                                <div class="single_product_text">
-                                    <h4>Quartz Belt Watch</h4>
-                                    <h3>$150.00</h3>
-                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_product_item">
-                                <img src="img/product/product_5.png" alt="">
-                                <div class="single_product_text">
-                                    <h4>Quartz Belt Watch</h4>
-                                    <h3>$150.00</h3>
-                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_product_item">
-                                <img src="img/product/product_6.png" alt="">
-                                <div class="single_product_text">
-                                    <h4>Quartz Belt Watch</h4>
-                                    <h3>$150.00</h3>
-                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_product_item">
-                                <img src="img/product/product_7.png" alt="">
-                                <div class="single_product_text">
-                                    <h4>Quartz Belt Watch</h4>
-                                    <h3>$150.00</h3>
-                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_product_item">
-                                <img src="img/product/product_8.png" alt="">
-                                <div class="single_product_text">
-                                    <h4>Quartz Belt Watch</h4>
-                                    <h3>$150.00</h3>
-                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_product_item">
-                                <img src="img/product/product_2.png" alt="">
-                                <div class="single_product_text">
-                                    <h4>Quartz Belt Watch</h4>
-                                    <h3>$150.00</h3>
-                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
+                            @endforeach
+                        @endforeach
+
                         <div class="col-lg-12">
                             <div class="pageination">
                                 <nav aria-label="Page navigation example">
