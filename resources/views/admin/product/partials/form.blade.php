@@ -5,25 +5,29 @@
     {!! Form::select('users_id', $selectLookups['users'], (empty($result) ? old('users_id') : $result->users_id),['class' => 'col-sm-12 form-control']) !!}
   </div> --}}
 
-  <div class="row form-group">
+  <div class="row">
     <div class="col-md-6">
-      
+
+      <div class="form-group">
         {{ Form::label('category', 'Category *', ['class' => 'col-sm-6 col-form-label']) }}
-        {!! Form::select('category_id', $selectLookups['category'], (empty($result) ? old('title') : $result->title),['class' => 'col-sm-12 form-control']) !!}
+        {!! Form::select('category_id', $selectLookups['category'], (empty($result) ? old('category_id') : $result->category->id),['class' => 'col-sm-12 form-control']) !!}
+      </div>  
       
-    
-      
+      <div class="form-group">
         {{ Form::label('title', 'Title *', ['class' => 'col-sm-6 col-form-label']) }}
         {{ Form::text('title', (empty($result) ? old('title') : $result->title) , ['class' => 'form-control']) }}
-      
+      </div>
 
+      <div class="form-group">
         {{ Form::label('price', 'Price *', ['class' => 'col-sm-6 col-form-label']) }}
         {{ Form::number('price', (empty($result) ? old('price') : $result->price) , ['class' => 'form-control product-price', 'step' => 'any']) }}
-      
+      </div>
 
-      
+      <div class="form-group">
         {{ Form::label('quantity', 'Quantity *', ['class' => 'col-sm-6 col-form-label']) }}
         {{ Form::number('qty', (empty($result) ? old('qty') : $result->qty) , ['class' => 'form-control', 'step' => 'any','onkeypress' =>'return onlyNumberKey(event)' ]) }}
+      </div>
+
     </div>
     
     <div class="col-md-6">

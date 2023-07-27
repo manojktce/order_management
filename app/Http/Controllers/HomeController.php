@@ -11,6 +11,12 @@ use App\Models\User;
 
 class HomeController extends Controller
 {
+    public $categories;
+
+    public function __construct()
+    {
+        $this->categories   =   Category::all();
+    }
     public function index()
     {
         return view('home');
@@ -26,8 +32,8 @@ class HomeController extends Controller
         //$result  = Category::all();
         //$result  =   Product::whereHas('category')->latest()->paginate(2);
         $result                 =   array();
-        $result['products']     =   Product::paginate(2);
-        $result['categories']   =   Category::all();
+        $result['products']     =   Product::latest()->paginate(6);
+        $result['categories']   =   $this->categories;
         return view('products',compact('result'));   
     }
 
@@ -35,7 +41,7 @@ class HomeController extends Controller
     {
         $result                 =   array();
         $result['products']     =   Product::find($id);
-        $result['categories']   =   Category::all();
+        $result['categories']   =   $this->categories;
         return view('product_detail',compact('result'));   
     }
 }
