@@ -20,4 +20,5 @@
 
 <div class="card-footer">
   <button type="submit" class="btn btn-primary">Submit</button>
+  <a href="{{ route('category.index') }}" class="btn btn-danger"><b>Cancel</b></a>
 </div>

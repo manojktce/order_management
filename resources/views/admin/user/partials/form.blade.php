@@ -89,4 +89,5 @@ $error = $errors->all();
 
 <div class="card-footer">
   <button type="submit" class="btn btn-primary">Submit</button>
+  <a href="{{ route('user.index') }}" class="btn btn-danger"><b>Cancel</b></a>
 </div>
