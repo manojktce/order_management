@@ -24,6 +24,10 @@ class UserDataTable extends BaseDataTable
             ->editColumn('created_at', function ($model) {
                 return $model->created_at->format('Y-m-d');
             })
+            ->addColumn('status', function ($model) {
+                $status_button = ($model->status == 1) ? '<a href="javascript:void(0)" class="btn btn-sm btn-success">Active</a>' : '<a href="javascript:void(0)" class="btn btn-sm btn-danger">In-Active</a>';
+                return $status_button;
+            })
             ->addColumn('action', function ($model) {
                 
                 $action ='<a href="'. route('user.show', $model->id) .'" class="btn btn-outline-primary"><i class="fa fa-eye"></i></a>
@@ -32,7 +36,7 @@ class UserDataTable extends BaseDataTable
 
                 return $action;
             })
-            ->rawColumns(['action']);
+            ->rawColumns(['status','action']);
     }
 
     /**
@@ -76,7 +80,7 @@ class UserDataTable extends BaseDataTable
      */
     protected function getColumns()
     {
-        return $columns = ['first_name', 'last_name' , 'email', 'created_at'];
+        return $columns = ['first_name', 'last_name' , 'email', 'status', 'created_at'];
     }
 
     /**

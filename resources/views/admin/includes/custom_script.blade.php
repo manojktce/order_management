@@ -91,6 +91,12 @@
         $('div.image-preview').empty(); // clear any previous image
         imagesPreview(this, 'div.image-preview');
     });
+
+    $('.custom-file-input-cover').on('change', function() {
+        $('div.image-preview-cover').empty(); // clear any previous cover image
+        imagesPreview(this, 'div.image-preview-cover');
+    });
+
   });
   </script>
   <!-- image preview script add by manoj end -->

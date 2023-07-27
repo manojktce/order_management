@@ -28,9 +28,8 @@ class CategoryDataTable extends BaseDataTable
                 return $model->product->implode('title', ', ');
             })
             ->addColumn('status', function ($model) {
-
-                return ($model->status == 1) ? 'Active' : 'Inactive' ;
-                //return $model->status;
+                $status_button = ($model->status == 1) ? '<a href="javascript:void(0)" class="btn btn-sm btn-success">Active</a>' : '<a href="javascript:void(0)" class="btn btn-sm btn-danger">In-Active</a>';
+                return $status_button;
             })
             ->addColumn('action', function ($model) {
                 
@@ -40,7 +39,7 @@ class CategoryDataTable extends BaseDataTable
 
                 return $action;
             })
-            ->rawColumns(['products','action']);
+            ->rawColumns(['products','status','action']);
     }
 
     /**

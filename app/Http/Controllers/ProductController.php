@@ -23,7 +23,17 @@ class ProductController extends BaseController
 
     protected function _fileupload($request, $id = "", $model = "") : array
     {
+        /* Upload cover image for the product start*/
+        if($request->hasFile('cover_image') && $request->file('cover_image')->isValid()){
+            if($id)
+            {
+                $model->media()->delete(); // delete previous uploaded image in db
+            }
+            $model->addMediaFromRequest('cover_image')->toMediaCollection('product_cover_image');
+        }
+        /* Upload cover image for the product end*/
 
+        /* Upload product images for the product start*/
         if($request->hasFile('image')){
             
             $images = $request->file('image');
@@ -37,6 +47,7 @@ class ProductController extends BaseController
                 $model->addMedia($image)->toMediaCollection('product_images');
             }
         }
+        /* Upload product images for the product end*/
 
         $msg = ['File Uploaded'];
         return $msg;

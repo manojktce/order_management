@@ -26,9 +26,8 @@ class ProductDataTable extends BaseDataTable
                 return $model->category->title;
             })
             ->addColumn('status', function ($model) {
-
-                return ($model->status == 1) ? 'Active' : 'Inactive' ;
-                //return $model->status;
+                $status_button = ($model->status == 1) ? '<a href="javascript:void(0)" class="btn btn-sm btn-success">Active</a>' : '<a href="javascript:void(0)" class="btn btn-sm btn-danger">In-Active</a>';
+                return $status_button;
             })
             ->editColumn('created_by', function ($model) {
                 return $model->users->first_name;
@@ -43,7 +42,7 @@ class ProductDataTable extends BaseDataTable
 
                 return $action;
             })
-            ->rawColumns(['action']);
+            ->rawColumns(['status','action']);
     }
 
     /**

@@ -31,6 +31,26 @@
   </div>
 
   <div class="form-group">
+    <label for="exampleInputFile">Cover Image</label>
+    <div class="input-group">
+      <div class="custom-file">
+        <input type="file" name="cover_image" class="custom-file-input-cover" id="exampleInputFileCover">
+        <label class="custom-file-label" for="exampleInputFileCover">Choose file</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row card">
+    <div class="image-preview-cover">
+        @if(!empty($result))
+          @foreach ($result->getMedia('product_cover_image') as $image)
+            <img src="{{ $image->getUrl() }}" style = "width:300px; height:200px;">
+          @endforeach
+        @endif
+    </div>
+  </div>
+
+  <div class="form-group">
     <label for="exampleInputFile">Upload Images</label>
     <div class="input-group">
       <div class="custom-file">

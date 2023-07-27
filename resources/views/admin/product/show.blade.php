@@ -12,7 +12,7 @@
         <div class="card card-primary card-outline">
           <div class="card-body box-profile">
             <div class="text-left">
-              @php $imgUrl = $result->getFirstMediaUrl('product_images','thumb') @endphp
+              @php $imgUrl = $result->getFirstMediaUrl('product_cover_image','thumb') @endphp
               <img class="profile-user-img"
               src="{{ empty($imgUrl) ? "../../dist/img/user4-128x128.jpg": $imgUrl }}"
                    alt="User profile picture">
