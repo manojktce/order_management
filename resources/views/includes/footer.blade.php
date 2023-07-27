@@ -108,7 +108,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!-- swiper js -->
 <script src="{{ asset('/common/js/masonry.pkgd.js') }}"></script>
 <!-- particles js -->
+<script src="{{ asset('/common/js/lightslider.min.js') }}"></script>
 <script src="{{ asset('/common/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('/common/js/jquery.nice-select.min.js') }}"></script>
 <script src="{{ asset('/common/js/jquery.nice-select.min.js') }}"></script>
 <!-- slick js -->
 <script src="{{ asset('/common/js/slick.min.js') }}"></script>
@@ -125,12 +127,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="{{ asset('/common/js/custom.js') }}"></script>
 
 <script type="text/javascript">
-$(document).ready(function() {
-    $('.js-example-basic-single').select2();
-});
-</script>
-
-<script>
     @if(Session::has('message'))
     toastr.options =
     {

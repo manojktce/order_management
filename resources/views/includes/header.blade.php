@@ -13,7 +13,12 @@
     <link rel="stylesheet" href="{{ asset('/common/css/animate.css') }}">
     <!-- owl carousel CSS -->
     <link rel="stylesheet" href="{{ asset('/common/css/owl.carousel.min.css') }}">
-    <!-- font awesome CSS -->
+    
+    <!-- nice select CSS -->
+    <link rel="stylesheet" href="{{ asset('/common/css/nice-select.css') }}">
+    <!-- light slider CSS -->
+    <link rel="stylesheet" href="{{ asset('/common/css/lightslider.min.css') }}">
+
     <link rel="stylesheet" href="{{ asset('/common/css/all.css') }}">
     <!-- flaticon CSS -->
     <link rel="stylesheet" href="{{ asset('/common/css/flaticon.css') }}">

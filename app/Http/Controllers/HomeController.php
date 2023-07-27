@@ -23,8 +23,19 @@ class HomeController extends Controller
 
     public function products(Request $request, $id=null)
     {
-        //$categories = Category::all();
-        $result  = Category::all();
+        //$result  = Category::all();
+        //$result  =   Product::whereHas('category')->latest()->paginate(2);
+        $result                 =   array();
+        $result['products']     =   Product::paginate(2);
+        $result['categories']   =   Category::all();
         return view('products',compact('result'));   
+    }
+
+    public function product_detail(Request $request, $slug=null , $id=null)
+    {
+        $result                 =   array();
+        $result['products']     =   Product::find($id);
+        $result['categories']   =   Category::all();
+        return view('product_detail',compact('result'));   
     }
 }

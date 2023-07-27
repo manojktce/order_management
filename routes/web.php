@@ -11,6 +11,7 @@ use App\Http\Controllers\ProductController;
 Route::get('/', function () { return view('home'); });
 
 Route::get('/products', [App\Http\Controllers\HomeController::class, 'products'])->name('products');
+Route::get('/products/{slug}/{id}', [App\Http\Controllers\HomeController::class, 'product_detail']);
 
 Route::get('/site_admin', [App\Http\Controllers\SiteAdminController::class, 'index'])->name('site_admin');
 Route::post('admin_login', [App\Http\Controllers\SiteAdminController::class, 'admin_login']);
