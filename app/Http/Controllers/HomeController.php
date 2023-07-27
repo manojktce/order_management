@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function __construct()
     {
         //$this->middleware('auth');
-        $this->middleware('auth')->except(['display_category']);
+        //$this->middleware('auth')->except(['display_category']);
     }
 
     /**
@@ -30,7 +30,7 @@ class HomeController extends Controller
         return view('signin');
     }
 
-    public function display_category()
+    public function products()
     {
         return view('category');   
     }

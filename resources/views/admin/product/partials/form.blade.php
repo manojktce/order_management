@@ -1,33 +1,35 @@
 <div class="card-body">
 
-  <div class="form-group">
+  {{-- <div class="form-group">
     {{ Form::label('users_id', 'Select User *', ['class' => 'col-sm-12 col-form-label']) }}
     {!! Form::select('users_id', $selectLookups['users'], (empty($result) ? old('users_id') : $result->users_id),['class' => 'col-sm-12 form-control']) !!}
-  </div>
+  </div> --}}
 
-  <div class="form-group">
-    {{ Form::label('category', 'Category *', ['class' => 'col-sm-12 col-form-label']) }}
-    {!! Form::select('category_id', $selectLookups['category'], (empty($result) ? old('title') : $result->title),['class' => 'col-sm-12 form-control']) !!}
-  </div>
+  <div class="row form-group">
+    <div class="col-md-6">
+      
+        {{ Form::label('category', 'Category *', ['class' => 'col-sm-6 col-form-label']) }}
+        {!! Form::select('category_id', $selectLookups['category'], (empty($result) ? old('title') : $result->title),['class' => 'col-sm-12 form-control']) !!}
+      
+    
+      
+        {{ Form::label('title', 'Title *', ['class' => 'col-sm-6 col-form-label']) }}
+        {{ Form::text('title', (empty($result) ? old('title') : $result->title) , ['class' => 'form-control']) }}
+      
 
-  <div class="form-group">
-    {{ Form::label('title', 'Title *', ['class' => 'col-sm-6 col-form-label']) }}
-    {{ Form::text('title', (empty($result) ? old('title') : $result->title) , ['class' => 'form-control']) }}
-  </div>
+        {{ Form::label('price', 'Price *', ['class' => 'col-sm-6 col-form-label']) }}
+        {{ Form::number('price', (empty($result) ? old('price') : $result->price) , ['class' => 'form-control product-price', 'step' => 'any']) }}
+      
 
-  <div class="form-group">
-    {{ Form::label('description', 'Description *', ['class' => 'col-sm-6 col-form-label']) }}
-    {{ Form::text('description', (empty($result) ? old('description') : $result->description) , ['class' => 'form-control']) }}
-  </div>
-
-  <div class="form-group">
-    {{ Form::label('price', 'Price *', ['class' => 'col-sm-6 col-form-label']) }}
-    {{ Form::number('price', (empty($result) ? old('price') : $result->price) , ['class' => 'form-control']) }}
-  </div>
-
-  <div class="form-group">
-    {{ Form::label('quantity', 'Quantity *', ['class' => 'col-sm-6 col-form-label']) }}
-    {{ Form::number('qty', (empty($result) ? old('qty') : $result->qty) , ['class' => 'form-control']) }}
+      
+        {{ Form::label('quantity', 'Quantity *', ['class' => 'col-sm-6 col-form-label']) }}
+        {{ Form::number('qty', (empty($result) ? old('qty') : $result->qty) , ['class' => 'form-control', 'step' => 'any','onkeypress' =>'return onlyNumberKey(event)' ]) }}
+    </div>
+    
+    <div class="col-md-6">
+      {{ Form::label('description', 'Description *', ['class' => 'col-sm-6 col-form-label']) }}
+      {{ Form::textarea('description', (empty($result) ? old('description') : $result->description) , ['class' => 'form-control',   'id' => 'summernote']) }}
+    </div>
   </div>
 
   <div class="form-group">
@@ -70,6 +72,10 @@
     </div>
   </div>
 
+  <!-- Current Users Id in the form text-->
+  <input type="hidden" name="users_id" value={{ $selectLookups['users_id'] }}>
+  <!-- Current Users Id in the form text-->
+
 </div>
 <!-- /.card-body -->
 
@@ -77,3 +83,21 @@
   <button type="submit" class="btn btn-primary">Submit</button>
   <a href="{{ route('product.index') }}" class="btn btn-danger"><b>Cancel</b></a>
 </div>
+<script>
+  const regex = /[^\d.]|\.(?=.*\.)/g;
+  const subst=``;
+
+  $('.product-price').keypress(function(){
+    const str=this.value;
+    const result = str.replace(regex, subst);
+    this.value=result;
+  });
+
+  function onlyNumberKey(evt) {
+      // Only ASCII character in that range allowed
+      var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+      if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+          return false;
+      return true;
+  }
+</script>

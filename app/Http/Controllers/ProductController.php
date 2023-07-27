@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
+use Auth;
+
 class ProductController extends BaseController
 {
     public $modelClass = Product::class;
@@ -15,6 +17,7 @@ class ProductController extends BaseController
     {
         $data = array();
 
+        $data['users_id']   = Auth::user()->id;
         $data['users']      = User::all()->pluck('first_name','id')->toArray();
         $data['category']   = Category::with('product')->pluck('title','id')->toArray();
 
@@ -25,9 +28,9 @@ class ProductController extends BaseController
     {
         /* Upload cover image for the product start*/
         if($request->hasFile('cover_image') && $request->file('cover_image')->isValid()){
-            if($id)
+            if($id && $request->hasFile('cover_image'))
             {
-                $model->media()->delete(); // delete previous uploaded image in db
+                $model->clearMediaCollection('product_cover_image'); // delete previous uploaded image in db
             }
             $model->addMediaFromRequest('cover_image')->toMediaCollection('product_cover_image');
         }
@@ -38,7 +41,7 @@ class ProductController extends BaseController
             
             $images = $request->file('image');
 
-            if($id)
+            if($id && $request->hasFile('image'))
             {
                 $model->clearMediaCollection('product_images');
             }
@@ -57,10 +60,12 @@ class ProductController extends BaseController
     {
         $rules = [
             'users_id'              => 'sometimes|required',
-            'title'                 => 'required|min:2|max:10|unique:products,title,'.$id.',id',
-            'description'           => 'required|min:3|max:20',
+            'title'                 => 'required|min:2|max:75|unique:products,title,'.$id.',id',
+            'description'           => 'required|min:3',
             'price'                 => 'required',
             'qty'                   => 'required',
+            'cover_image'           => 'mimes:jpg,jpeg,png|max:4096',
+            'image.*.file'          => 'mimes:jpg,jpeg,png|max:4096',
         ];
 
         return $rules;

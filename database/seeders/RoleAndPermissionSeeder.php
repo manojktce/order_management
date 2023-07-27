@@ -15,6 +15,7 @@ class RoleAndPermissionSeeder extends Seeder
      */
     public function run(): void
     {
+        /*
         // Permission
         Permission::create(['name' => 'home']);
         Permission::create(['name' => 'adminHome']);
@@ -36,14 +37,14 @@ class RoleAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'create-user']);
         Permission::create(['name' => 'edit-user']);
         Permission::create(['name' => 'view-user']);
-        Permission::create(['name' => 'delete-user']);
+        Permission::create(['name' => 'delete-user']);*/
 
     
         $adminRole  = Role::create(['name' => 'Admin']);
         $vendorRole = Role::create(['name' => 'Vendor']);
         $userRole   = Role::create(['name' => 'User']);
 
-        $adminRole->givePermissionTo([
+        /*$adminRole->givePermissionTo([
             'adminHome',
             'table'
         ]);
@@ -54,6 +55,6 @@ class RoleAndPermissionSeeder extends Seeder
 
         $userRole->givePermissionTo([
             'home',
-        ]);
+        ]);*/
     }
 }

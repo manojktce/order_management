@@ -10,15 +10,16 @@ use App\Http\Controllers\ProductController;
 //Route::get('/', function () { return view('auth.login'); });
 Route::get('/', function () { return view('home'); });
 
+Route::get('/products', [App\Http\Controllers\HomeController::class, 'products'])->name('products');
+
 Route::get('/site_admin', [App\Http\Controllers\SiteAdminController::class, 'index'])->name('site_admin');
 Route::post('admin_login', [App\Http\Controllers\SiteAdminController::class, 'admin_login']);
 
-Route::get('/category', [App\Http\Controllers\HomeController::class, 'display_category']);
 
 Auth::routes();
 
-Route::group(['middleware' => ['role:Vendor|User']], function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => ['role:User']], function () {
+    //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 
 Route::group(['middleware' => ['role:Admin']], function () {

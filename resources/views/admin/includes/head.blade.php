@@ -21,6 +21,13 @@
   <link rel="stylesheet" href="{{ asset('plugins/jqvmap/jqvmap.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+  
+  <!-- Summernote editor -->
+  <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
+  <!-- CodeMirror -->
+  <link rel="stylesheet" href="{{ asset('plugins/codemirror/codemirror.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/codemirror/theme/monokai.css') }}">
+
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- Daterange picker -->

@@ -59,9 +59,7 @@
                                         Shop
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <a class="dropdown-item" href="{{ url('category') }}"> shop category</a>
-                                        <a class="dropdown-item" href="single-product.html">product details</a>
-                                        
+                                        <a class="dropdown-item" href="{{ route('products') }}">Products</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -128,7 +126,7 @@
                 </div>
             </div>
         </div>
-        <div class="search_input" id="search_input_box">
+        {{-- <div class="search_input" id="search_input_box">
             <div class="container ">
                 <form class="d-flex justify-content-between search-inner">
                     <input type="text" class="form-control" id="search_input" placeholder="Search Here">
@@ -136,6 +134,6 @@
                     <span class="ti-close" id="close_search" title="Close Search"></span>
                 </form>
             </div>
-        </div>
+        </div> --}}
     </header>
     <!-- Header part end-->
