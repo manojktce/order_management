@@ -29,12 +29,25 @@ class HomeController extends Controller
 
     public function products(Request $request, $id=null)
     {
-        //$result  = Category::all();
-        //$result  =   Product::whereHas('category')->latest()->paginate(2);
         $result                 =   array();
-        $result['products']     =   Product::latest()->paginate(6);
         $result['categories']   =   $this->categories;
-        return view('products',compact('result'));   
+        
+        /* Used for filter option */
+        if($request->ajax())
+        {            
+            $result['products']     =    Product::query()
+                                    ->when($request->sort_name, function($q)use($request){
+                                        $q->orderBy(''.$request->sort_name.'', ''.$request->sort_type.'');
+                                    })
+                                    ->paginate(3);
+            return view('products_block', compact('result')); // block updated in seperate page and load dynamically
+        }
+        else
+        {
+            $result['products']     =   Product::latest()->paginate(3);
+            return view('products',compact('result'));   
+        }
+
     }
 
     public function product_detail(Request $request, $slug=null , $id=null)

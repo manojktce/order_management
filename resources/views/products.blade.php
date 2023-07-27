@@ -21,7 +21,7 @@
                             </div>
                         </aside>
 
-                        <aside class="left_widgets p_filter_widgets price_rangs_aside" style="display: none;">
+                        <aside class="left_widgets p_filter_widgets price_rangs_aside">
                             <div class="l_w_title">
                                 <h3>Price Filter</h3>
                             </div>
@@ -49,13 +49,15 @@
                         <div class="col-lg-12">
                             <div class="product_top_bar d-flex justify-content-between align-items-center">
                                 <div class="single_product_menu">
-                                    <p><span>{{  count($result['products']) }}</span> Product Found</p>
+                                    <p><span>{{  App\Models\Product::count() }}</span> Product Found</p>
                                 </div>
                                 <div class="single_product_menu d-flex">
                                     <h5>Sort by : </h5>
-                                    <select>
-                                        <option data-display="Select">Name</option>
-                                        <option value="1">Price</option>
+                                    <select id="select_filter">
+                                        <option data-display="Select">Select</option>
+                                        <option value="title" data-name="title" data-order="ASC">Name</option>
+                                        <option value="price_one" data-name="price" data-order="ASC">Low to High</option>
+                                        <option value="price_two" data-name="price" data-order="DESC">High to Low</option>
                                     </select>
                                 </div>
                                 
@@ -72,38 +74,14 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="row align-items-center latest_product_inner">
-                        @foreach($result['products'] as $prod)
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="single_product_item">
-                                    <a href="{{ url('/products'.'/'.Str::slug($prod->title).'/'.$prod->id) }}">
-                                        <img src="{{ $prod->getFirstMediaUrl('product_cover_image','thumb') }}" alt="{{ $prod->title }}">
-                                    </a>
-                                    <div class="single_product_text">
-                                        <h4>{{ $prod->title }}</h4>
-                                        <h3>${{ $prod->price }}</h3>
-                                        <p>Created by : <b>{{ $prod->users->first_name }}</b></p>
-                                        <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                        
-                        
-
-                        <div class="col-lg-12">
-                            <div class="pageination">
-                                <nav aria-label="Page navigation example">
-                                        {{ $result['products']->links("pagination::bootstrap-4") }}
-                                </nav>
-                            </div>
-                        </div>
+                    <div class="row align-items-center latest_product_inner" id="product_section">
+                        @include('products_block')
                     </div>
+                    <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
                 </div>
             </div>
         </div>
     </section>
     <!--================End Category Product Area =================-->
-
+    @include('includes.custom_scripts')
     @include('includes.footer')

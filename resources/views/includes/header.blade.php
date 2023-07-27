@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="{{ asset('/common/css/magnific-popup.css') }}">
     <!-- swiper CSS -->
     <link rel="stylesheet" href="{{ asset('/common/css/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('/common/css/price_rangs.css') }}">
+    
     <!-- style CSS -->
     <link rel="stylesheet" href="{{ asset('/common/css/style.css') }}">
 
@@ -58,15 +60,11 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('/') }}">Home</a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_1"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Shop
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <a class="dropdown-item" href="{{ route('products') }}">Products</a>
-                                    </div>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('products') }}">Products</a>
                                 </li>
+
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
                                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
