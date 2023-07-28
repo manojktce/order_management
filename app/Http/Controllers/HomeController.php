@@ -68,6 +68,6 @@ class HomeController extends Controller
         $result                 =   array();
         $result['products']     =   Product::find($id);
         $result['categories']   =   $this->categories;
-        return view('products.product_detail',compact('result'));   
+        return view('product_detail.main',compact('result'));   
     }
 }
