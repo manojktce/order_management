@@ -67,4 +67,13 @@ class LoginController extends Controller
             return redirect()->route('login')->with('error','Invalid Credentials.');
         }     
     }
+
+    public function logout(Request $request) { 
+            $items = session()->get('cart'); 
+            $this->guard()->logout();
+            $request->session()->invalidate();
+            //$request->session()->regenerate();
+            session(['cart' => $items]);
+            return $this->loggedOut($request) ?: redirect('/');
+        }
 }

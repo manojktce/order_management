@@ -9,7 +9,7 @@
                 <h4>{{ $prod->title }}</h4>
                 <h3>${{ $prod->price }}</h3>
                 <p>Created by : <b>{{ $prod->users->first_name }}</b></p>
-                <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                <a href="{{ route('addToCart',$prod->id) }}" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
             </div>
         </div>
     </div>
