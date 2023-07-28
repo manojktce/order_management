@@ -1,3 +1,4 @@
+<div class="row align-items-center latest_product_inner" id="product_section">
 @foreach($result['products'] as $prod)
     <div class="col-lg-4 col-sm-6">
         <div class="single_product_item">
@@ -13,11 +14,4 @@
         </div>
     </div>
 @endforeach
-
-<div class="col-lg-12">
-    <div class="pageination">
-        <nav aria-label="Page navigation example">
-            {!! $result['products']->withQueryString()->links('pagination::bootstrap-5') !!}
-        </nav>
-    </div>
 </div>

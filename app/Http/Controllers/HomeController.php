@@ -31,7 +31,7 @@ class HomeController extends Controller
     {
         $result                 =   array();
         $result['categories']   =   $this->categories;
-        
+        $result['products']     =   Product::latest()->paginate(3);
         /* Used for filter option */
         if($request->ajax())
         {            
@@ -56,14 +56,10 @@ class HomeController extends Controller
                                     })
                                     ->paginate(3);
 
-            return view('products_block', compact('result')); // block updated in seperate page and load dynamically
+            return view('products.include.products_block', compact('result')); // block updated in seperate page and load dynamically
         }
-        /* Default Page load */
-        else
-        {
-            $result['products']     =   Product::latest()->paginate(3);
-            return view('products',compact('result'));   
-        }
+        
+        return view('products.main',compact('result'));   
 
     }
 
@@ -72,6 +68,6 @@ class HomeController extends Controller
         $result                 =   array();
         $result['products']     =   Product::find($id);
         $result['categories']   =   $this->categories;
-        return view('product_detail',compact('result'));   
+        return view('products.product_detail',compact('result'));   
     }
 }
