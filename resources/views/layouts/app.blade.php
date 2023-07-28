@@ -74,6 +74,7 @@
 
         <main class="py-4">
             @yield('content')
+            @include('includes.custom_scripts')
         </main>
     </div>
 </body>

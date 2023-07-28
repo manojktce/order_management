@@ -58,8 +58,10 @@ class HomeController extends Controller
 
             return view('products.include.products_block', compact('result')); // block updated in seperate page and load dynamically
         }
-        
-        return view('products.main',compact('result'));   
+        else
+        {
+            return view('products.main',compact('result'));   
+        }        
 
     }
 

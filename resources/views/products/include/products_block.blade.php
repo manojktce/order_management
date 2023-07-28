@@ -14,4 +14,7 @@
         </div>
     </div>
 @endforeach
+
+@include('products.include.product_pagination')
+
 </div>

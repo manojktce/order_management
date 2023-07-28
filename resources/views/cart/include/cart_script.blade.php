@@ -12,7 +12,7 @@ function delCart(id)
             url:"/deleteCart/"+id,
 
             success:function(data){
-                alert('Product successfully removed from cart.');
+                toastr.success('Product successfully removed from cart.');
                 location.reload();
             }
         });

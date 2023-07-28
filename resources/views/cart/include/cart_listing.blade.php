@@ -10,6 +10,7 @@
       </tr>
     </thead>
     <tbody id="cart_listing">
+      
       @foreach($items as $item)
       <tr>
         <td>

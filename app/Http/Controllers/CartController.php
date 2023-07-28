@@ -46,6 +46,7 @@ class CartController extends Controller
     public function clearCart(Request $request)
     {
         \Cart::session(Auth::user()->id)->clear();
+        
         $items = \Cart::session(Auth::user()->id)->getContent();
         return view('cart.main', compact('items'))->with('message', 'Product Cart cleared successfully.');
     }

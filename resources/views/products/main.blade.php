@@ -12,7 +12,6 @@
                     
                     @include('products.partials.top_filter')
                     @include('products.include.products_block')
-                    @include('products.include.product_pagination')
 
                 </div>
             </div>
@@ -20,4 +19,5 @@
     </section>
     <!--================End Category Product Area =================-->
     @include('products.include.product_filter_script')
+    @include('includes.custom_scripts')
     @include('includes.footer')

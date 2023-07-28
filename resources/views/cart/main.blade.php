@@ -22,11 +22,10 @@
   <section class="cart_area padding_top">
     <div class="container">
       <div class="cart_inner">
-
-        @include('cart.include.cart_listing')
-        
+          @include('cart.include.cart_listing')
       </div>
   </section>
   <!--================End Cart Area =================-->
   @include('cart.include.cart_script')
+  @include('includes.custom_scripts')
   @include('includes.footer')

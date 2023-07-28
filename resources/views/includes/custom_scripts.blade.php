@@ -1,5 +1,8 @@
 @push('js')
-<script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+    
     @if(Session::has('message'))
     toastr.options =
     {
@@ -35,5 +38,7 @@
     }
           toastr.warning("{{ session('warning') }}");
     @endif
+
+});
   </script>
 @endpush
