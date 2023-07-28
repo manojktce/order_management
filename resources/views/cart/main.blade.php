@@ -28,5 +28,5 @@
       </div>
   </section>
   <!--================End Cart Area =================-->
-  @include('products.include.product_filter_script')
+  @include('cart.include.cart_script')
   @include('includes.footer')

@@ -9,7 +9,7 @@
         <th scope="col">Action</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="cart_listing">
       @foreach($items as $item)
       <tr>
         <td>
@@ -35,7 +35,7 @@
         <td>
           <h5>${{ $item->price * $item->quantity }}</h5>
         </td>
-        <td><i class="fa fa-trash"></td>
+        <td><a href="javascript:void(0);" onclick="delCart({{ $item->id }})"><i class="fa fa-trash"></i></a></td>
       </tr>
       @endforeach
       <tr class="bottom_button">
