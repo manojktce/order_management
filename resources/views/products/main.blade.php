@@ -19,5 +19,5 @@
         </div>
     </section>
     <!--================End Category Product Area =================-->
-    @include('includes.product_filter_script')
+    @include('products.include.product_filter_script')
     @include('includes.footer')
