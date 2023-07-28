@@ -13,7 +13,7 @@
                                 <ul class="list">
                                     @foreach($result['categories'] as $res)
                                     <li>
-                                        <a href="#">{{ $res->title }}</a>
+                                        <input type="checkbox" class="form-check-input multi_search_filter" name="category_checkbox" value="{{ $res->id }}">{{ $res->title }}
                                         <span>({{ count($res->product) }})</span>
                                     </li>
                                     @endforeach
@@ -27,7 +27,7 @@
                             </div>
                             <div class="widgets_inner">
                                 <div class="range_item">
-                                    <!-- <div id="slider-range"></div> -->
+                                    <div id="slider-range"></div>
                                     <input type="text" class="js-range-slider" value="" />
                                     <div class="d-flex">
                                         <div class="price_text">
@@ -49,7 +49,7 @@
                         <div class="col-lg-12">
                             <div class="product_top_bar d-flex justify-content-between align-items-center">
                                 <div class="single_product_menu">
-                                    <p><span>{{  App\Models\Product::count() }}</span> Product Found</p>
+                                    <p><b>Products List</b></p>
                                 </div>
                                 <div class="single_product_menu d-flex">
                                     <h5>Sort by : </h5>
@@ -63,11 +63,9 @@
                                 
                                 <div class="single_product_menu d-flex">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="search"
-                                            aria-describedby="inputGroupPrepend">
+                                        <input type="text" class="form-control" placeholder="Search" id="search_filter" value="" aria-describedby="inputGroupPrepend" autocomplete="off">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupPrepend"><i
-                                                    class="ti-search"></i></span>
+                                            <span class="input-group-text" id="inputGroupPrepend"><i class="ti-search"></i></span>
                                         </div>
                                     </div>
                                 </div>
