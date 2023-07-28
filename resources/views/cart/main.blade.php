@@ -23,6 +23,7 @@
     <div class="container">
       <div class="cart_inner">
           @include('cart.include.cart_listing')
+          @include('cart.include.checkout')
       </div>
   </section>
   <!--================End Cart Area =================-->
