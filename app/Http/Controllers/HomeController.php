@@ -48,7 +48,7 @@ class HomeController extends Controller
                                         });
                                     })
                                     ->when($request->price, function($q)use($request){
-                                        $q->whereBetween('price',[20000,30000]);
+                                        $q->whereBetween('price', explode(',', $request->price));
                                     })
                                     ->paginate(3);
 

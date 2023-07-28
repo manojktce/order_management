@@ -28,7 +28,8 @@
                             <div class="widgets_inner">
                                 <div class="range_item">
                                     <div id="slider-range"></div>
-                                    <input type="text" class="js-range-slider" value="" />
+                                    <input type="text" class="js-range-slider" value=""/>
+                                    <input type="hidden" class="price_change" value="0"/>
                                     <div class="d-flex">
                                         <div class="price_text">
                                             <p>Price :</p>
@@ -36,12 +37,19 @@
                                         <div class="price_value d-flex justify-content-center">
                                             <input type="text" class="js-input-from" id="amount" readonly />
                                             <span>to</span>
-                                            <input type="text" class="js-input-to" id="amount" readonly />
+                                            <input type="text" class="js-input-to" id="amount" readonly/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </aside>
+
+                        <aside class="left_widgets">
+                            <div class="widgets_inner">
+                                <button class="btn btn-sm btn-outline-danger text-center" id="clear_filter">Clear Filter</button>
+                            </div>
+                        </aside>
+
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -55,7 +63,8 @@
                                     <h5>Sort by : </h5>
                                     <select id="select_filter">
                                         <option data-display="Select">Select</option>
-                                        <option value="title" data-name="title" data-order="ASC">Name</option>
+                                        <option value="title_one" data-name="title" data-order="ASC">Name - A-Z</option>
+                                        <option value="title_two" data-name="title" data-order="DESC">Name - Z-A</option>
                                         <option value="price_one" data-name="price" data-order="ASC">Low to High</option>
                                         <option value="price_two" data-name="price" data-order="DESC">High to Low</option>
                                     </select>
@@ -81,5 +90,5 @@
         </div>
     </section>
     <!--================End Category Product Area =================-->
-    @include('includes.custom_scripts')
+    @include('includes.product_filter_script')
     @include('includes.footer')
