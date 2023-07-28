@@ -71,8 +71,8 @@ class LoginController extends Controller
     public function logout(Request $request) { 
             $items = session()->get('cart'); 
             $this->guard()->logout();
-            $request->session()->invalidate();
-            //$request->session()->regenerate();
+            //$request->session()->invalidate();
+            $request->session()->regenerate();
             session(['cart' => $items]);
             return $this->loggedOut($request) ?: redirect('/');
         }

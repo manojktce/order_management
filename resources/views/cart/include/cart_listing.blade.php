@@ -48,7 +48,7 @@
           <h5>Subtotal</h5>
         </td>
         <td>
-          <h5>$2160.00</h5>
+          <h5>${{ \Cart::session(Auth::user()->id)->getSubTotal() }}</h5>
         </td>
       </tr>
     </tbody>

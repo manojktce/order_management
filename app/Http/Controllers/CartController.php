@@ -9,10 +9,15 @@ use Auth;
 
 class CartController extends Controller
 {
+    
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function showCart()
     {
         $items = \Cart::session(Auth::user()->id)->getContent();
-        return view('cart.main', compact('items'));
+        return view('cart.main', compact('items'))->with('message', 'Welcome to product cart.');
     }
     public function addToCart(Request $request, $id=null)
     {
@@ -29,13 +34,13 @@ class CartController extends Controller
             'attributes' => array(),
             'associatedModel' => $Product
         ));
-        return redirect()->route('products')->with('message', 'Record updated successfully.');
+        return redirect()->route('products')->with('message', 'Product Cart updated successfully.');
     }
 
     public function clearCart(Request $request)
     {
         \Cart::session(Auth::user()->id)->clear();
         $items = \Cart::session(Auth::user()->id)->getContent();
-        return view('cart.main', compact('items'));
+        return view('cart.main', compact('items'))->with('message', 'Product Cart cleared successfully.');
     }
 }
