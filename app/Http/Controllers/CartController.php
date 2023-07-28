@@ -30,11 +30,17 @@ class CartController extends Controller
             'id' => $rowId,
             'name' => $Product->title,
             'price' => $Product->price,
-            'quantity' => 4,
+            'quantity' => 1,
             'attributes' => array(),
             'associatedModel' => $Product
         ));
         return redirect()->route('products')->with('message', 'Product Cart updated successfully.');
+    }
+
+    public function deleteCart(Request $request, $id=null)
+    {
+        $userID = Auth::user()->id;
+        \Cart::session($userID)->remove($id);
     }
 
     public function clearCart(Request $request)
