@@ -98,11 +98,15 @@
                             @if(Auth::user())
                                 <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
                                 <a href=""><i class="ti-heart"></i></a>
-                                <div class="dropdown cart">
+                                <div class="dropdown">
                                     <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-cart-plus"></i>
-                                    </a>                                
+                                        <b>{{ \Cart::session(Auth::user()->id)->getTotalQuantity()}}</b>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                                        <a class="dropdown-item" href="{{ route('showCart') }}">Cart</a>
+                                    </div>                                
                                 </div>
                             @endif
                             <!-- Check Users Authenticated & show icons-->

@@ -5,7 +5,7 @@ use Illuminate\Auth\Middleware;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\CartController;
 
 //Route::get('/', function () { return view('auth.login'); });
 Route::get('/', function () { return view('home'); });
@@ -16,6 +16,11 @@ Route::get('/products/{slug}/{id}', [App\Http\Controllers\HomeController::class,
 Route::get('/site_admin', [App\Http\Controllers\SiteAdminController::class, 'index'])->name('site_admin');
 Route::post('admin_login', [App\Http\Controllers\SiteAdminController::class, 'admin_login']);
 
+/* Cart Controller Start*/
+Route::get('showCart', [CartController::class, 'showCart'])->name('showCart');
+Route::get('addToCart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
+Route::get('clearCart', [CartController::class, 'clearCart'])->name('clearCart');
+/* Cart Controller End*/
 
 Auth::routes();
 
