@@ -66,38 +66,18 @@
                   </a>
                 </li>
                 <li>
-                  <a href="#">Fresh Blackberry
-                    <span class="middle">x 02</span>
-                    <span class="last">$720.00</span>
+                  @foreach($items as $item)
+                  <a href="#">
+                    <i> {{ $item->name }} </i> x <b>{{ $item->quantity }}</b>
+                    <span class="last">${{ $item->price }}</span>
                   </a>
-                </li>
-                <li>
-                  <a href="#">Fresh Tomatoes
-                    <span class="middle">x 02</span>
-                    <span class="last">$720.00</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Fresh Brocoli
-                    <span class="middle">x 02</span>
-                    <span class="last">$720.00</span>
-                  </a>
+                  @endforeach
                 </li>
               </ul>
               <ul class="list list_2">
                 <li>
-                  <a href="#">Subtotal
-                    <span>$2160.00</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Shipping
-                    <span>Flat rate: $50.00</span>
-                  </a>
-                </li>
-                <li>
                   <a href="#">Total
-                    <span>$2210.00</span>
+                    <span>${{ \Cart::session(Auth::user()->id)->getSubTotal() }}</span>
                   </a>
                 </li>
               </ul>
