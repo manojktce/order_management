@@ -36,17 +36,21 @@ class HomeController extends Controller
         if($request->ajax())
         {            
             $result['products'] =   Product::query()
+                                    /* Dropdown */
                                     ->when($request->sort_name, function($q)use($request){
                                         $q->orderBy(''.$request->sort_name.'', ''.$request->sort_type.'');
                                     })
+                                    /* Search Box */
                                     ->when($request->search_name, function($q)use($request){
                                         $q->where('title', 'like', '%'.$request->search_name.'%');
                                     })
+                                    /* Category Checklist Selection */
                                     ->when($request->category, function($q)use($request){
                                         $q->whereHas('category', function ($q)use($request) {
                                             $q->whereIn('id',explode(',', $request->category));
                                         });
                                     })
+                                    /* Price Slider */
                                     ->when($request->price, function($q)use($request){
                                         $q->whereBetween('price', explode(',', $request->price));
                                     })

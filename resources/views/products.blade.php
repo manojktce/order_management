@@ -31,12 +31,18 @@
                                     <input type="text" class="js-range-slider" value=""/>
                                     <input type="hidden" class="price_change" value="0"/>
                                     <div class="d-flex">
-                                        <div class="price_text">
-                                            <p>Price :</p>
+                                        <div class="price_text d-flex justify-content-center">
+                                            <p>From:</p>
                                         </div>
                                         <div class="price_value d-flex justify-content-center">
                                             <input type="text" class="js-input-from" id="amount" readonly />
-                                            <span>to</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="price_text d-flex justify-content-center">
+                                            <p>To:</p>
+                                        </div>
+                                        <div class="price_value d-flex justify-content-center">
                                             <input type="text" class="js-input-to" id="amount" readonly/>
                                         </div>
                                     </div>
