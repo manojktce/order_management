@@ -5,4 +5,6 @@
         </nav>
     </div>
 </div>
+
+<!-- To start pagination from first page -->
 <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
