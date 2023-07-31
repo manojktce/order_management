@@ -32,7 +32,7 @@
             <input class="input-number" type="text" value="{{ $item->quantity }}" min="0" max="10" id="{{ $item->id }}">
             <span class="input-number-increment"> <i class="ti-angle-up"></i></span>
           </div>
-          <a href="{{ route('updateCart',$item->id) }}" class="add_cart">Add More</a>
+          {{-- <a href="{{ route('updateCart',$item->id) }}" class="add_cart">Add More</a> --}}
         </td>
         <td>
           <h5>${{ $item->price * $item->quantity }}</h5>

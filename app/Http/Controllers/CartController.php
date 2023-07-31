@@ -28,6 +28,7 @@ class CartController extends Controller
         // add the product to cart
         \Cart::session($userID)->add(array(
             'id' => $rowId,
+            'product_id' => $id,
             'name' => $Product->title,
             'price' => $Product->price,
             'quantity' => 1,
@@ -39,10 +40,15 @@ class CartController extends Controller
 
     public function updateCart(Request $request, $id=null)
     {
+        $item = \Cart::session(Auth::user()->id)->get($id);
+        $prod_id = $item->associatedModel->id;
+        
         $userID =   Auth::user()->id;
         $rowId  =   $id;
+        $Product = Product::find($prod_id);
         \Cart::session($userID)->update($rowId, array(
-            'quantity' => 1, // so if the current product has a quantity of 4, another 2 will be added so this will result to 6
+            'quantity' => 1,
+            'price' => $Product->price,
         ));
         return redirect()->route('showCart')->with('message', 'Product Updated in Cart successfully.');
     }
