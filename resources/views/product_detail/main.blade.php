@@ -50,6 +50,7 @@
             <p>
               {{ substr(strip_tags($result['products']->description),0,125)."........." }}
             </p>
+            
 
             @if($result['products']->qty > 0)
               <div class="card_area d-flex justify-content-between align-items-center">
