@@ -43,21 +43,26 @@
                   <span>Category</span> : {{ $result['products']->category->title }}</a>
               </li>
               <li>
-                <a href="#"> <span>Availibility</span> : In Stock</a>
+                
+                  <a href="#"> <span>Availibility</span> : {{($result['products']->qty > 0) ? 'In Stock'  : 'Stock Not Available' }}</a>                    
               </li>
             </ul>
             <p>
               {{ substr(strip_tags($result['products']->description),0,125)."........." }}
             </p>
-            <div class="card_area d-flex justify-content-between align-items-center">
-              <div class="product_count">
-                <span class="inumber-decrement"> <i class="ti-minus"></i></span>
-                <input class="input-number" type="text" value="1" min="0" max="{{ $result['products']->quantity }}">
-                <span class="number-increment"> <i class="ti-plus"></i></span>
+
+            @if($result['products']->qty > 0)
+              <div class="card_area d-flex justify-content-between align-items-center">
+                <div class="product_count">
+                  <span class="inumber-decrement"> <i class="ti-minus"></i></span>
+                  <input class="input-number" type="text" value="1" min="0" max="{{ $result['products']->quantity }}">
+                  <span class="number-increment"> <i class="ti-plus"></i></span>
+                </div>
+                <a href="{{ route('addToCart',$result['products']->id) }}" class="btn_3">add to cart</a>
+                <a href="#" class="like_us"> <i class="ti-heart"></i> </a>
               </div>
-              <a href="{{ route('addToCart',$result['products']->id) }}" class="btn_3">add to cart</a>
-              <a href="#" class="like_us"> <i class="ti-heart"></i> </a>
-            </div>
+            @endif
+
           </div>
         </div>
       </div>

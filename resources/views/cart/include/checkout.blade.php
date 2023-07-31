@@ -68,7 +68,7 @@
                 <li>
                   @foreach($items as $item)
                   <a href="#">
-                    <i> {{ $item->name }} </i> x <b>{{ $item->quantity }}</b>
+                    <i> {{ $item->name }} </i>   x <b>{{ $item->quantity }}</b>
                     <span class="last">${{ $item->price }}</span>
                   </a>
                   @endforeach

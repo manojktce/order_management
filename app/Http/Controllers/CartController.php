@@ -34,7 +34,17 @@ class CartController extends Controller
             'attributes' => array(),
             'associatedModel' => $Product
         ));
-        return redirect()->route('products')->with('message', 'Product Cart updated successfully.');
+        return redirect()->route('showCart')->with('message', 'Product Added to Cart successfully.');
+    }
+
+    public function updateCart(Request $request, $id=null)
+    {
+        $userID =   Auth::user()->id;
+        $rowId  =   $id;
+        \Cart::session($userID)->update($rowId, array(
+            'quantity' => 1, // so if the current product has a quantity of 4, another 2 will be added so this will result to 6
+        ));
+        return redirect()->route('showCart')->with('message', 'Product Updated in Cart successfully.');
     }
 
     public function deleteCart(Request $request, $id=null)
