@@ -13,11 +13,11 @@
                 <span class="placeholder" data-placeholder="First name"></span>
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="last" name="last_name" />
+                <input type="text" class="form-control" id="last_name" name="last_name" />
                 <span class="placeholder" data-placeholder="Last name"></span>
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="number" name="number" />
+                <input type="text" class="form-control" id="mobile_number" name="mobile_number" />
                 <span class="placeholder" data-placeholder="Phone number"></span>
               </div>
               <div class="col-md-6 form-group p_star">
@@ -26,7 +26,7 @@
               </div>
               
               <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="add1" name="add1" />
+                <input type="text" class="form-control" id="addr1" name="addr1" />
                 <span class="placeholder" data-placeholder="Address line 01"></span>
               </div>
               <div class="col-md-12 form-group p_star">
