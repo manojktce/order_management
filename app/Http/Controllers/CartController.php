@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 
 use Auth;
+use Stripe;
 
 class CartController extends Controller
 {
@@ -16,8 +17,9 @@ class CartController extends Controller
 
     public function showCart()
     {
+        $intent = Auth::user()->createSetupIntent();
         $items = \Cart::session(Auth::user()->id)->getContent();
-        return view('cart.main', compact('items'))->with('message', 'Welcome to product cart.');
+        return view('cart.main', compact('items','intent'))->with('message', 'Welcome to product cart.');
     }
     public function addToCart(Request $request, $id=null)
     {

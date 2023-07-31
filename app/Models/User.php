@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\HasMedia;
 
-
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable implements HasMedia
 {
@@ -25,6 +25,8 @@ class User extends Authenticatable implements HasMedia
     use SoftDeletes;
 
     use InteractsWithMedia;
+
+    use Billable;
 
     /**
      * The attributes that are mass assignable.
