@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\OrdersController;
 
 
 //Route::get('/', function () { return view('auth.login'); });
@@ -32,6 +33,10 @@ Route::group(['middleware' => ['role:User']], function () {
     /* Payment Controller Start */
     Route::post('purchase',[PaymentController::class, 'purchase_items'])->name('purchase');
     /* Payment Controller End */
+
+    /* Order Controller Start */
+    Route::get('my_orders',[OrdersController::class, 'orders_list'])->name('my_orders');
+    /* Orders Controller End */
 });
 
 Route::group(['middleware' => ['role:Admin']], function () {

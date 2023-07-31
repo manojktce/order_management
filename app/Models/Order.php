@@ -26,4 +26,9 @@ class Order extends Model
         return $this->belongsTo('App\Models\User');
     }
 
+    public function orders_detail()
+    {
+        return $this->hasMany('App\Models\OrderDetail');
+    }
+
 }

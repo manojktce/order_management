@@ -20,4 +20,14 @@ class OrderDetail extends Model
         'qty',
         'amount',
     ];    
+
+    public function orders()
+    {
+        return $this->belongsTo('App\Models\Order');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo('App\Models\Product');
+    }
 }

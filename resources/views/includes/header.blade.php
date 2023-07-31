@@ -84,7 +84,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
                                         <a class="dropdown-item" href="{{ route('showCart') }}">Cart</a>
-                                        <a class="dropdown-item" href="tracking.html">My Orders</a>
+                                        <a class="dropdown-item" href="{{ route('my_orders') }}">My Orders</a>
                                     </div>
                                 </li>
                                 @endif
