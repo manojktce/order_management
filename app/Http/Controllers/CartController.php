@@ -28,7 +28,6 @@ class CartController extends Controller
         // add the product to cart
         \Cart::session($userID)->add(array(
             'id' => $rowId,
-            'product_id' => $id,
             'name' => $Product->title,
             'price' => $Product->price,
             'quantity' => 1,

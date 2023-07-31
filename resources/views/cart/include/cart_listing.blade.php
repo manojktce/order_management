@@ -29,7 +29,7 @@
         <td>
           <div class="product_count">
             <span class="input-number-decrement"> <i class="ti-angle-down"></i></span>
-            <input class="input-number" type="text" value="{{ $item->quantity }}" min="0" max="10" id="{{ $item->id }}">
+            <input class="input-number" type="text" value="{{ $item->quantity }}" min="0" max="5" id="{{ $item->id }}">
             <span class="input-number-increment"> <i class="ti-angle-up"></i></span>
           </div>
           {{-- <a href="{{ route('updateCart',$item->id) }}" class="add_cart">Add More</a> --}}

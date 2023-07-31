@@ -6,6 +6,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\PaymentController;
+
 
 //Route::get('/', function () { return view('auth.login'); });
 Route::get('/', function () { return view('home'); });
@@ -26,6 +28,10 @@ Route::group(['middleware' => ['role:User']], function () {
     Route::get('deleteCart/{id}', [CartController::class, 'deleteCart'])->name('deleteCart');
     Route::get('clearCart', [CartController::class, 'clearCart'])->name('clearCart');
     /* Cart Controller End*/
+
+    /* Payment Controller Start */
+    Route::post('purchase',[PaymentController::class, 'purchase_items'])->name('purchase');
+    /* Payment Controller End */
 });
 
 Route::group(['middleware' => ['role:Admin']], function () {

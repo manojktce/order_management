@@ -40,5 +40,5 @@ $(document).ready(function(){
     @endif
 
 });
-  </script>
+</script>
 @endpush
