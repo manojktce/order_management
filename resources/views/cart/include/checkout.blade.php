@@ -9,36 +9,37 @@
             <form class="row contact_form" action="{{ route('purchase') }}" method="post" id="regForm">
               @csrf
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="first_name" name="first_name" />
-                <span class="placeholder" data-placeholder="First name"></span>
+                  {{ Form::label('first_name', 'First Name *', ['class' => 'col-sm-6 col-form-label p_star']) }}
+                  {!! Form::text('first_name', '' ,['class' => 'col-sm-12 form-control']) !!}
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="last_name" name="last_name" />
-                <span class="placeholder" data-placeholder="Last name"></span>
+                  {{ Form::label('last_name', 'Last Name *', ['class' => 'col-sm-6 col-form-label p_star']) }}
+                  {!! Form::text('last_name', '' ,['class' => 'col-sm-12 form-control']) !!}
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="mobile_number" name="mobile_number" />
-                <span class="placeholder" data-placeholder="Phone number"></span>
+                  {{ Form::label('mobile_number', 'Mobile Number *', ['class' => 'col-sm-6 col-form-label p_star']) }}
+                  {!! Form::number('mobile_number', '' ,['class' => 'col-sm-12 form-control']) !!}
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="email" name="email" />
-                <span class="placeholder" data-placeholder="Email Address"></span>
+                  {{ Form::label('email', 'Email *', ['class' => 'col-sm-6 col-form-label p_star']) }}
+                  {!! Form::text('email', '' ,['class' => 'col-sm-12 form-control']) !!}
               </div>
               
               <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="addr1" name="addr1" />
-                <span class="placeholder" data-placeholder="Address line 01"></span>
+                  {{ Form::label('addr1', 'Address *', ['class' => 'col-sm-6 col-form-label p_star']) }}
+                  {!! Form::text('addr1', '' ,['class' => 'col-sm-12 form-control']) !!}
               </div>
               <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="city" name="city" />
-                <span class="placeholder" data-placeholder="Town/City"></span>
+                  {{ Form::label('city', 'City *', ['class' => 'col-sm-6 col-form-label p_star']) }}
+                  {!! Form::text('city', '' ,['class' => 'col-sm-12 form-control']) !!}
               </div>
               <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP" />
+                  {{ Form::label('zip', 'Zip *', ['class' => 'col-sm-6 col-form-label p_star']) }}
+                  {!! Form::text('zip', '' ,['class' => 'col-sm-12 form-control']) !!}
               </div>
               <div class="col-md-12 form-group">
-                <textarea class="form-control" name="message" id="message" rows="1"
-                  placeholder="Order Notes"></textarea>
+                  {{ Form::label('messaage', 'Message', ['class' => 'col-sm-6 col-form-label']) }}
+                  {!! Form::textarea('message', '' ,['class' => 'col-sm-12 form-control']) !!}
               </div>
             {{-- </form> --}}
           </div>
@@ -83,12 +84,28 @@
   <!--================End Checkout Area =================-->
 @include('includes.footer')
 <script>
-  $(document).ready(function() {
+  // $(document).ready(function() {
       $("#regForm").validate({
           rules: {
               first_name: "required",
+              last_name: "required",
+              mobile_number: "required",
+              email: "required",
+              addr1: "required",
+              city: "required",
+              zip: "required"
+
+          },
+          messages : {
+              first_name : "First Name is required",
+              last_name : "Last Name is required",
+              mobile_number : "Mobile Number is required",
+              email : "Email is required",
+              addr1 : "Address is required",
+              city : "City is required",
+              zip : "ZipCode is required",
           }
       });
-  });
+  // });
 </script>
 @include('includes.footer_scripts')
