@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password')->nullable(false);
             $table->string('avatar')->nullable(); 
             $table->text('social_login_id')->nullable();
-            $table->text('stripe_id')->nullable();
+            //$table->text('stripe_id')->nullable();
             $table->enum('status', [0, 1])->default(1); // 0-Inactive , 1-Active
             /*$table->datetime('created_at')->useCurrent();
             $table->datetime('updated_at')->nullable()->userCurrent()->useCurrentOnUpdate();*/

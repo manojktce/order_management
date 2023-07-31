@@ -83,8 +83,8 @@
   </section>
   <!--================End Checkout Area =================-->
 @include('includes.footer')
-<script>
-  // $(document).ready(function() {
+
+<script>  
       $("#regForm").validate({
           rules: {
               first_name: "required",
@@ -106,6 +106,5 @@
               zip : "ZipCode is required",
           }
       });
-  // });
 </script>
 @include('includes.footer_scripts')
