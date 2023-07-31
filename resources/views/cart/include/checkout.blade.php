@@ -33,10 +33,10 @@
                   {{ Form::label('city', 'City *', ['class' => 'col-sm-6 col-form-label p_star']) }}
                   {!! Form::text('city', '' ,['class' => 'col-sm-12 form-control']) !!}
               </div>
-              {{-- <div class="col-md-12 form-group p_star">
-                  {{ Form::label('zip', 'Zip *', ['class' => 'col-sm-6 col-form-label p_star']) }}
-                  {!! Form::text('zip', '' ,['class' => 'col-sm-12 form-control']) !!}
-              </div> --}}
+              <div class="col-md-12 form-group p_star">
+                  {{ Form::label('zipcode', 'Zip *', ['class' => 'col-sm-6 col-form-label p_star']) }}
+                  {!! Form::number('zipcode', '' ,['class' => 'col-sm-12 form-control']) !!}
+              </div>
               <div class="col-md-12 form-group">
                   {{ Form::label('messaage', 'Message', ['class' => 'col-sm-6 col-form-label']) }}
                   {!! Form::textarea('message', '' ,['class' => 'col-sm-12 form-control']) !!}
