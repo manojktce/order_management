@@ -17,7 +17,7 @@ class PaymentController extends Controller
     {
         /*print_r($_POST);   
         echo $request->token;exit;*/
-        
+
         $user_address = $_POST;
         $total_cart_amount = \Cart::session(Auth::user()->id)->getSubTotal();
 
@@ -30,6 +30,7 @@ class PaymentController extends Controller
 
             /* Update Order Details and remove cart */
             $this->updateOrderDetails($user, $user_address, $stripe_pay);
+
             return redirect()->route('products')->with('success','Payment successful');
         }
         catch (\Exception $exception) {
@@ -66,16 +67,18 @@ class PaymentController extends Controller
         /* Order Products update from Cart start */
         $cart_items = \Cart::session(Auth::user()->id)->getContent();
 
-        $order_detail               =   new OrderDetail();
         foreach($cart_items as $item)
         {
-            $order_detail->orders_id        =   $order->id;
-            $order_detail->products_id      =   $item->associatedModel->id;;
-            $order_detail->price            =   $item->price;
-            $order_detail->qty              =   $item->quantity;
-            $order_detail->amount           =   $item->price * $item->quantity;
+            $order_detail[] = [
+                'orders_id'        =>   $order->id,
+                'products_id'      =>   $item->associatedModel->id,
+                'price'            =>   $item->price,
+                'qty'              =>   $item->quantity,
+                'amount'           =>   $item->price * $item->quantity,
+            ];
         }
-        $order_detail->save();
+        
+        OrderDetail::insert($order_detail);
         /* Order Products update from Cart end */
 
         /* Clear the cart */

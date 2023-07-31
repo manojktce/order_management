@@ -124,7 +124,8 @@
     {
         if($("#agree-option").is(':checked'))
         {
-          $('.card-section').show();
+          $('#form_submit').hide();
+          $('.card-section').show()
           open_card();
         }
         else
@@ -137,6 +138,20 @@
       toastr.error('Fill all the billing details required fields');
     }
   });
+
+  $("#agree-option").change(function(){
+      var form_valid = form.valid();
+      if($("#agree-option").is(':checked'))
+      {
+        $('#form_submit').show();
+        //$('.card-section').show();
+      }
+      else
+      {
+          $('.card-section').hide();
+          toastr.error('Accept the terms & Condition to proceed');
+      }
+  })
   </script>
   <script>
     function open_card()

@@ -34,7 +34,11 @@ class HomeController extends Controller
         $result                 =   array();
         $result['categories']   =   $this->categories;
         $result['products']     =   Product::latest()->paginate(3);
-        $result['cart_items']   =   \Cart::session(Auth::user()->id)->getContent();
+        $result['cart_items']   =   array();
+        if(Auth::user())
+        {
+            $result['cart_items']   =   \Cart::session(Auth::user()->id)->getContent();
+        }
 
         /* Used for filter option */
         if($request->ajax())
