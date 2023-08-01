@@ -21,6 +21,11 @@
   <!--================ confirmation part start =================-->
   <section class="confirmation_part padding_top">
     <div class="container">
+      
+      <div class="row">
+
+      </div>
+
       <div class="row">
 
         @include('orders.include.order_detail_order_info')

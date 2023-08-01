@@ -7,7 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\UserOrdersController;
 
 
 //Route::get('/', function () { return view('auth.login'); });
@@ -35,8 +35,8 @@ Route::group(['middleware' => ['role:User']], function () {
     /* Payment Controller End */
 
     /* Order Controller Start */
-    Route::get('my_orders',[OrdersController::class, 'orders_list'])->name('my_orders');
-    Route::get('order_details/{id}',[OrdersController::class, 'order_details'])->name('order_details');
+    Route::get('my_orders',[UserOrdersController::class, 'orders_list'])->name('my_orders');
+    Route::get('order_details/{id}',[UserOrdersController::class, 'order_details'])->name('order_details');
     /* Orders Controller End */
 });
 

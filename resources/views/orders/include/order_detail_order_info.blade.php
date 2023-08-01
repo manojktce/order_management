@@ -4,7 +4,7 @@
     <ul>
       @foreach($result['order_details'] as $order)
       <li>
-        <p>Order number</p><span>: {{ $order->id }}</span>
+        <p>Order number</p><span>: #{{ $order->id }}</span>
       </li>
       <li>
         <p>Reference number</p><span>: {{ $order->stripe_pi_id }}</span>
