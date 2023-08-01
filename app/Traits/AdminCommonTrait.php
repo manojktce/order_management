@@ -31,15 +31,12 @@ trait AdminCommonTrait
     {
         $data               =   array();
         $data['title']      =   ucfirst($this->route_name); 
-        $data['role_name']  =   ($model) ? $this->_role_name($model) : '';             
+        $data['role_name']  =   ($model == 'User') ? $this->_role_name($model) : '';              
         return $data;
     }
 
     public function index(Request $request)
     {        
-        // $st = Product::join('users', 'users.id', '=', 'products.user_id')
-        // ->get(['product.id', 'product.title', 'product.description', 'product.price', 'products.created_at', 'users.first_name']);
-
         //User::onlyTrashed()->restore();
         $dt = "\\App\\DataTables\\".$this->model_name."DataTable";
         $dataTable = new $dt;
@@ -77,7 +74,6 @@ trait AdminCommonTrait
     {
         $result = $this->model::find($id);
         $info = $this->_informations($result);
-
         return view('admin.'.$this->route_name.'.show',compact('info','result'));
     }
 

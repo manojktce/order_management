@@ -21,12 +21,14 @@ class OrderDataTable extends BaseDataTable
     public function dataTable($query)
     {
         return datatables($query)
+            ->editColumn('purchased_by', function ($model) {
+                return $model->users->first_name;
+            })
             ->editColumn('created_at', function ($model) {
-                return $model->created_at->format('Y-m-d');
+                return $model->created_at->format('Y-m-d H:i');
             })
             ->addColumn('action', function ($model) {
-                // $action = '<a href="' . route('webadmin.users.edit', $model->id) . '" class="btn btn-success btn-sm" title="Edit"><i class="fa fa-edit text-white"></i></a>&nbsp;';
-                $action = "";
+                $action ='<a href="'. route('order.show', $model->id) .'" class="btn btn-outline-primary"><i class="fa fa-eye"></i></a>';
                 return $action;
             })
             ->rawColumns(['action']);
@@ -40,7 +42,8 @@ class OrderDataTable extends BaseDataTable
      */
     public function query(Order $model)
     {
-        return $model->newQuery();
+        return $model::with(['users','orders_address','orders_detail','products'])->select('orders.*');
+        //return $model->newQuery();
     }
 
     /**
@@ -69,7 +72,13 @@ class OrderDataTable extends BaseDataTable
      */
     protected function getColumns()
     {
-        return $columns = ['id','created_at'];
+        return [
+            ['name' => 'id' , 'title' => 'Order ID', 'data' => 'id'],
+            ['name' => 'stripe_pi_id' , 'title' => 'Reference ID', 'data' => 'stripe_pi_id'],
+            ['name' => 'total_amount' , 'title' => 'Total Amount', 'data' => 'total_amount'],
+            ['name' => 'users.first_name' , 'title' => 'Purchased By', 'data' => 'purchased_by'],
+            ['name' => 'created_at' , 'title' => 'Created At', 'data' => 'created_at'],
+        ];
     }
 
     /**

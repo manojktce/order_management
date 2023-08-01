@@ -10,11 +10,13 @@ Use App\Models\OrderAddress;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
+use Auth;
+
 class UserOrdersController extends Controller
 {
     public function orders_list()
     {
-        $result['orders'] = Order::with('orders_detail')->paginate(2);
+        $result['orders'] = Order::with('orders_detail')->where('users_id',Auth::user()->id)->paginate(2);
         return view('orders.main',compact('result'));
     }
 
