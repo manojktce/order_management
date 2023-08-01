@@ -70,7 +70,7 @@ class PaymentController extends Controller
         foreach($cart_items as $item)
         {
             $order_detail[] = [
-                'orders_id'        =>   $order->id,
+                'order_id'        =>   $order->id,
                 'products_id'      =>   $item->associatedModel->id,
                 'price'            =>   $item->price,
                 'qty'              =>   $item->quantity,

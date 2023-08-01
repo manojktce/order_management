@@ -23,4 +23,9 @@ class OrderAddress extends Model
         'city',
         'notes',
     ];
+
+    public function orders()
+    {
+        return $this->belongsTo('App\Models\Order');
+    }
 }

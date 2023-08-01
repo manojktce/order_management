@@ -46,5 +46,9 @@ class Product extends Model implements HasMedia
         return $this->belongsTo('App\Models\Category');
     }
 
+    public function orders()
+    {
+        return $this->belongsTo('App\Models\Order');
+    }
     //protected $dates = ['deleted_at'];
 }

@@ -7,8 +7,8 @@
         <div class="col-lg-8">
           <div class="breadcrumb_iner">
             <div class="breadcrumb_iner_item">
-              <h2>Order Confirmation</h2>
-              <p>Home <span>-</span> Order Confirmation</p>
+              <h2>Order History</h2>
+              <p>Home <span>-</span> Order History</p>
             </div>
           </div>
         </div>
@@ -20,8 +20,23 @@
   <!--================ confirmation part start =================-->
   <section class="confirmation_part padding_top">
     <div class="container">
+      @if(count($result['orders'])<1)
+        <h2>Orders Not Found !!!</h2>
+      @else
+        <h2>Order History</h2>
+      @endif
       @foreach($result['orders'] as $order)
-      {{ $order }}
+      <div class="card card-default mt-2 mb-4">
+        <div class="card-header"><button class="btn btn-sm btn-success">Order #{{ $order->id }}</button></div>
+        <div class="card-body">
+          <h4>Reference ID : {{ $order->stripe_pi_id }}</h4>
+          <h4>Amount : {{ $order->total_amount }}</h4>
+          <h4>Purchased on : {{ $order->created_at }}</h4>
+        </div>
+        <div class="card-footer">
+          <p align="right"><a href="{{ route('order_details',encrypt($order->id)) }}" class="btn btn-sm btn-outline-primary">View Details</a></p>
+        </div>
+      </div>
       @endforeach
     </div>
   </section>

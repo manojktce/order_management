@@ -36,6 +36,7 @@ Route::group(['middleware' => ['role:User']], function () {
 
     /* Order Controller Start */
     Route::get('my_orders',[OrdersController::class, 'orders_list'])->name('my_orders');
+    Route::get('order_details/{id}',[OrdersController::class, 'order_details'])->name('order_details');
     /* Orders Controller End */
 });
 

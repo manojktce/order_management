@@ -31,4 +31,14 @@ class Order extends Model
         return $this->hasMany('App\Models\OrderDetail');
     }
 
+    public function orders_address()
+    {
+        return $this->hasOne('App\Models\OrderAddress');
+    }
+
+    public function products()
+    {
+        return $this->belongsTo('App\Models\Product');
+    }
+
 }

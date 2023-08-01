@@ -22,8 +22,12 @@
   <section class="cart_area padding_top">
     <div class="container">
       <div class="cart_inner">
-          @include('cart.include.cart_listing')
-          @include('cart.include.checkout')
+          @if(count($items) < 1)
+            <h2>Cart is Empty !!!</h2>
+          @else
+            @include('cart.include.cart_listing')
+            @include('cart.include.checkout')
+          @endif
       </div>
   </section>
   <!--================End Cart Area =================-->

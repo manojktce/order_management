@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('orders_detail', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('orders_id')->nullable(false);
+            $table->unsignedBigInteger('order_id')->nullable(false);
             $table->unsignedBigInteger('products_id')->nullable(false);
             $table->decimal('price', 9, 2)->nullable(false);
             $table->integer('qty')->nullable(false);
             $table->decimal('amount', 9, 2)->nullable(false); 
            
-            $table->foreign('orders_id')->references('id')->on('orders')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('order_id')->references('id')->on('orders')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('products_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
         });
     }
