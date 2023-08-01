@@ -1,5 +1,12 @@
 <div class="card-body">
-    <h4>Order Details</h4>
+
+    <div class="card-header border-0">
+      <div class="d-flex justify-content-between">
+        <h2 class="card-title">Order Details</h2>
+        <a href="{{ route('order.index') }}" class="btn btn-outline-primary">Back</a>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-5 col-sm-3">
         <div class="nav flex-column nav-tabs h-100" id="vert-tabs-tab" role="tablist" aria-orientation="vertical">
