@@ -14,7 +14,7 @@ class OrdersController extends Controller
 {
     public function orders_list()
     {
-        $result['orders'] = Order::with('orders_detail')->get();
+        $result['orders'] = Order::with('orders_detail')->paginate(2);
         return view('orders.main',compact('result'));
     }
 

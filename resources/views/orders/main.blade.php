@@ -38,6 +38,16 @@
         </div>
       </div>
       @endforeach
+
+      <div class="col-lg-12">
+          <div class="pageination">
+              <nav aria-label="Page navigation example">
+                  {!! $result['orders']->withQueryString()->links('pagination::bootstrap-5') !!}
+              </nav>
+          </div>
+      </div>
+
+
     </div>
   </section>
   <!--================ confirmation part end =================-->
