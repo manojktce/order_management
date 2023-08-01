@@ -47,12 +47,7 @@
             <div class="order_box">
               <h2>Your Order</h2>
               <ul class="list">
-                <li>
-                  <a href="#">Product
-                    <span>Total</span>
-                  </a>
-                </li>
-                <li>
+                <li class="checkout_small_block">
                   @foreach($items as $item)
                   <a href="#">
                     <i> {{ $item->name }} </i>   x <b>{{ $item->quantity }}</b>
