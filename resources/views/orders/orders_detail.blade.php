@@ -51,7 +51,7 @@
             <h4>shipping Address</h4>
             <ul>
               <li>
-                <p>Street</p><span>: {{ $result['order_details'] }}</span>
+                <p>Street</p><span>:</span>
               </li>
               <li>
                 <p>city</p><span>: Los Angeles</span>
@@ -79,12 +79,14 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach($result['order_details'] as $od)
-                  <tr>
-                    <th colspan="2"><span>{{ $od->products->title }}</span></th>
-                    <th>x{{ $od->qty }}</th>
-                    <th> <span>${{ $od->amount }}</span></th>
-                  </tr>
+                @foreach($result['order_details'] as $order)
+                  @foreach($order->orders_detail as $od)
+                    <tr>
+                      <th colspan="2"><span>{{ $od->products->title }}</span></th>
+                      <th>x{{ $od->qty }}</th>
+                      <th> <span>${{ $od->amount }}</span></th>
+                    </tr>
+                  @endforeach
                 @endforeach
               </tbody>
               <tfoot>

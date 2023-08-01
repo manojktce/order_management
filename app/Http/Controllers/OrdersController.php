@@ -20,7 +20,7 @@ class OrdersController extends Controller
 
     public function order_details(Request $request, $id=null)
     {
-        $result['order_details'] = OrderDetail::With(['orders','orders_address','products'])->where('order_id',decrypt($id))->get();   
+        $result['order_details'] = Order::With(['orders_detail','orders_address'])->where('id',decrypt($id))->get();   
         return view('orders.orders_detail',compact('result'));
     }
 }

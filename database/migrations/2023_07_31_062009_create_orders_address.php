@@ -13,18 +13,18 @@ return new class extends Migration
     {
         Schema::create('orders_address', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('orders_id')->nullable(false);
+            $table->unsignedBigInteger('order_id')->nullable(false);
             $table->string('first_name')->nullable(false);
             $table->string('last_name')->nullable(false);
             $table->string('email')->nullable(false);
-            $table->integer('mobile_number')->nullable(false);
+            $table->unsignedBigInteger('mobile_number')->nullable(false);
             $table->text('address')->nullable(false);
             $table->string('city')->nullable(false);
             $table->integer('zipcode')->nullable(false);
             $table->text('notes')->nullable(false);
 
 
-            $table->foreign('orders_id')->references('id')->on('orders')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('order_id')->references('id')->on('orders')->onUpdate('cascade')->onDelete('cascade');
             
         });
     }

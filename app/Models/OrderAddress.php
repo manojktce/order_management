@@ -28,4 +28,9 @@ class OrderAddress extends Model
     {
         return $this->belongsTo('App\Models\Order');
     }
+
+    public function orders_detail()
+    {
+        return $this->belongsTo('App\Models\OrderDetail');
+    }
 }
