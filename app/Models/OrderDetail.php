@@ -33,6 +33,6 @@ class OrderDetail extends Model
 
     public function orders_address()
     {
-        return $this->belongsTo('App\Models\OrderAddress');
+        return $this->hasOne('App\Models\OrderAddress');
     }
 }

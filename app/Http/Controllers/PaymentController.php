@@ -52,7 +52,7 @@ class PaymentController extends Controller
 
         /* Order Address Table Start */
         $order_addr                         =   new OrderAddress();
-        $order_addr->orders_id              =   $order->id;
+        $order_addr->order_id              =   $order->id;
         $order_addr->first_name             =   $user_address['first_name'];
         $order_addr->last_name              =   $user_address['last_name'];
         $order_addr->email                  =   $user_address['email'];

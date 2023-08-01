@@ -40,11 +40,11 @@
         <td><a href="javascript:void(0);" onclick="delCart({{ $item->id }})"><i class="fa fa-trash"></i></a></td>
       </tr>
       @endforeach
-      <tr class="bottom_button">
+      {{-- <tr class="bottom_button">
         <td colspan="5">
           <a class="btn_1" href="{{ route('clearCart') }}">Clear Cart</a>
         </td>
-      </tr>
+      </tr> --}}
       <tr>
         <td></td>
         <td><h5 text-align="right">Subtotal</h5></td>
