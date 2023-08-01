@@ -20,12 +20,14 @@
 
   <!--================ confirmation part start =================-->
   <section class="confirmation_part padding_top">
-    <div class="container">
-      
-      <div class="row">
-
+    <div class="row">
+      <div class="col-md-9"></div>
+      <div class="col-md-3">
+        <a href=" {{ route('my_orders') }}" class="btn btn-outline-danger">Back</a>
       </div>
+    </div>
 
+    <div class="container">
       <div class="row">
 
         @include('orders.include.order_detail_order_info')
