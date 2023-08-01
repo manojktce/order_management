@@ -18,8 +18,9 @@
             url:"/updateCart/"+id+"/"+option,
             success:function(data){
                 toastr.success('Cart Updated Successfully !!!');
-                $('#cart_listing').empty();
-                $('#cart_listing').html(data);
+                //$('#cart_listing').empty();
+                //$('#cart_listing').html(data);
+                $(".cart_inner").load(location.href + " .cart_inner"); // refresh the entire div
             }
         });   
     }
@@ -40,8 +41,9 @@
 
             success:function(data){
                 toastr.success('Product successfully removed from cart.');
-                $('#cart_listing').empty();
-                $('#cart_listing').html(data);
+                // $('#cart_listing').empty();
+                // $('#cart_listing').html(data);
+                $(".cart_inner").load(location.href + " .cart_inner"); // refresh the entire div
             }
         });
     }

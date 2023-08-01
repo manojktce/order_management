@@ -61,9 +61,11 @@ class CartController extends Controller
                 'price' => $Product->price,
             ));
         }
-        $intent = Auth::user()->createSetupIntent();
-        $items = \Cart::session(Auth::user()->id)->getContent();
-        return view('cart.include.cart_listing_block', compact('items','intent'));
+        
+            $intent = Auth::user()->createSetupIntent();
+            $items = \Cart::session(Auth::user()->id)->getContent();
+            return view('cart.main', compact('items','intent'));
+        
     }
 
     public function deleteCart(Request $request, $id=null)
@@ -73,7 +75,7 @@ class CartController extends Controller
 
         $intent = Auth::user()->createSetupIntent();
         $items = \Cart::session(Auth::user()->id)->getContent();
-        return view('cart.include.cart_listing_block', compact('items','intent'));
+        return view('cart.main', compact('items','intent'));
     }
 
     public function clearCart(Request $request)
