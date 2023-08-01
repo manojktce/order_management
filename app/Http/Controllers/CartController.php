@@ -39,7 +39,7 @@ class CartController extends Controller
         return redirect()->route('showCart')->with('message', 'Product Added to Cart successfully.');
     }
 
-    public function updateCart(Request $request, $id=null)
+    public function updateCart(Request $request, $id=null, $option=null)
     {
         $item = \Cart::session(Auth::user()->id)->get($id);
         $prod_id = $item->associatedModel->id;
@@ -47,17 +47,33 @@ class CartController extends Controller
         $userID =   Auth::user()->id;
         $rowId  =   $id;
         $Product = Product::find($prod_id);
-        \Cart::session($userID)->update($rowId, array(
-            'quantity' => 1,
-            'price' => $Product->price,
-        ));
-        return redirect()->route('showCart')->with('message', 'Product Updated in Cart successfully.');
+        if($option == 1)
+        {
+            \Cart::session($userID)->update($rowId, array(
+                'quantity' => 1,
+                'price' => $Product->price,
+            ));
+        }
+        else
+        {
+            \Cart::session($userID)->update($rowId, array(
+                'quantity' => -1,
+                'price' => $Product->price,
+            ));
+        }
+        $intent = Auth::user()->createSetupIntent();
+        $items = \Cart::session(Auth::user()->id)->getContent();
+        return view('cart.include.cart_listing_block', compact('items','intent'));
     }
 
     public function deleteCart(Request $request, $id=null)
     {
         $userID = Auth::user()->id;
         \Cart::session($userID)->remove($id);
+
+        $intent = Auth::user()->createSetupIntent();
+        $items = \Cart::session(Auth::user()->id)->getContent();
+        return view('cart.include.cart_listing_block', compact('items','intent'));
     }
 
     public function clearCart(Request $request)

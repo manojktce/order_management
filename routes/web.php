@@ -29,7 +29,7 @@ Route::group(['middleware' => ['role:User']], function () {
     /* Cart Controller Start*/
     Route::get('showCart', [CartController::class, 'showCart'])->name('showCart');
     Route::get('addToCart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
-    Route::get('updateCart/{row_id}', [CartController::class, 'updateCart'])->name('updateCart');
+    Route::get('updateCart/{row_id}/{option}', [CartController::class, 'updateCart'])->name('updateCart');
     Route::get('deleteCart/{id}', [CartController::class, 'deleteCart'])->name('deleteCart');
     Route::get('clearCart', [CartController::class, 'clearCart'])->name('clearCart');
     /* Cart Controller End*/

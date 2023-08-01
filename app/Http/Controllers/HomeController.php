@@ -31,13 +31,13 @@ class HomeController extends Controller
 
     public function products(Request $request, $id=null)
     {
-        $result                 =   array();
+        //$result                 =   array();
         $result['categories']   =   $this->categories;
         $result['products']     =   Product::latest()->paginate(3);
-        $result['cart_items']   =   array();
+        
         if(Auth::user())
         {
-            $result['cart_items']   =   \Cart::session(Auth::user()->id)->getContent();
+            $result['cart_items']   =   \Cart::session(Auth::user()->id)->getContent()->toArray();
         }
 
         /* Used for filter option */
