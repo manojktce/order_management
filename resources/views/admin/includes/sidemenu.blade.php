@@ -78,7 +78,7 @@
             </li>
 
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('order.index') }}" class="nav-link {{ (request()->segment(1) == 'order') ? 'active' : '' }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Order Management</p>
               </a>

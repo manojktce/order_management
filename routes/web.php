@@ -2,11 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Auth\Middleware;
+
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\OrderController;
+
 
 use App\Http\Controllers\UserOrdersController;
 
@@ -48,6 +51,7 @@ Route::group(['middleware' => ['role:Admin']], function () {
         'user'          => UserController::class,
         'category'      => CategoryController::class,
         'product'       => ProductController::class,
+        'order'         => OrderController::class,
     ]);
 
     Route::post('admin_logout', [App\Http\Controllers\SiteAdminController::class, 'admin_logout'])->name('admin_logout');
