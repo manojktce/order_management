@@ -60,6 +60,11 @@
             max-width: 60px;
         }
 
+        .error
+        {
+            color: red;
+        }
+
     </style>
 </head>
 

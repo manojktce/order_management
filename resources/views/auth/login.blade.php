@@ -19,7 +19,7 @@
                         <div class="login_part_form_iner">
                             <h3>Welcome Back ! <br>
                                 Please Sign in now</h3>
-                            <form class="row contact_form" action="{{ route('login') }}" method="post" autocomplete="off">
+                            <form class="row contact_form" action="{{ route('login') }}" method="post" autocomplete="off" id="userLoginForm">
                                 @csrf
                                 <div class="col-md-12 form-group p_star">
                                     <input type="text" class="form-control" id="email" name="email" value=""
@@ -49,3 +49,16 @@
     <!--================login_part end =================-->
 
     @include('includes.footer')
+
+    <script> 
+        $("#userLoginForm").validate({
+            rules: {
+                email: "required",
+                password: "required",
+            },
+            messages : {
+                email : "Email is required",
+                password : "Password is required",
+            }
+        });    
+    </script>
