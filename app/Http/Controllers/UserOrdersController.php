@@ -16,7 +16,7 @@ class UserOrdersController extends Controller
 {
     public function orders_list()
     {
-        $result['orders'] = Order::with('orders_detail')->where('users_id',Auth::user()->id)->paginate(2);
+        $result['orders'] = Order::with('orders_detail')->where('users_id',Auth::user()->id)->orderBy('id','desc')->paginate(2);
         return view('orders.main',compact('result'));
     }
 

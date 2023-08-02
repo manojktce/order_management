@@ -27,9 +27,11 @@
     
 
     <div class="card-body">
-      {!! Form::open(['route' =>'vendor_product.store', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'vendor_prod-form', 'class' => 'container']) !!}
+     
+      {!! Form::open(['route' =>'vendor_product.store', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'vendor_prod-form', 'class' => 'container']) !!}
             @include('vendor_products.partials.form')
       {!! Form::close() !!}
+
       </div>
   </div>
 </section>

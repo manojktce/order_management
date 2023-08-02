@@ -37,7 +37,7 @@
         {{ Form::textarea('description', (empty($result) ? old('description') : $result->description) , ['class' => 'form-control',   'id' => 'summernote']) }}
       </div>
     </div>
-  
+
     <div class="row form-group">
       <label for="exampleInputFile">Cover Image</label>
       <div class="input-group">

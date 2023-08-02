@@ -37,10 +37,10 @@ $(document).ready(function(){
       "progressBar" : true
     }
           toastr.warning("{{ session('warning') }}");
-    @endif
-
+    @endif        
 });
 </script>
+
 <!-- Delete Confirmation add by manoj -->
 <script type="text/javascript">
   $('body').on('click', '.btndelete', function () {
