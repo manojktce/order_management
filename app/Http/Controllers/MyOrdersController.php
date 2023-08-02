@@ -12,17 +12,17 @@ use Illuminate\Support\Facades\DB;
 
 use Auth;
 
-class VendorOrdersController extends Controller
+class MyOrdersController extends Controller
 {
     public function orders_list()
     {
-        $result['orders'] = Order::with('orders_detail')->where('users_id',Auth::user()->id)->paginate(2);
-        return view('vendor_orders.main',compact('result'));
+        $result['orders'] = Order::with('orders_detail')->where('users_id',Auth::user()->id)->orderBy('id','desc')->paginate(2);
+        return view('orders.main',compact('result'));
     }
 
     public function order_details(Request $request, $id=null)
     {
         $result['order_details'] = Order::With(['orders_detail','orders_address'])->where('id',decrypt($id))->get();   
-        return view('vendor_orders.orders_detail',compact('result'));
+        return view('orders.orders_detail',compact('result'));
     }
 }

@@ -11,11 +11,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\OrderController;
 
 use App\Http\Controllers\VendorProductController;
-
-use App\Http\Controllers\UserOrdersController;
-use App\Http\Controllers\VendorOrdersController;
-
-
+use App\Http\Controllers\MyOrdersController;
 
 
 //Route::get('/', function () { return view('auth.login'); });
@@ -36,34 +32,31 @@ Route::group(['middleware' => ['role:Vendor']], function () {
     Route::resource('vendor_product',VendorProductController::class);
     /* Vendor Product Management End */
 
-    /* Order Controller Start */
-    Route::get('vendor_orders',[VendorOrdersController::class, 'orders_list'])->name('vendor_orders');
-    Route::get('vendor_order_details/{id}',[VendorOrdersController::class, 'order_details'])->name('vendor_order_details');
-    /* Orders Controller End */
 });
 /* Vendor Routes End */
 
 
 /* User Routes Start */
-Route::group(['middleware' => ['role:User']], function () {
+Route::group(['middleware' => ['role:User|Vendor']], function () {
+
+    /* Cart Routes Start*/
+    Route::get('showCart', [CartController::class, 'showCart'])->name('showCart');
+    Route::get('addToCart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
+    Route::get('updateCart/{row_id}/{option}', [CartController::class, 'updateCart'])->name('updateCart');
+    Route::get('deleteCart/{id}', [CartController::class, 'deleteCart'])->name('deleteCart');
+    Route::get('clearCart', [CartController::class, 'clearCart'])->name('clearCart');
+    /* Cart Routesr End*/
+
+    /* Payment Controller Start */
+    Route::post('purchase',[PaymentController::class, 'purchase_items'])->name('purchase');
+    /* Payment Controller End */
+
     /* Order Controller Start */
-    Route::get('my_orders',[UserOrdersController::class, 'orders_list'])->name('my_orders');
-    Route::get('order_details/{id}',[UserOrdersController::class, 'order_details'])->name('order_details');
+    Route::get('my_orders',[MyOrdersController::class, 'orders_list'])->name('my_orders');
+    Route::get('order_details/{id}',[MyOrdersController::class, 'order_details'])->name('order_details');
     /* Orders Controller End */
 });
 /* User Routes End */
-
-/* Cart Routes Start*/
-Route::get('showCart', [CartController::class, 'showCart'])->name('showCart');
-Route::get('addToCart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
-Route::get('updateCart/{row_id}/{option}', [CartController::class, 'updateCart'])->name('updateCart');
-Route::get('deleteCart/{id}', [CartController::class, 'deleteCart'])->name('deleteCart');
-Route::get('clearCart', [CartController::class, 'clearCart'])->name('clearCart');
-/* Cart Routesr End*/
-
-/* Payment Controller Start */
-Route::post('purchase',[PaymentController::class, 'purchase_items'])->name('purchase');
-/* Payment Controller End */
 
 
 /* Admin Routes Start */
