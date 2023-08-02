@@ -18,9 +18,10 @@
             url:"/updateCart/"+id+"/"+option,
             success:function(data){
                 toastr.success('Cart Updated Successfully !!!');
-                $('#cart_listing').empty();
-                $('#cart_listing').html(data);
-                //$(".cart_inner").load(location.href + " .cart_inner"); // refresh the entire div
+                // $('#cart_listing').empty();
+                // $('#cart_listing').html(data);     
+                
+                $(".cart_inner").load(location.href + " .cart_inner"); // refresh the entire div
             }
         });   
     }

@@ -8,6 +8,8 @@ use App\Models\Product;
 use Auth;
 use Stripe;
 
+use Illuminate\Support\Facades\View;
+
 class CartController extends Controller
 {
     
@@ -64,8 +66,7 @@ class CartController extends Controller
         
             $intent = Auth::user()->createSetupIntent();
             $items = \Cart::session(Auth::user()->id)->getContent();
-            return view('cart.include.cart_listing_block', compact('items','intent'));
-        
+            return view('cart.include.cart_listing_block')->with(['items' => $items, 'intent' => $intent]);        
     }
 
     public function deleteCart(Request $request, $id=null)

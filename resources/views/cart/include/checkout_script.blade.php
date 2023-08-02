@@ -4,6 +4,7 @@
       $('.card-section').hide();
     });
   </script>
+  
   <script src="https://js.stripe.com/v3/"></script>
   <script>
     // just for the demos, avoids form submit
@@ -14,7 +15,7 @@
   
     var form = $( "#regForm" );
     $( ".btn_3" ).click(function() {
-      $('.card-section').hide();
+      //$('.card-section').hide();
       var form_valid = form.valid();
       if(form_valid)
       {
@@ -26,6 +27,7 @@
           }
           else
           {
+            $('.card-section').hide();
             toastr.error('Accept the terms & Condition to proceed');
           }
       }
@@ -40,7 +42,8 @@
         if($("#agree-option").is(':checked'))
         {
           $('#form_submit').show();
-          //$('.card-section').show();
+          $('.card-section').show();
+          open_card();
         }
         else
         {
