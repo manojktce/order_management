@@ -20,20 +20,12 @@
 
 <!--================Cart Area =================-->
 <section class="cart_area padding_top">
-  <div class="container">
-    
-    <div class="row">
-      <div class="col-lg-12">
-          <a href="{{ route('vendor_product.create') }}" class="btn btn-outline-secondary float-right mr-2">Add Product</a>
-      </div>
-    </div>
-    
+  <div class="container">    
     <div class="card-body">
-        {!! $dataTable->table(['class' => 'table table-striped table-bordered', 'id' => 'datatable-buttons']) !!}
+        Create
       </div>
   </div>
 </section>
 <!--================End Cart Area =================-->
-@include('includes.datatables_script')
 @include('includes.custom_scripts')
 @include('includes.footer')

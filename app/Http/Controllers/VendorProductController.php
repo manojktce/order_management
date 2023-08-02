@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DataTables;
+use Auth;
 use App\Models\Product;
+use App\Models\User;
+use App\Models\Category;
 
 class VendorProductController extends Controller
 {
@@ -48,7 +51,11 @@ class VendorProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $result = Product::find($id);
+        $selectLookups              =   $this->_selectLookups($id);
+        $info = $this->_informations();
+
+        return view('vendor_products.edit',compact('info','selectLookups','result'));
     }
 
     /**
@@ -65,5 +72,24 @@ class VendorProductController extends Controller
     public function destroy(string $id)
     {
         Product::find($id)->delete();
+    }
+
+    public function _informations($model="")
+    {
+        $data               =   array();
+        $data['title']      =   "Vendor Product"; 
+        $data['role_name']  =   ($model == 'User') ? $this->_role_name($model) : '';              
+        return $data;
+    }
+
+    protected function _selectLookups($id = null) :array
+    {
+        $data = array();
+
+        $data['users_id']   = Auth::user()->id;
+        $data['users']      = User::all()->pluck('first_name','id')->toArray();
+        $data['category']   = Category::with('product')->pluck('title','id')->toArray();
+
+        return $data;
     }
 }

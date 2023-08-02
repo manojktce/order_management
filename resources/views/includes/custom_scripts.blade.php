@@ -67,4 +67,21 @@ $(document).ready(function(){
   });
 </script>
 <!-- Delete Confirmation add by manoj -->
+
+<!-- Vendor Product Form Textarea Start-->
+<script>
+  $(function () {
+    // Summernote
+    $('#summernote').summernote({
+      height: 200
+    });
+
+    // CodeMirror
+    // CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+    //   mode: "htmlmixed",
+    //   theme: "monokai"
+    // });
+  })
+</script>
+<!-- Vendor Product Form Textarea End-->
 @endpush

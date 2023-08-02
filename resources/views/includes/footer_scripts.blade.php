@@ -30,6 +30,14 @@
 <!-- custom js -->
 <script src="{{ asset('/common/js/custom.js') }}"></script>
 
+<!-- Summernote -->
+<script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
+<!-- CodeMirror -->
+{{-- <script src="{{ asset('plugins/codemirror/codemirror.js') }}"></script>
+<script src="{{ asset('plugins/codemirror/mode/css/css.js') }}"></script>
+<script src="{{ asset('plugins/codemirror/mode/xml/xml.js') }}"></script>
+<script src="{{ asset('plugins/codemirror/mode/htmlmixed/htmlmixed.js') }}"></script> --}}
+
 <!-- Datatables Script for Vendor -->
 <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
