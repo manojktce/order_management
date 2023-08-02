@@ -28,7 +28,7 @@
                     
                     @if($role_name == 'Vendor')
                         <a class="dropdown-item" href="#">Received Orders</a>
-                        <a class="dropdown-item" href="#">Add Product</a>
+                        <a class="dropdown-item" href="{{ route('vendor_product.index') }}">My Products</a>
                     @endif
 
                 </div>

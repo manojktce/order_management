@@ -10,8 +10,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\OrderController;
 
-
 use App\Http\Controllers\UserOrdersController;
+use App\Http\Controllers\VendorProductController;
 
 
 //Route::get('/', function () { return view('auth.login'); });
@@ -24,6 +24,10 @@ Route::get('/site_admin', [App\Http\Controllers\SiteAdminController::class, 'ind
 Route::post('admin_login', [App\Http\Controllers\SiteAdminController::class, 'admin_login']);
 
 Auth::routes();
+
+Route::group(['middleware' => ['role:Vendor']], function () {
+    Route::resource('vendor_product',VendorProductController::class);
+});
 
 Route::group(['middleware' => ['role:User']], function () {
     /* Cart Controller Start*/
@@ -43,6 +47,7 @@ Route::group(['middleware' => ['role:User']], function () {
     Route::get('order_details/{id}',[UserOrdersController::class, 'order_details'])->name('order_details');
     /* Orders Controller End */
 });
+
 
 Route::group(['middleware' => ['role:Admin']], function () {
     Route::get('/adminHome', [App\Http\Controllers\SiteAdminController::class, 'adminHome'])->name('adminHome');
