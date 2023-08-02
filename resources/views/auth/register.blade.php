@@ -19,7 +19,7 @@
                         <div class="login_part_form_iner">
                             <h3>Welcome ! <br>
                                 Enter Your Details</h3>
-                            <form class="row contact_form" action="{{ route('register') }}" method="post" novalidate="novalidate" id="registerForm">
+                            <form class="row contact_form" action="{{ route('register') }}" method="post" id="registerForm">
                                 @csrf
                                 
                                 <div class="col-md-6 form-group p_star">
@@ -58,7 +58,7 @@
                                 </div>
                                 
                                 <div class="col-md-6 form-group p_star">
-                                    <input type="password" class="form-control" id="password" name="password_confirmation" value="" placeholder="Password Confirmation">
+                                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" value="" placeholder="Password Confirmation">
                                 </div>
 
                                 <div class="col-md-4 form-group p_star">
@@ -88,30 +88,4 @@
     <!--================login_part end =================-->
 
     @include('includes.footer')
-
-    <script> 
-        $("#registerForm").validate({
-            rules: {
-                first_name : "required",
-                last_name : "required",
-                email: "required",
-                password: {
-                    required : true,
-                    minlength: 8,
-                },
-                password_confirmation: {
-                    minlength: 8,
-                    equalTo: "#password"
-                },
-            },
-            messages : {
-                first_name : "First Name is required",
-                last_name : "Last Name is required",
-                email : "Email is required",
-                password : {
-                    required : "Password is required",
-                    minlength : "Minimum 8 characters required",
-                },
-            }
-        });    
-    </script>
+    @include('includes.login_register_script')

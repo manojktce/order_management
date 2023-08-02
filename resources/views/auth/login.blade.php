@@ -49,16 +49,4 @@
     <!--================login_part end =================-->
 
     @include('includes.footer')
-
-    <script> 
-        $("#userLoginForm").validate({
-            rules: {
-                email: "required",
-                password: "required",
-            },
-            messages : {
-                email : "Email is required",
-                password : "Password is required",
-            }
-        });    
-    </script>
+    @include('includes.login_register_script')
