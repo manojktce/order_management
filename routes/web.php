@@ -10,8 +10,9 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\OrderController;
 
-use App\Http\Controllers\VendorProductController;
 use App\Http\Controllers\MyOrdersController;
+use App\Http\Controllers\VendorProductController;
+use App\Http\Controllers\VendorOrdersController;
 
 
 //Route::get('/', function () { return view('auth.login'); });
@@ -31,6 +32,9 @@ Route::group(['middleware' => ['role:Vendor']], function () {
     /* Vendor Product Management Start */
     Route::resource('vendor_product',VendorProductController::class);
     /* Vendor Product Management End */
+
+    Route::get('/vendors_order',[VendorOrdersController::class,'index'])->name('vendors_order');
+    Route::get('/vendor_order_details/{id}',[VendorOrdersController::class, 'vendor_order_details'])->name('vendor_order_details');
 
 });
 /* Vendor Routes End */

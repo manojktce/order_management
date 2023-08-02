@@ -24,14 +24,11 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
                     <a class="dropdown-item" href="{{ route('showCart') }}">Cart</a>
-                    @if($role_name == 'Vendor')
-                        <a class="dropdown-item" href="{{ route('my_orders') }}">My Orders</a>
-                    @else
-                        <a class="dropdown-item" href="{{ route('my_orders') }}">My Orders</a>
-                    @endif
+                    <a class="dropdown-item" href="{{ route('my_orders') }}">My Orders</a>
+                    
                     
                     @if($role_name == 'Vendor')
-                        <a class="dropdown-item" href="#">Received Orders</a>
+                        <a class="dropdown-item" href="{{ route('vendors_order') }}">Received Orders</a>
                         <a class="dropdown-item" href="{{ route('vendor_product.index') }}">My Products</a>
                     @endif
 

@@ -23,7 +23,7 @@
     <div class="row">
       <div class="col-md-9"></div>
       <div class="col-md-3">
-        <a href=" {{ route('vendor_orders') }}" class="btn btn-outline-danger">Back</a>
+        <a href=" {{ route('vendors_order') }}" class="btn btn-outline-danger">Back</a>
       </div>
     </div>
 
