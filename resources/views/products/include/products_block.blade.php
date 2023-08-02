@@ -15,7 +15,11 @@
                 @endif
 
                 @if($prod->qty > 0)
-                    <a href="{{ route('addToCart',$prod->id) }}" class="add_cart">+ add to cart<i class="ti-heart"></i></a>                    
+                    @if(Auth::user() && Auth::user()->id == $prod->users->id)
+                        
+                    @else
+                        <a href="{{ route('addToCart',$prod->id) }}" class="add_cart">+ add to cart<i class="ti-heart"></i></a>                    
+                    @endif
                 @else
                     <p class="text-danger">Stock not available</p>
                 @endif

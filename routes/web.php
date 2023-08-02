@@ -10,8 +10,12 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\OrderController;
 
-use App\Http\Controllers\UserOrdersController;
 use App\Http\Controllers\VendorProductController;
+
+use App\Http\Controllers\UserOrdersController;
+use App\Http\Controllers\VendorOrdersController;
+
+
 
 
 //Route::get('/', function () { return view('auth.login'); });
@@ -27,17 +31,21 @@ Auth::routes();
 
 /* Vendor Routes Start */
 Route::group(['middleware' => ['role:Vendor']], function () {
+    
+    /* Vendor Product Management Start */
     Route::resource('vendor_product',VendorProductController::class);
+    /* Vendor Product Management End */
+
+    /* Order Controller Start */
+    Route::get('vendor_orders',[VendorOrdersController::class, 'orders_list'])->name('vendor_orders');
+    Route::get('vendor_order_details/{id}',[VendorOrdersController::class, 'order_details'])->name('vendor_order_details');
+    /* Orders Controller End */
 });
 /* Vendor Routes End */
 
 
 /* User Routes Start */
 Route::group(['middleware' => ['role:User']], function () {
-    /* Payment Controller Start */
-    Route::post('purchase',[PaymentController::class, 'purchase_items'])->name('purchase');
-    /* Payment Controller End */
-
     /* Order Controller Start */
     Route::get('my_orders',[UserOrdersController::class, 'orders_list'])->name('my_orders');
     Route::get('order_details/{id}',[UserOrdersController::class, 'order_details'])->name('order_details');
@@ -52,6 +60,10 @@ Route::get('updateCart/{row_id}/{option}', [CartController::class, 'updateCart']
 Route::get('deleteCart/{id}', [CartController::class, 'deleteCart'])->name('deleteCart');
 Route::get('clearCart', [CartController::class, 'clearCart'])->name('clearCart');
 /* Cart Routesr End*/
+
+/* Payment Controller Start */
+Route::post('purchase',[PaymentController::class, 'purchase_items'])->name('purchase');
+/* Payment Controller End */
 
 
 /* Admin Routes Start */

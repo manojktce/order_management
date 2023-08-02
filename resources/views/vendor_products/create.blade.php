@@ -23,7 +23,7 @@
   <div class="container">  
     
     
-    <h3>Create product</h3>
+    <h4><b>Create product</b></h4>
     
 
     <div class="card-body">
