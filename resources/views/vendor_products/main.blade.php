@@ -21,7 +21,7 @@
 <!--================Cart Area =================-->
 <section class="cart_area padding_top">
   <div class="container">
-    
+    <h3 align="center"><b>Vendor Products</b></h3>
     <div class="row">
       <div class="col-lg-12">
           <a href="{{ route('vendor_product.create') }}" class="btn btn-outline-secondary float-right mr-2">Add Product</a>

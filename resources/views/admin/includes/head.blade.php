@@ -25,15 +25,14 @@
   <!-- Summernote editor -->
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
   <!-- CodeMirror -->
-  <link rel="stylesheet" href="{{ asset('plugins/codemirror/codemirror.css') }}">
-  <link rel="stylesheet" href="{{ asset('plugins/codemirror/theme/monokai.css') }}">
+  {{-- <link rel="stylesheet" href="{{ asset('plugins/codemirror/codemirror.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/codemirror/theme/monokai.css') }}"> --}}
 
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
-  <!-- summernote -->
-  <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
+  
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">

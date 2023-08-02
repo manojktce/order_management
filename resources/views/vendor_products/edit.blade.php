@@ -20,7 +20,11 @@
 
 <!--================Cart Area =================-->
 <section class="cart_area padding_top">
-  <div class="container">    
+  <div class="container">  
+    
+    <h4><b>Edit product</b></h4>
+    
+
     <div class="card-body">
         {{ Form::model($result, ['route' => [ "vendor_product.update", $result->id ],'method' => 'put', 'class' => 'form-horizontal','id'  => 'vendorProductForm','files'=> true]) }}
             @include('vendor_products.partials.form')

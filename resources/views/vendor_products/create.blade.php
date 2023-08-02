@@ -20,9 +20,16 @@
 
 <!--================Cart Area =================-->
 <section class="cart_area padding_top">
-  <div class="container">    
+  <div class="container">  
+    
+    
+    <h3>Create product</h3>
+    
+
     <div class="card-body">
-        Create
+      {!! Form::open(['route' =>'vendor_product.store', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'vendor_prod-form', 'class' => 'container']) !!}
+            @include('vendor_products.partials.form')
+      {!! Form::close() !!}
       </div>
   </div>
 </section>

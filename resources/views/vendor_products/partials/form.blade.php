@@ -8,22 +8,24 @@
     <div class="row">
       <div class="col-md-6">
   
-        <div class="form-group">
+        <div class="row form-group">
+          
           {{ Form::label('category', 'Category *', ['class' => 'col-sm-6 col-form-label']) }}
           {!! Form::select('category_id', $selectLookups['category'], (empty($result) ? old('category_id') : $result->category->id),['class' => 'col-sm-12 form-control']) !!}
+          
         </div>  
         
-        <div class="form-group">
+        <div class="row form-group">
           {{ Form::label('title', 'Title *', ['class' => 'col-sm-6 col-form-label']) }}
           {{ Form::text('title', (empty($result) ? old('title') : $result->title) , ['class' => 'form-control']) }}
         </div>
   
-        <div class="form-group">
+        <div class="row form-group">
           {{ Form::label('price', 'Price *', ['class' => 'col-sm-6 col-form-label']) }}
           {{ Form::number('price', (empty($result) ? old('price') : $result->price) , ['class' => 'form-control product-price', 'step' => 'any']) }}
         </div>
   
-        <div class="form-group">
+        <div class="row form-group">
           {{ Form::label('quantity', 'Quantity *', ['class' => 'col-sm-6 col-form-label']) }}
           {{ Form::number('qty', (empty($result) ? old('qty') : $result->qty) , ['class' => 'form-control', 'step' => 'any','onkeypress' =>'return onlyNumberKey(event)' ]) }}
         </div>
@@ -36,7 +38,7 @@
       </div>
     </div>
   
-    <div class="form-group">
+    <div class="row form-group">
       <label for="exampleInputFile">Cover Image</label>
       <div class="input-group">
         <div class="custom-file">
@@ -46,7 +48,7 @@
       </div>
     </div>
   
-    <div class="row card">
+    <div class="row card mb-4">
       <div class="image-preview-cover">
           @if(!empty($result))
             @foreach ($result->getMedia('product_cover_image') as $image)
@@ -56,7 +58,7 @@
       </div>
     </div>
   
-    <div class="form-group">
+    <div class="row form-group">
       <label for="exampleInputFile">Upload Images</label>
       <div class="input-group">
         <div class="custom-file">

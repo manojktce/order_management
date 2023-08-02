@@ -9,6 +9,11 @@ use App\Models\Product;
 use App\Models\User;
 use App\Models\Category;
 
+use Validator;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+use Route;
+
 class VendorProductController extends Controller
 {
     /**
@@ -27,7 +32,11 @@ class VendorProductController extends Controller
      */
     public function create()
     {
-        //
+        $result = array();
+        $selectLookups              =   $this->_selectLookups();
+        $info = $this->_informations();
+
+        return view('vendor_products.create',compact('info','selectLookups','result'));
     }
 
     /**
@@ -35,7 +44,19 @@ class VendorProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $validator = $this->_validate($request , '' , 'store');
+        
+        if($validator != null && array_key_exists("error_message", $validator == null ? [] : $validator)){
+            return back()->withErrors($validator)->with('error','Input errors !!!');
+        }
+
+        $model = Product::create($request->all());
+        
+        $additonal_updates  = $this->_additionalUpdate($request, '', $model);
+        $file_uploads       = $this->_fileupload($request, '', $model);
+  
+        return redirect()->route('vendor_product.index')->with('message', 'Product Created Successfully.');;
     }
 
     /**
@@ -63,7 +84,19 @@ class VendorProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validator = $this->_validate($request , $id , 'update');
+        
+        if($validator != null && array_key_exists("error_message", $validator == null ? [] : $validator)){
+            return back()->withErrors($validator)->with('error','Input errors !!!');
+        }
+        
+        $model = Product::find($id);
+        $model->update($request->all());
+        
+        $additonal_updates  = $this->_additionalUpdate($request, $id, $model);
+        $file_uploads       = $this->_fileupload($request, $id, $model);
+  
+        return redirect()->route('vendor_product.index')->with('message', 'Product updated successfully.');
     }
 
     /**
@@ -91,5 +124,86 @@ class VendorProductController extends Controller
         $data['category']   = Category::with('product')->pluck('title','id')->toArray();
 
         return $data;
+    }
+
+    protected function _fileupload($request, $id = "", $model = "") : array
+    {
+        /* Upload cover image for the product start*/
+        if($request->hasFile('cover_image') && $request->file('cover_image')->isValid()){
+            if($id && $request->hasFile('cover_image'))
+            {
+                $model->clearMediaCollection('product_cover_image'); // delete previous uploaded image in db
+            }
+            $model->addMediaFromRequest('cover_image')->toMediaCollection('product_cover_image');
+        }
+        /* Upload cover image for the product end*/
+
+        /* Upload product images for the product start*/
+        if($request->hasFile('image')){
+            
+            $images = $request->file('image');
+
+            if($id && $request->hasFile('image'))
+            {
+                $model->clearMediaCollection('product_images');
+            }
+            
+            foreach ($images as $image) {
+                $model->addMedia($image)->toMediaCollection('product_images');
+            }
+        }
+        /* Upload product images for the product end*/
+
+        $msg = ['File Uploaded'];
+        return $msg;
+    }
+    
+    protected function _additionalUpdate($request, $id = null, $model = null) : array
+    {
+        return [
+            //
+        ];
+    }
+
+    protected function _validation_messages() :array
+    {
+        return [
+            //
+        ];
+    }
+    private function _validate($request, $id = null , $action = null)
+    {
+        $rules = $this->_validation_rules($request, $id);
+                
+        if(@request()->all()){
+            $validator = Validator::make($request->all(), $rules);
+            if ($validator->fails()){
+                $messages = $validator->messages();
+                
+                foreach ($messages->all(':message') as $key => $message)
+                {
+                     $row['error_message'][$key] = $message;
+                }
+                return $row;
+            }
+        }else{
+            $messages = $this->_validation_messages();
+            $validator = $this->validate($request, $rules, $messages);
+        }
+    }
+
+    protected function _validation_rules($request, $id = null): array
+    {
+        $rules = [
+            'users_id'              => 'sometimes|required',
+            'title'                 => 'required|min:2|max:75|unique:products,title,'.$id.',id',
+            'description'           => 'required|min:3',
+            'price'                 => 'required',
+            'qty'                   => 'required',
+            'cover_image'           => 'mimes:jpg,jpeg,png|max:4096',
+            'image.*.file'          => 'mimes:jpg,jpeg,png|max:4096',
+        ];
+
+        return $rules;
     }
 }

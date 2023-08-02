@@ -84,4 +84,44 @@ $(document).ready(function(){
   })
 </script>
 <!-- Vendor Product Form Textarea End-->
+
+<!-- image preview script add by manoj refer admin user management create file-->
+<script type="text/javascript">
+  $(function() {
+  // Multiple images preview in browser
+  var imagesPreview = function(input, placeToInsertImagePreview) {
+
+      if (input.files) {
+          var filesAmount = input.files.length;
+          if(filesAmount > 5)
+          {
+            alert('Only 5 images allowed for product');
+            return false;
+          }
+          for (i = 0; i < filesAmount; i++) {
+              var reader = new FileReader();
+
+              reader.onload = function(event) {
+                  $($.parseHTML('<img>')).attr('src', event.target.result).css({'width' : '300px','height' : '200px'}).appendTo(placeToInsertImagePreview);
+              }
+
+              reader.readAsDataURL(input.files[i]);
+          }
+      }
+
+  };
+
+  $('.custom-file-input').on('change', function() {
+      $('div.image-preview').empty(); // clear any previous image
+      imagesPreview(this, 'div.image-preview');
+  });
+
+  $('.custom-file-input-cover').on('change', function() {
+      $('div.image-preview-cover').empty(); // clear any previous cover image
+      imagesPreview(this, 'div.image-preview-cover');
+  });
+
+});
+</script>
+<!-- image preview script add by manoj end -->
 @endpush
