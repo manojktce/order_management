@@ -28,14 +28,31 @@ class ProfileController extends Controller
         $model = User::find($id);
         /* Upload cover image for the product start*/
         if($request->hasFile('file') && $request->file('file')->isValid()){
-            if($id && $request->hasFile('file'))
+            /*if($id && $request->hasFile('file'))
             {
                 $model->clearMediaCollection('profile_pictures'); // delete previous uploaded image in db
-            }
+            }*/
             $model->addMediaFromRequest('file')->toMediaCollection('profile_pictures');
         }
         /* Upload cover image for the product end*/
         $result['user'] = $model;
         return view('profile.partials.image_form',compact('result'));
     }
+
+    public function readFiles(){ 
+        
+        $files_info = []; 
+        $file_ext = array('png','jpg','jpeg'); 
+
+        $model = User::find(12);
+        $images = $model->getMedia('profile_pictures');
+        // Read files
+        foreach ($images as $file) { 
+           $files_info[] = $file;
+        } 
+        return response()->json($files_info); 
+     }
+
+
+
 }

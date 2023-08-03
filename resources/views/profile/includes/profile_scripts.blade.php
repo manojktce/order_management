@@ -3,12 +3,31 @@
     Dropzone.prototype.defaultOptions.dictDefaultMessage = "Drop file to change the Profile Image";
     Dropzone.options.dropzone =
      {
-        maxFilesize:10,
-        maxFiles: 1,
+        maxFiles: 5,
         renameFile: function(file) {
             var dt = new Date();
             var time = dt.getTime();
            return time+file.name;
+        },
+        init: function() { 
+            myDropzone = this;
+
+            $.ajax({
+                url: '{{ route("readFiles") }}',
+                type: 'get',
+                dataType: 'json',
+                success: function(response){
+                
+                $.each(response, function(key,value) {
+                    var mockFile = { name: value.name, size: value.size };
+                    myDropzone.emit("addedfile", mockFile);
+                    myDropzone.emit("thumbnail", mockFile, value.original_url);
+                    myDropzone.emit("complete", mockFile);
+
+                });
+
+                }
+            });
         },
         acceptedFiles: ".jpeg,.jpg,.png",
         addRemoveLinks: true,
@@ -16,11 +35,8 @@
         success: function(file, response) 
         {
             console.log(response);
-            localStorage.setItem("Status","Profile Image updated")
-            window.location.reload(); 
-            //$('#image_section').empty();
-            //$('#image_section').html(response);
-            //$(".confirmation_part").load(location.href + " .confirmation_part"); // refresh the entire div
+            //localStorage.setItem("Status","Profile Image updated")
+            //window.location.reload(); 
         },
         error: function(file, response)
         {
