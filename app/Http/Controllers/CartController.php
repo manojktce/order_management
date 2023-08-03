@@ -26,8 +26,18 @@ class CartController extends Controller
     public function addToCart(Request $request, $id=null)
     {
         $userID = Auth::user()->id;
-        $Product = Product::find($id); // assuming you have a Product model with id, name, description & price
-        $rowId = rand(2,100000); // generate a unique() row ID
+        $Product = Product::find($id); 
+        $rowId = rand(2,100000); 
+
+        /* Check cart product belong same vendor of previous product start*/
+        $items = \Cart::session(Auth::user()->id)->getContent();
+        $vendor_ids = $items->pluck('associatedModel.users_id')->toArray();
+        
+        if( (count($items)>0) && (!in_array($Product->users_id, $vendor_ids)) )
+        {
+            return redirect()->back()->with('error', 'Product added from other merchant is not allowed in existing cart');
+        }
+        /* Check cart product belong same vendor of previous product end*/
 
         // add the product to cart
         \Cart::session($userID)->add(array(
