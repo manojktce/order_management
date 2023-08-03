@@ -23,10 +23,10 @@
             <div id="slider-range"></div>
             
             <input type="text" class="js-range-slider" name="js-price" value="" data-type="double"
-            data-min="{{ $result['products']->min('price') }}"
-            data-max="{{ $result['products']->max('price') }}"
-            data-from="{{ $result['products']->min('price') }}"
-            data-to="{{ $result['products']->max('price') }}"
+            data-min="{{ $result['model']->min('price') }}"
+            data-max="{{ $result['model']->max('price') }}"
+            data-from="{{ $result['model']->min('price') }}"
+            data-to="{{ $result['model']->max('price') }}"
             data-grid="true" />
 
             <input type="hidden" class="price_change" value="0"/>

@@ -33,11 +33,12 @@ class HomeController extends Controller
     {
         //$result                 =   array();
         $result['categories']   =   $this->categories;
-        $result['products']     =   Product::latest()->paginate(3);
+        $result['model']        =   Product::all();
+        $result['products']     =   Product::paginate(3);
         
         if(Auth::user())
         {
-            $result['cart_items']   =   \Cart::session(Auth::user()->id)->getContent()->toArray();
+            $result['cart_items']   =   \Cart::session(Auth::user()->id)->getContent();
         }
 
         /* Used for filter option */
