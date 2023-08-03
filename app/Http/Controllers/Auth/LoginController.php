@@ -41,6 +41,11 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {   
+        if(Auth::user())
+        {
+            return redirect('/home');
+        }
+        
         $input = $request->all();
      
         $this->validate($request, [

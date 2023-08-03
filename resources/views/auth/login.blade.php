@@ -37,7 +37,11 @@
                                     <button type="submit" value="submit" class="btn_3">
                                         log in
                                     </button>
-                                    <a class="lost_pass" href="#">forget password?</a>
+                                    <a class="btn btn-outline-dark" href="{{ url('auth/google') }}" role="button" style="text-transform:none">
+                                        <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                                        Login with Google
+                                      </a>
+                                    <a class="lost_pass" href="#">forgot password?</a>
                                 </div>
                             </form>
                         </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Auth\Middleware;
 
@@ -13,10 +14,17 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\MyOrdersController;
 use App\Http\Controllers\VendorProductController;
 use App\Http\Controllers\VendorOrdersController;
+use App\Http\Controllers\Auth\GoogleSocialiteController;
+
 
 
 //Route::get('/', function () { return view('auth.login'); });
 Route::get('/', function () { return view('home'); });
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('auth/google', [GoogleSocialiteController::class, 'redirectToGoogle']);
+Route::get('callback/google', [GoogleSocialiteController::class, 'handleCallback']);
 
 Route::get('/products', [App\Http\Controllers\HomeController::class, 'products'])->name('products');
 Route::get('/products/{slug}/{id}', [App\Http\Controllers\HomeController::class, 'product_detail']);
