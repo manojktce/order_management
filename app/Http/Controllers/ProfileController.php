@@ -44,14 +44,19 @@ class ProfileController extends Controller
         $files_info = []; 
         $file_ext = array('png','jpg','jpeg'); 
 
-        $model = User::find(12);
+        $model = User::find(Auth::user()->id);
         $images = $model->getMedia('profile_pictures');
         // Read files
         foreach ($images as $file) { 
-           $files_info[] = $file;
+           $files_info[] = $file;           
         } 
         return response()->json($files_info); 
-     }
+    }
+
+    public function deleteFile($id=null)
+    {
+        echo $id;
+    }
 
 
 

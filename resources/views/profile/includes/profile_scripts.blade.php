@@ -17,15 +17,12 @@
                 type: 'get',
                 dataType: 'json',
                 success: function(response){
-                
-                $.each(response, function(key,value) {
-                    var mockFile = { name: value.name, size: value.size };
-                    myDropzone.emit("addedfile", mockFile);
-                    myDropzone.emit("thumbnail", mockFile, value.original_url);
-                    myDropzone.emit("complete", mockFile);
-
-                });
-
+                    $.each(response, function(key,value) {
+                        var mockFile = { name: value.name, size: value.size };                
+                        myDropzone.emit("addedfile", mockFile);
+                        myDropzone.emit("thumbnail", mockFile, value.original_url);
+                        myDropzone.emit("complete", mockFile);                        
+                    });
                 }
             });
         },
@@ -57,7 +54,6 @@ $(document).ready(function(){
 </script>
 
 <script>
-
     $("#profileForm").validate({
         rules: {
             first_name: "required",
@@ -72,6 +68,5 @@ $(document).ready(function(){
             // zip : "ZipCode is required",
         }
     });    
-  
-  </script>
+</script>
 @endpush
