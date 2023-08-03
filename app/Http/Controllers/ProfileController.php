@@ -21,4 +21,20 @@ class ProfileController extends Controller
 
         return redirect()->back()->with('message','Profile Updated');
     }
+
+    public function upload(Request $request, string $id)
+    {
+        $model = User::find($id);
+        /* Upload cover image for the product start*/
+        if($request->hasFile('file') && $request->file('file')->isValid()){
+            if($id && $request->hasFile('file'))
+            {
+                $model->clearMediaCollection('profile_pictures'); // delete previous uploaded image in db
+            }
+            $model->addMediaFromRequest('file')->toMediaCollection('profile_pictures');
+        }
+        /* Upload cover image for the product end*/
+
+        return redirect()->back()->with('message','Profile Picture Updated');
+    }
 }

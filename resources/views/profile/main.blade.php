@@ -33,14 +33,42 @@
 
           </div>
         </div>
-        <div class="col-lg-4">
-          <div class="order_details_iner">
-            Profile
-          </div>
+        <div class="col-lg-4 mt-5">
+            @php $imgUrl = $result['user']->getFirstMediaUrl('profile_pictures','thumb') @endphp
+            <img class="profile-user-img img-fluid img-circle" src="{{ empty($imgUrl) ? "../../dist/img/user4-128x128.jpg": $imgUrl }}" alt="User profile picture">
+
+            <form method="post" action="{{ route('profile_upload',$result['user']->id) }}" enctype="multipart/form-data" class="dropzone" id="dropzone">
+                @method('PUT')
+                @csrf
+            </form>             
         </div>
       </div>
     </div>
   </section>
-  <!--================ confirmation part end =================-->
+<!--================ confirmation part end =================-->
+<script type="text/javascript">
+  Dropzone.options.dropzone =
+   {
+      maxFilesize: 1,
+      renameFile: function(file) {
+          var dt = new Date();
+          var time = dt.getTime();
+         return time+file.name;
+      },
+      acceptedFiles: ".jpeg,.jpg,.png",
+      addRemoveLinks: true,
+      timeout: 5000,
+      success: function(file, response) 
+      {
+          console.log(response);
+          toastr.success('Profile Picture Updated');
+          $(".confirmation_part").load(location.href + " .confirmation_part"); // refresh the entire div
+      },
+      error: function(file, response)
+      {
+         return false;
+      }
+};
+</script>
 @include('includes.custom_scripts')
 @include('includes.footer')

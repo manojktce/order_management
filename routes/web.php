@@ -54,6 +54,7 @@ Route::group(['middleware' => ['role:User|Vendor']], function () {
 
     /* Profile Routes Start */
     Route::resource('profile',ProfileController::class);
+    Route::put('profile_upload/{id}',[ProfileController::class, 'upload'])->name('profile_upload');
     /* Profile Routes End */
 
     /* Cart Routes Start*/
