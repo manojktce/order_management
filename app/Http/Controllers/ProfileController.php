@@ -34,7 +34,7 @@ class ProfileController extends Controller
             $model->addMediaFromRequest('file')->toMediaCollection('profile_pictures');
         }
         /* Upload cover image for the product end*/
-
-        return redirect()->back()->with('message','Profile Picture Updated');
+        $result['user'] = $model;
+        return view('profile.partials.image_form',compact('result'));
     }
 }
