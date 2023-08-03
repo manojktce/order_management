@@ -10,10 +10,6 @@
                 <h3>${{ $prod->price }}</h3>
                 <p>Created by : <b>{{ $prod->users->first_name }}</b></p>
 
-                @if( $prod->id == preg_replace('/[^A-Za-z0-9\-]/', '',$result['cart_items']->pluck('associatedModel.id')) )
-
-                @endif
-
                 @if($prod->qty > 0)
                     @if(Auth::user() && $prod->id == preg_replace('/[^A-Za-z0-9\-]/', '',$result['cart_items']->pluck('associatedModel.id')) )
                         <a href="{{ route('showCart') }}" class="add_cart">Go to cart<i class="ti-heart"></i></a>         
