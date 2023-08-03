@@ -40,4 +40,22 @@ $(document).ready(function(){
 });
 </script>
 
+<script>
+
+    $("#profileForm").validate({
+        rules: {
+            first_name: "required",
+            last_name: "required",
+            email: "required",
+            // zip: "required",
+        },
+        messages : {
+            first_name : "First Name is required",
+            last_name : "Last Name is required",
+            email: "Email is required",
+            // zip : "ZipCode is required",
+        }
+    });    
+  
+  </script>
 @endpush

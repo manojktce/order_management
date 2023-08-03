@@ -1,3 +1,5 @@
+{{ Form::model($result, ['route' => [ "profile.update", $result['user']->id ],'method' => 'put', 'class' => 'form-horizontal','id'  => 'profileForm','files'=> true]) }}
+
 <div class="form-group">
   {{ Form::label('first_name', 'First Name', ['class' => 'col-sm-6 col-form-label']) }}
   {{ Form::text('first_name', (empty($result['user']) ? old('first_name') : $result['user']->first_name) , ['class' => 'form-control']) }}
@@ -29,3 +31,5 @@
   <button type="submit" class="btn btn-outline-primary">Submit</button>
   <a href="{{ route('home') }}" class="btn btn-outline-danger"><b>Back</b></a>
 </div>
+
+{!! Form::close() !!}

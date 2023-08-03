@@ -24,21 +24,16 @@
       <div class="row">
         <div class="col-lg-8">
           <div class="order_details_iner">
-
-            {{ Form::model($result, ['route' => [ "profile.update", $result['user']->id ],'method' => 'put', 'class' => 'form-horizontal','id'  => 'profileForm','files'=> true]) }}
-            
-            @include('profile.partials.form')
-            
-            {!! Form::close() !!}
-
+              @include('profile.partials.form')
           </div>
         </div>
         <div class="col-lg-4 mt-5" id="image_section">  
-          @include('profile.partials.image_form')
+              @include('profile.partials.image_form')
         </div>
       </div>
     </div>
   </section>
+
 <!--================ confirmation part end =================-->
 @include('profile.includes.profile_scripts')
 @include('includes.custom_scripts')
