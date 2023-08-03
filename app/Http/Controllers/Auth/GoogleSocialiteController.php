@@ -40,9 +40,11 @@ class GoogleSocialiteController extends Controller
             {
                 // if user not found then this is the first time he/she try to login with Google account
                 // create user data with their Google account data
+                $split_name = explode(" ", $user->name);
+                
                 $newUser = User::create([
-                    'first_name' => $user->name,
-                    'last_name' => $user->name,
+                    'first_name' => $split_name[0],
+                    'last_name' => $split_name[1],
                     'email' => $user->email,
                     'social_id' => $user->id,
                     'social_type' => 'google',  // the social login is using google

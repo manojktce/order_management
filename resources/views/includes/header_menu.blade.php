@@ -65,7 +65,7 @@
                         <i class="fa fa-user"></i> {{ Auth::user()->first_name }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                        <a class="dropdown-item" href="login.html">My Account</a>
+                        <a class="dropdown-item" href="{{ route('profile.index') }}">My Account</a>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

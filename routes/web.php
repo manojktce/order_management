@@ -11,6 +11,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\OrderController;
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MyOrdersController;
 use App\Http\Controllers\VendorProductController;
 use App\Http\Controllers\VendorOrdersController;
@@ -50,6 +51,10 @@ Route::group(['middleware' => ['role:Vendor']], function () {
 
 /* User Routes Start */
 Route::group(['middleware' => ['role:User|Vendor']], function () {
+
+    /* Profile Routes Start */
+    Route::resource('profile',ProfileController::class);
+    /* Profile Routes End */
 
     /* Cart Routes Start*/
     Route::get('showCart', [CartController::class, 'showCart'])->name('showCart');
