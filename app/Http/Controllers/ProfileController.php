@@ -53,9 +53,10 @@ class ProfileController extends Controller
         return response()->json($files_info); 
     }
 
-    public function deleteFile($id=null)
+    public function deleteFile($id)
     {
-        echo $id;
+        echo $id;exit;
+        echo "s";exit;
     }
 
 

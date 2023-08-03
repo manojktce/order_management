@@ -18,7 +18,8 @@
                 dataType: 'json',
                 success: function(response){
                     $.each(response, function(key,value) {
-                        var mockFile = { name: value.name, size: value.size };                
+                        var mockFile = { name: value.name, size: value.size };     
+                        mockFile['media_id'] = value.id;
                         myDropzone.emit("addedfile", mockFile);
                         myDropzone.emit("thumbnail", mockFile, value.original_url);
                         myDropzone.emit("complete", mockFile);                        
@@ -31,9 +32,20 @@
         timeout: 5000,
         success: function(file, response) 
         {
-            console.log(response);
+            //console.log(response);
             //localStorage.setItem("Status","Profile Image updated")
             //window.location.reload(); 
+        },
+        removedfile: function(file) {
+            $.ajaxSetup({
+                headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "/deleteFile/"+file.media_id,
+            });
         },
         error: function(file, response)
         {
