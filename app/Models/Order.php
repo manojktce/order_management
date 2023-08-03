@@ -35,10 +35,4 @@ class Order extends Model
     {
         return $this->hasOne('App\Models\OrderAddress');
     }
-
-    public function products()
-    {
-        return $this->belongsTo('App\Models\Product');
-    }
-
 }

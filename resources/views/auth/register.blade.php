@@ -19,7 +19,7 @@
                         <div class="login_part_form_iner">
                             <h3>Welcome ! <br>
                                 Enter Your Details</h3>
-                            <form class="row contact_form" action="{{ route('register') }}" method="post" id="registerForm">
+                            <form class="row contact_form" action="{{ route('register') }}" method="post" id="registerForm" autocomplete="off">
                                 @csrf
                                 
                                 <div class="col-md-6 form-group p_star">

@@ -10,16 +10,28 @@ use Auth;
 
 class VendorOrdersController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        //$vendor_products = Product::Where('users_id',Auth::user()->id)->pluck('id');
         $user_id = Auth::user()->id;
-        $result['orders'] = Order::join('orders_detail','orders_detail.order_id','=','orders.id')
-                            ->join('products','products.id','=','orders_detail.products_id')
-                            ->join('users','users.id','=','products.users_id')
-                            ->where('products.users_id',$user_id)
-                            ->select('orders.id','orders.stripe_pi_id','orders.total_amount','orders.created_at')
-                            ->paginate('2');
+        
+        // Query Type 1
+        // $result['orders']     =        Order::with(['orders_detail' => function($q){
+        //                                             $q->with('products');
+        //                                         }])
+        //                                         ->whereHas('orders_detail', function($q){
+        //                                             $q->whereHas('products', function($q){
+        //                                                 $q->where('users_id',Auth::user()->id);    
+        //                                             });
+        //                                         })
+        //                                         ->paginate('2');
+        
+        // Query Type 2
+        $result['orders']     =        Order::with('orders_detail', 'orders_detail.products')
+                                                ->whereHas('orders_detail.products', function($q){
+                                                    $q->where('users_id',Auth::user()->id);    
+                                                })
+                                                ->paginate('2');
+        
         return view('vendor_orders.main',compact('result'));
     }
 
