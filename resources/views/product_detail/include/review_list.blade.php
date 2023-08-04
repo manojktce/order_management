@@ -1,9 +1,9 @@
-@if(count($result['ratings'])<1)
+@if($result['products']->product_ratings()->count()<1)
 <div class="review_item">
   <h4>No reviews found !!!</h4>
 </div>
 @else
-  @foreach($result['ratings'] as $res)
+@foreach($result['products']->product_ratings as $res)
   <div class="review_item">
     <div class="media">
       <div class="d-flex review_image">
@@ -22,11 +22,11 @@
     </p>
   </div>
   @endforeach
-  <div class="col-lg-12">
+  {{-- <div class="col-lg-12">
       <div class="pageination">
           <nav aria-label="Page navigation example">
               {!! $result['ratings']->withQueryString()->links('pagination::bootstrap-5') !!}
           </nav>
       </div>
-  </div>
+  </div> --}}
 @endif

@@ -1,5 +1,5 @@
 @php $rate_1 = 0; $rate_2 = 0; $rate_3 = 0; $rate_4 = 0; $rate_5 = 0; $total = 0; $count = 0; @endphp
-@foreach($result['total_ratings'] as $res)
+@foreach($result['products']->product_ratings as $res)
   @php
   $rating = $res->rating;
   $total = $total + $rating;
