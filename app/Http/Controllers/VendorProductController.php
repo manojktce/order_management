@@ -44,7 +44,6 @@ class VendorProductController extends Controller
      */
     public function store(Request $request)
     {
-        echo "<pre>"; print_r($_FILES);exit;
         $validator = $this->_validate($request , '' , 'store');
         
         if($validator != null && array_key_exists("error_message", $validator == null ? [] : $validator)){

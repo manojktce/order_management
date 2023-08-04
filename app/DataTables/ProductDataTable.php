@@ -38,7 +38,9 @@ class ProductDataTable extends BaseDataTable
             ->addColumn('action', function ($model) {
                 $action ='<a href="'. route('product.show', $model->id) .'" class="btn btn-outline-primary"><i class="fa fa-eye"></i></a>
                             <a href="' .route('product.edit', $model->id) .'" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
-                            <a href="javascript:void(0)" class="btn btn-outline-primary btndelete" data-id="' . $model->id . '" data-model="product" data-route="product" "><i class="fa fa-trash"></i></a>';
+                            <a href="javascript:void(0)" class="btn btn-outline-primary btndelete" data-id="' . $model->id . '" data-model="product" data-route="product" "><i class="fa fa-trash"></i></a>
+                            <a href="'. route('product.show_review', $model->id) .'" class="btn btn-outline-primary"><i class="far fa-comment-alt"></i>
+                            </a>';
 
                 return $action;
             })

@@ -42,7 +42,7 @@ class OrderDataTable extends BaseDataTable
      */
     public function query(Order $model)
     {
-        return $model::with(['users','orders_address','orders_detail','products'])->select('orders.*');
+        return $model::with(['users','orders_address','orders_detail'])->select('orders.*');
         //return $model->newQuery();
     }
 

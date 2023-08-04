@@ -13,6 +13,13 @@ class ProductController extends BaseController
 {
     public $modelClass = Product::class;
 
+    public function show_reviews($id)
+    {   
+        $result = $this->modelClass::find($id);
+        $info['title']      =   ucfirst('Product');
+        return view('admin.product.view_review',compact('info','result'));   
+    }
+
     protected function _selectLookups($id = null) :array
     {
         $data = array();
