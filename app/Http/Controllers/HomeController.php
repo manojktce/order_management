@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Collection;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductRating;
 use App\Models\User;
+use App\Models\Order;
 
 use Auth;
 
@@ -79,6 +81,7 @@ class HomeController extends Controller
         $result                 =   array();
         $result['products']     =   Product::find($id);
         $result['categories']   =   $this->categories;
+        $result['ratings']      =   ProductRating::Where('products_id',$id)->get('product_ratings.*','AVG(rating) as overall_rating');
         return view('product_detail.main',compact('result'));   
     }
 }
