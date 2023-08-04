@@ -16,10 +16,6 @@ use Route;
 
 class VendorProductController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:Vendor')->except('index', 'show');
-    }
     /**
      * Display a listing of the resource.
      */
