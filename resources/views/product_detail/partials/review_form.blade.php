@@ -1,6 +1,6 @@
 <div class="review_box mt-4">
   <h4>Add a Review</h4>
-  <form class="row contact_form" action="{{ route('add_review', encrypt($result['products']->id)) }}" method="post" novalidate="novalidate">
+  <form class="row contact_form" id="reviewForm" action="{{ route('add_review', encrypt($result['products']->id)) }}" method="post">
     @csrf
     <div class="col-md-12">
       <div class="form-group">
@@ -51,3 +51,22 @@
     </div>
   </form>
 </div>
+
+<script type="text/javascript">
+    $("#reviewForm").validate({
+        rules: {
+            message : {
+                required : true,
+                minlength: 10,
+                maxlength: 100,
+            },
+        },
+        messages : {
+            message : {
+                required        : "Review is required",
+                minlength       : "Review requires atleast 10 Characters",
+                maxlength       : "Review does not exceeds 100 Characters",
+            },
+        }
+    });    
+</script>

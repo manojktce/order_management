@@ -1,9 +1,8 @@
-@php $rate_1 = 0; $rate_2 = 0; $rate_3 = 0; $rate_4 = 0; $rate_5 = 0; $total = 0; $count = 0; @endphp
+@php $rate_1 = 0; $rate_2 = 0; $rate_3 = 0; $rate_4 = 0; $rate_5 = 0; @endphp
+{{-- {{ $result['products']->product_ratings->sum('rating') }} --}}
 @foreach($result['products']->product_ratings as $res)
   @php
   $rating = $res->rating;
-  $total = $total + $rating;
-  $count = $count + 1;
   switch ($rating) {
     case "1":
       $rate_1 = $rate_1+1;
