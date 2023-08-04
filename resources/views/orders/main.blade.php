@@ -7,8 +7,8 @@
         <div class="col-lg-8">
           <div class="breadcrumb_iner">
             <div class="breadcrumb_iner_item">
-              <h2>Order History</h2>
-              <p>Home <span>-</span> Order History</p>
+              <h2>My Orders</h2>
+              <p>Home <span>-</span>My Orders</p>
             </div>
           </div>
         </div>

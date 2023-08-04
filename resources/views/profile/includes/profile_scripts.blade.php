@@ -33,8 +33,8 @@
         success: function(file, response) 
         {
             //console.log(response);
-            //localStorage.setItem("Status","Profile Image updated")
-            //window.location.reload(); 
+            localStorage.setItem("Status","Profile Image updated")
+            window.location.reload(); 
         },
         removedfile: function(file) {
             $.ajaxSetup({
@@ -43,8 +43,14 @@
                 }
             });
             $.ajax({
+                url: "/deleteFile/",
                 type: "POST",
-                url: "/deleteFile/"+file.media_id,
+                data: { "media_id" : file.media_id },
+                success: function(data)
+                {
+                    localStorage.setItem("Status","Selected Profile Image removed")
+                    window.location.reload(); 
+                }
             });
         },
         error: function(file, response)

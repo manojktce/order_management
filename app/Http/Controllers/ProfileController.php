@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Auth;
 use Validator;
 
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+
 class ProfileController extends Controller
 {
     public function index()
@@ -40,7 +43,6 @@ class ProfileController extends Controller
     }
 
     public function readFiles(){ 
-        
         $files_info = []; 
         $file_ext = array('png','jpg','jpeg'); 
 
@@ -53,12 +55,9 @@ class ProfileController extends Controller
         return response()->json($files_info); 
     }
 
-    public function deleteFile($id)
+    public function deleteFile(Request $request)
     {
-        echo $id;exit;
-        echo "s";exit;
+            $model = User::find(Auth::user()->id);
+            $model->deleteMedia($request->input('media_id'));    
     }
-
-
-
 }

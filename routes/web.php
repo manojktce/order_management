@@ -56,7 +56,7 @@ Route::group(['middleware' => ['role:User|Vendor']], function () {
     Route::resource('profile',ProfileController::class);
     Route::put('profile_upload/{id}',[ProfileController::class, 'upload'])->name('profile_upload');
     Route::get('readFiles',[ProfileController::class, 'readFiles'])->name('readFiles');
-    Route::post('deleteFile/{id}',[ProfileController::class, 'readFiles'])->name('deleteFile');
+    Route::post('deleteFile',[ProfileController::class, 'deleteFile'])->name('deleteFile');
     /* Profile Routes End */
 
     /* Cart Routes Start*/

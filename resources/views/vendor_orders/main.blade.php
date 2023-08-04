@@ -7,8 +7,8 @@
         <div class="col-lg-8">
           <div class="breadcrumb_iner">
             <div class="breadcrumb_iner_item">
-              <h2>Order History</h2>
-              <p>Home <span>-</span> Order History</p>
+              <h2>Received Orders</h2>
+              <p>Home <span>-</span>Received Orders</p>
             </div>
           </div>
         </div>
@@ -23,7 +23,7 @@
       @if(count($result['orders'])<1)
         <h2>Orders Not Found !!!</h2>
       @else
-        <h2>Order History</h2>
+        <h2>Received Orders</h2>
       @endif
       @foreach($result['orders'] as $order)
       <div class="card card-default mt-2 mb-4">
