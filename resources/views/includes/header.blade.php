@@ -74,6 +74,12 @@
             display: none;
         }
 
+        .review_image>img {
+            max-height: 30px;
+            max-width: 30px;
+            border-radius: 40%;
+        }
+
     </style>
 </head>
 

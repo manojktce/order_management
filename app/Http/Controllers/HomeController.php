@@ -81,7 +81,7 @@ class HomeController extends Controller
         $result                 =   array();
         $result['products']     =   Product::find($id);
         $result['categories']   =   $this->categories;
-        $result['ratings']      =   ProductRating::Where('products_id',$id)->get('product_ratings.*','AVG(rating) as overall_rating');
+        $result['ratings']      =   ProductRating::all()->Where('products_id',$id);
         return view('product_detail.main',compact('result'));   
     }
 }
