@@ -81,7 +81,28 @@ class HomeController extends Controller
         $result                 =   array();
         $result['products']     =   Product::find($id);
         $result['categories']   =   $this->categories;
-        $result['ratings']      =   ProductRating::all()->Where('products_id',$id);
+        $result['ratings']      =   ProductRating::query()->Where('products_id',$id)->orderBy('id','desc')->paginate(2);
         return view('product_detail.main',compact('result'));   
+    }
+
+    public function add_review(Request $request, $id=null)
+    {
+        if(!Auth::user())
+        {
+            return redirect()->back()->with('error', 'Kindly login and add review.');
+        }
+
+        ProductRating::updateOrCreate(
+            [
+                'users_id'    => Auth::user()->id,
+                'products_id' => decrypt($id),
+            ], 
+            [
+                'rating'    => $request->input('stars'),
+                'review'    => $request->input('message'),
+            ]
+        );
+
+        return redirect()->back()->with('success', 'Review Added Successfully.');
     }
 }

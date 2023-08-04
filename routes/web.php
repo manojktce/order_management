@@ -29,6 +29,9 @@ Route::get('callback/google', [GoogleSocialiteController::class, 'handleCallback
 
 Route::get('/products', [App\Http\Controllers\HomeController::class, 'products'])->name('products');
 Route::get('/products/{slug}/{id}', [App\Http\Controllers\HomeController::class, 'product_detail']);
+/* Rating Functionality Start */
+Route::post('add_review/{id}', [App\Http\Controllers\HomeController::class, 'add_review'])->name('add_review');
+/* Rating Functionality End */
 
 Route::get('/site_admin', [App\Http\Controllers\SiteAdminController::class, 'index'])->name('site_admin');
 Route::post('admin_login', [App\Http\Controllers\SiteAdminController::class, 'admin_login']);
@@ -75,6 +78,10 @@ Route::group(['middleware' => ['role:User|Vendor']], function () {
     Route::get('my_orders',[MyOrdersController::class, 'orders_list'])->name('my_orders');
     Route::get('order_details/{id}',[MyOrdersController::class, 'order_details'])->name('order_details');
     /* Orders Controller End */
+
+    // /* Rating Functionality Start */
+    // Route::post('add_review', [App\Http\Controllers\HomeController::class, 'add_review'])->name('add_review');
+    // /* Rating Functionality End */
 });
 /* User Routes End */
 

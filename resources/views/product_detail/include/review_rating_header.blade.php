@@ -1,3 +1,4 @@
+
 @php $rate_1 = 0; $rate_2 = 0; $rate_3 = 0; $rate_4 = 0; $rate_5 = 0; $total = 0; $count = 0; @endphp
 @foreach($result['ratings'] as $res)
   @php
@@ -28,7 +29,11 @@
 <div class="col-6">
     <div class="box_total">
       <h5>Overall</h5>
-      <h4>{{ $total/$count }}</h4>
+      @if($total>0)
+        <h4>{{ round($total/$count,1) }}</h4>
+      @else
+        <h4>0</h4>
+      @endif
       <h6>({{ $count }} Reviews)</h6>
     </div>
   </div>

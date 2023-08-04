@@ -1,43 +1,62 @@
 <div class="review_box">
+  <p>Your Rating: 
+  @foreach($result['ratings'] as $res)
+    @php
+      if($res->users_id != Auth::User()->id)
+      continue;
+    @endphp
+
+    @for($i=1; $i<=$res->rating; $i++)
+      <i class="fa fa-star"></i>
+    @endfor
+  @endforeach
+  </p> 
+</div>
+
+<div class="review_box mt-4">
   <h4>Add a Review</h4>
-  <p>Your Rating:</p>
-  <ul class="list">
-    <li>
-      <a href="#">
-        <i class="fa fa-star"></i>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <i class="fa fa-star"></i>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <i class="fa fa-star"></i>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <i class="fa fa-star"></i>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <i class="fa fa-star"></i>
-      </a>
-    </li>
-  </ul>
-  <p>Outstanding</p>
-  <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+  <form class="row contact_form" action="{{ route('add_review', encrypt($result['products']->id)) }}" method="post" novalidate="novalidate">
+    @csrf
     <div class="col-md-12">
       <div class="form-group">
-        <input type="text" class="form-control" name="number" placeholder="Phone Number" />
+        <div class="rating">
+          <label>
+            <input type="radio" name="stars" value="1" />
+            <span class="icon">★</span>
+          </label>
+          <label>
+            <input type="radio" name="stars" value="2" />
+            <span class="icon">★</span>
+            <span class="icon">★</span>
+          </label>
+          <label>
+            <input type="radio" name="stars" value="3" />
+            <span class="icon">★</span>
+            <span class="icon">★</span>
+            <span class="icon">★</span>   
+          </label>
+          <label>
+            <input type="radio" name="stars" value="4" />
+            <span class="icon">★</span>
+            <span class="icon">★</span>
+            <span class="icon">★</span>
+            <span class="icon">★</span>
+          </label>
+          <label>
+            <input type="radio" name="stars" value="5" />
+            <span class="icon">★</span>
+            <span class="icon">★</span>
+            <span class="icon">★</span>
+            <span class="icon">★</span>
+            <span class="icon">★</span>
+          </label>
+        </div>
       </div>
     </div>
+    
     <div class="col-md-12">
       <div class="form-group">
-        <textarea class="form-control" name="message" rows="1" placeholder="Review"></textarea>
+        <textarea class="form-control" id="summernote" name="message" rows="25" placeholder="Review"></textarea>
       </div>
     </div>
     <div class="col-md-12 text-right">

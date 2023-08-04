@@ -96,4 +96,5 @@
     </div>
   </section>
   <!--================End Product Description Area =================-->
+  @include('includes.custom_scripts')
   @include('includes.footer')
