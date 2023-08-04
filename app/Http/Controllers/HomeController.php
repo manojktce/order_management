@@ -82,13 +82,11 @@ class HomeController extends Controller
         //             ->selectRaw('count(*) as total, rating')
         //             ->get();
         // echo $collection;exit;
-
-        $result['products'] =   Product::find($id);
         //$result['categories']       =   $this->categories;
         //$result['total_ratings']    =   ProductRating::query()->Where('product_id',$id)->get();
         //$result['ratings']          =   ProductRating::query()->Where('product_id',$id)->orderBy('id','desc')->paginate(2);
 
-
+        $result['products'] =   Product::find($id);
         return view('product_detail.main',compact('result'));   
     }
 
