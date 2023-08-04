@@ -78,11 +78,14 @@ class HomeController extends Controller
 
     public function product_detail(Request $request, $slug=null , $id=null)
     {
-        $result                 =   array();
+        //$result                 =   array();
         $result['products']     =   Product::find($id);
         $result['categories']   =   $this->categories;
-        $result['avg_rating']   =   ProductRating::query()->Where('products_id',$id)->avg('rating');
-        $result['ratings']      =   ProductRating::query()->Where('products_id',$id)->orderBy('id','desc')->paginate(2);
+        
+        $result['total_ratings']    =   ProductRating::query()->Where('products_id',$id)->get();
+        $result['ratings']          =   ProductRating::query()->Where('products_id',$id)->orderBy('id','desc')->paginate(2);
+
+
         return view('product_detail.main',compact('result'));   
     }
 
@@ -94,10 +97,12 @@ class HomeController extends Controller
         }
 
         ProductRating::updateOrCreate(
+            //where condition block start
             [
                 'users_id'    => Auth::user()->id,
                 'products_id' => decrypt($id),
             ], 
+            //where condition block end
             [
                 'rating'    => $request->input('stars'),
                 'review'    => $request->input('message'),
