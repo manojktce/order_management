@@ -9,7 +9,7 @@ class ProductRating extends Model
 {
     use HasFactory;
 
-    public $table = 'product_ratings';
+    public $table = 'products_rating';
 
     public $timestamps = false;
 

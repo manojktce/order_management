@@ -56,9 +56,9 @@ class Product extends Model implements HasMedia
         return $this->belongsTo('App\Models\OrderDetail');
     }
 
-    public function products_rating()
+    public function product_ratings()
     {
-        return $this->belongsTo('App\Models\ProductRating');
+        return $this->hasMany(ProductRating::class);
     }
 
 

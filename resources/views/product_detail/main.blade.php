@@ -1,5 +1,4 @@
 @include('includes.header')
-
   <!-- breadcrumb start-->
   <section class="breadcrumb breadcrumb_bg">
     <div class="container">

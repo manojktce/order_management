@@ -11,15 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_ratings', function (Blueprint $table) {
+        Schema::create('products_rating', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->nullable(false);
+            $table->integer('users_id')->nullable(false);
             $table->integer('product_id')->nullable(false); 
             $table->integer('rating')->default(0); 
             $table->text('review')->nullable(false); 
             $table->enum('status', [0, 1])->default(0); // 0-Pending , 1-Approved , 2- Rejected
             $table->datetime('created_at')->useCurrent();
             $table->datetime('updated_at')->nullable()->userCurrent()->useCurrentOnUpdate();
+
+            $table->foreign('users_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
