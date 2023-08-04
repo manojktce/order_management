@@ -29,12 +29,8 @@
 <div class="col-6">
     <div class="box_total">
       <h5>Overall</h5>
-      @if($total>0)
-        <h4>{{ round($total/$count,1) }}</h4>
-      @else
-        <h4>0</h4>
-      @endif
-      <h6>({{ $count }} Reviews)</h6>
+      <h4>{{ round($result['avg_rating'],1) }}</h4>
+      <h6>({{ $result['ratings']->total() }} Reviews)</h6>
     </div>
   </div>
   <div class="col-6">
