@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('products_rating', function (Blueprint $table) {
             $table->id();
-            $table->integer('users_id')->nullable(false);
-            $table->integer('product_id')->nullable(false); 
+            $table->unsignedBigInteger('users_id')->nullable(false);
+            $table->unsignedBigInteger('product_id')->nullable(false); 
             $table->integer('rating')->default(0); 
             $table->text('review')->nullable(false); 
             $table->enum('status', [0, 1])->default(0); // 0-Pending , 1-Approved , 2- Rejected
